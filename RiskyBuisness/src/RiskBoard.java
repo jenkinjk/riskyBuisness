@@ -29,7 +29,8 @@ public class RiskBoard {
 	}
 
 	private void randomAdd(ArrayList<Territory> territories) {
-		// Note, this assumes you have 5 players and 25 territories!
+		// Note, this assumes you have 5 players and 25 territories to be named
+		// 1 through 25!
 		int p1 = 0, p2 = 0, p3 = 0, p4 = 0, p5 = 0, p, count = 0;
 		Random rand = new Random();
 		while (count < 25) {
@@ -39,27 +40,27 @@ public class RiskBoard {
 				p1++;
 				count++;
 			}
-			if (p == 1 && p2 < 5){
+			if (p == 1 && p2 < 5) {
 				territories.add(new Territory(count + 1 + "", players.get(p)));
 				p2++;
 				count++;
 			}
-			if (p == 2 && p3 < 5){
+			if (p == 2 && p3 < 5) {
 				territories.add(new Territory(count + 1 + "", players.get(p)));
 				p3++;
 				count++;
 			}
-			if (p == 3 && p4 < 5){
+			if (p == 3 && p4 < 5) {
 				territories.add(new Territory(count + 1 + "", players.get(p)));
 				p4++;
 				count++;
 			}
-			if (p == 4 && p5 < 5){
+			if (p == 4 && p5 < 5) {
 				territories.add(new Territory(count + 1 + "", players.get(p)));
 				p5++;
 				count++;
 			}
-			
+
 		}
 	}
 
