@@ -62,11 +62,6 @@ public class RiskBoard {
 		panel.add(Asia);
 	}
 
-	public void setUp() {
-		// TODO Auto-generated method stub
-
-	}
-
 	public ArrayList<Player> getPlayers() {
 		return this.players;
 	}
@@ -78,7 +73,7 @@ public class RiskBoard {
 	}
 
 	public ArrayList<Territory> getTerritories() {
-		// TODO Auto-generated method stub
+		// Note we are hard coding in 25 arbitrary territories for now. Since all they have is titles we do not need a field... Yet.
 		ArrayList<Territory> territories = new ArrayList<Territory>();
 		territories.add(new Territory("1"));
 		territories.add(new Territory("2"));
