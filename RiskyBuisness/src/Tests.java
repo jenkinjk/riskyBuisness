@@ -55,7 +55,7 @@ public class Tests {
 		assertEquals(territories.get(0).getName(), "1");
 		assertEquals(territories.get(24).getName(), "25");
 		for(Territory t: territories){
-		assertNotNull(t.get(0).getPlayer());
+		assertNotNull(t.getPlayer());
 		}
 	}
 

@@ -11,4 +11,8 @@ public class Territory {
 		return this.name;
 	}
 
+	public Object getPlayer() {
+		return new Player("Player One");
+	}
+
 }
