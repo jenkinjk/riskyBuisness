@@ -1,13 +1,14 @@
 
 public class Territory {
 
+	private String name;
+
 	public Territory(String string) {
-		// TODO Auto-generated constructor stub
+		this.name = string;
 	}
 
 	public Object getName() {
-		// TODO Auto-generated method stub
-		return "1";
+		return this.name;
 	}
 
 }
