@@ -67,14 +67,8 @@ public class RiskBoard {
 
 	}
 
-	public ArrayList<Object> getPlayers() {
-		ArrayList<Object> players = new ArrayList<Object>();
-		players.add(1);
-		players.add(2);
-		players.add(3);
-		players.add(4);
-		players.add(5);
-		return players;
+	public ArrayList<Player> getPlayers() {
+		return this.players;
 	}
 
 	public Player getNextPlayer() {
