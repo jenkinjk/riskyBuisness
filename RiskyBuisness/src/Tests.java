@@ -24,6 +24,6 @@ public class Tests {
 	public void setupTest() {
 		RiskBoard board = new RiskBoard(5);
 		board.setUp();
-		assertEqual(board.getPlayers().getSize(),5);
+		assertEquals(board.getPlayers().size(),5);
 	}
 }

@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -57,5 +58,15 @@ public class RiskBoard {
 	public void setUp() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public ArrayList<Object> getPlayers() {
+		ArrayList<Object> players = new ArrayList<Object>();
+		players.add(1);
+		players.add(2);
+		players.add(3);
+		players.add(4);
+		players.add(5);
+		return players;
 	}
 }
