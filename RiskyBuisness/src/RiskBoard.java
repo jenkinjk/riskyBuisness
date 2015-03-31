@@ -54,7 +54,7 @@ public class RiskBoard {
 		panel.add(Asia);
 	}
 
-	public static void setUp() {
+	public void setUp() {
 		// TODO Auto-generated method stub
 		
 	}

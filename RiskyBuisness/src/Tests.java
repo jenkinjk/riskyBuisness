@@ -23,6 +23,7 @@ public class Tests {
 	@Test
 	public void setupTest() {
 		RiskBoard board = new RiskBoard(5);
-		RiskBoard.setUp();
+		board.setUp();
+		assertEqual(board.getPlayers().getSize(),5);
 	}
 }
