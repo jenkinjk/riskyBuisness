@@ -36,6 +36,7 @@ public class Tests {
 		Player player5 = new Player("Player Five");
 		assertEquals(board.getNextPlayer().getName(),player5.getName());
 		assertEquals(board.getNextPlayer().getName(),player1.getName());
+		assertEquals(board.getTerritories().size(0),25);
 	}
 	
 	
