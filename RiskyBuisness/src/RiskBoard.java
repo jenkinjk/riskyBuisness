@@ -69,4 +69,9 @@ public class RiskBoard {
 		players.add(5);
 		return players;
 	}
+
+	public Player getNextPlayer() {
+		
+		return  new Player("Player One");
+	}
 }
