@@ -1,6 +1,7 @@
 import static org.junit.Assert.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -47,11 +48,15 @@ public class Tests {
 		RiskBoard board = new RiskBoard();
 		// Part of set up is the initialization of territories. Note that for
 		// now we are simply hardcoding in 25 territories
-		assertEquals(board.getTerritories().size(), 25);
-		assertEquals(board.getTerritories().get(0).getClass(), new Territory(
+		ArrayList<Territory> territories = board.getTerritories();
+		assertEquals(territories.size(), 25);
+		assertEquals(territories.get(0).getClass(), new Territory(
 				"Name").getClass());
-		assertEquals(board.getTerritories().get(0).getName(), "1");
-		assertEquals(board.getTerritories().get(24).getName(), "25");
+		assertEquals(territories.get(0).getName(), "1");
+		assertEquals(territories.get(24).getName(), "25");
+		for(Territory t: territories){
+		assertNotNull(t.get(0).getPlayer());
+		}
 	}
 
 }
