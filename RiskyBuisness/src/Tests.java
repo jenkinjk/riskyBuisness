@@ -40,6 +40,7 @@ public class Tests {
 		//Part of set up is the initialization of territories
 		assertEquals(board.getTerritories().size(),25);
 		assertEquals(board.getTerritories().get(0).getClass(),new Territory("Name").getClass());
+		assertEquals(board.getTerritories().get(0).getName(),"1");
 	}
 	
 	

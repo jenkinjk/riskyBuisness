@@ -22,7 +22,7 @@ public class RiskBoard {
 		this.itr = players.iterator();
 	}
 
-	public static void display() throws IOException {
+	public void display() throws IOException {
 		JFrame frame = new JFrame("Risk Board");
 		frame.setSize(1000, 750);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
