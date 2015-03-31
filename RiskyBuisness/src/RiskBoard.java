@@ -6,6 +6,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class RiskBoard {
+	public RiskBoard(int i) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public RiskBoard() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public static void display() throws IOException {
 		JFrame frame = new JFrame("Risk Board");
 		frame.setSize(1000, 750);
@@ -44,5 +52,10 @@ public class RiskBoard {
 		panel.add(D);
 		panel.add(A);
 		panel.add(Asia);
+	}
+
+	public static void setUp() {
+		// TODO Auto-generated method stub
+		
 	}
 }
