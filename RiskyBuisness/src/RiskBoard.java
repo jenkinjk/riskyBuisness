@@ -76,4 +76,35 @@ public class RiskBoard {
 			this.itr = this.players.iterator();
 		return this.itr.next();
 	}
+
+	public ArrayList<Integer> getTerritories() {
+		// TODO Auto-generated method stub
+		ArrayList<Integer> territories = new ArrayList<Integer>();
+		territories.add(1);
+		territories.add(1);
+		territories.add(1);
+		territories.add(1);
+		territories.add(1);
+		territories.add(1);
+		territories.add(1);
+		territories.add(1);
+		territories.add(1);
+		territories.add(1);
+		territories.add(1);
+		territories.add(1);
+		territories.add(1);
+		territories.add(1);
+		territories.add(1);
+		territories.add(1);
+		territories.add(1);
+		territories.add(1);
+		territories.add(1);
+		territories.add(1);
+		territories.add(1);
+		territories.add(1);
+		territories.add(1);
+		territories.add(1);
+		territories.add(1);
+		return territories;
+	}
 }

@@ -24,6 +24,7 @@ public class Tests {
 	public void setupTest() {
 		RiskBoard board = new RiskBoard();
 		board.setUp();
+		//Part of the set up is players
 		assertEquals(board.getPlayers().size(),5);
 		assertEquals(board.getPlayers().get(0).getName(),"Player One");
 		assertEquals(board.getPlayers().get(4).getName(),"Player Five");
@@ -36,7 +37,8 @@ public class Tests {
 		Player player5 = new Player("Player Five");
 		assertEquals(board.getNextPlayer().getName(),player5.getName());
 		assertEquals(board.getNextPlayer().getName(),player1.getName());
-		assertEquals(board.getTerritories().size(0),25);
+		//Part of set up is the initialization of territories
+		assertEquals(board.getTerritories().size(),25);
 	}
 	
 	
