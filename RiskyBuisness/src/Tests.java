@@ -54,9 +54,30 @@ public class Tests {
 				"Name").getClass());
 		assertEquals(territories.get(0).getName(), "1");
 		assertEquals(territories.get(24).getName(), "25");
+		int player1cnt = 0,player2cnt = 0,player3cnt = 0,player4cnt = 0,player5cnt = 0;
 		for(Territory t: territories){
 		assertNotNull(t.getPlayer());
+		if(t.getPlayer().equals("Player One")){
+			player1cnt++;
 		}
+		if(t.getPlayer().equals("Player Two")){
+			player2cnt++;
+		}
+		if(t.getPlayer().equals("Player Three")){
+			player3cnt++;
+		}
+		if(t.getPlayer().equals("Player Four")){
+			player4cnt++;
+		}
+		if(t.getPlayer().equals("Player Five")){
+			player5cnt++;
+		}
+		}
+		assertEquals(player1cnt, 5);
+		assertEquals(player2cnt, 5);
+		assertEquals(player3cnt, 5);
+		assertEquals(player4cnt, 5);
+		assertEquals(player5cnt, 5);
 	}
 
 }
