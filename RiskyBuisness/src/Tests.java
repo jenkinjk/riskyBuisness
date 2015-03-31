@@ -28,6 +28,6 @@ public class Tests {
 		Player player1 = new Player("Player One");
 		Player player2 = new Player("Player Two");
 		assertEquals(board.getNextPlayer().getName(),player1.getName());
-		//assertEquals(board.getNextPlayer(),player2); this is a second test
+		assertEquals(board.getNextPlayer().getName(),player2.getName());
 	}
 }
