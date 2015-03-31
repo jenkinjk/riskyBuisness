@@ -25,6 +25,7 @@ public class Tests {
 		RiskBoard board = new RiskBoard();
 		board.setUp();
 		assertEquals(board.getPlayers().size(),5);
+
 		Player player1 = new Player("Player One");
 		Player player2 = new Player("Player Two");
 		assertEquals(board.getNextPlayer().getName(),player1.getName());
@@ -35,4 +36,6 @@ public class Tests {
 		assertEquals(board.getNextPlayer().getName(),player5.getName());
 		assertEquals(board.getNextPlayer().getName(),player1.getName());
 	}
+	
+	
 }

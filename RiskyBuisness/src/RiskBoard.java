@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 public class RiskBoard {
 	private Iterator<Player> itr;
+	private ArrayList<Player> players;
 
 	public RiskBoard() {
 		ArrayList<Player> players = new ArrayList<Player>();
@@ -17,6 +18,7 @@ public class RiskBoard {
 		players.add(new Player("Player Three"));
 		players.add(new Player("Player Four"));
 		players.add(new Player("Player Five"));
+		this.players = players;
 		this.itr = players.iterator();
 	}
 
@@ -62,7 +64,7 @@ public class RiskBoard {
 
 	public void setUp() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public ArrayList<Object> getPlayers() {
@@ -76,6 +78,8 @@ public class RiskBoard {
 	}
 
 	public Player getNextPlayer() {
+		if (!itr.hasNext())
+			this.itr = this.players.iterator();
 		return this.itr.next();
 	}
 }
