@@ -41,6 +41,7 @@ public class Tests {
 		assertEquals(board.getTerritories().size(),25);
 		assertEquals(board.getTerritories().get(0).getClass(),new Territory("Name").getClass());
 		assertEquals(board.getTerritories().get(0).getName(),"1");
+		assertEquals(board.getTerritories().get(24).getName(),"25");
 	}
 	
 	
