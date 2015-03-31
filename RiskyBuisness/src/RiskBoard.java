@@ -1,18 +1,20 @@
 import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class RiskBoard {
-	public RiskBoard(int i) {
-		// TODO Auto-generated constructor stub
-	}
+	private Iterator<Player> itr;
 
-	public RiskBoard() {
-		// TODO Auto-generated constructor stub
+	public RiskBoard(int i) {
+		ArrayList<Player> players = new ArrayList<Player>();
+		players.add(new Player("Player One"));
+		players.add(new Player("Player Two"));
+		this.itr = players.iterator();
 	}
 
 	public static void display() throws IOException {
@@ -71,7 +73,6 @@ public class RiskBoard {
 	}
 
 	public Player getNextPlayer() {
-		
-		return  new Player("Player One");
+		return this.itr.next();
 	}
 }

@@ -9,7 +9,7 @@ public class Tests {
 
 	@Test
 	public void displayBoardTest() throws IOException {
-		RiskBoard board = new RiskBoard();
+		RiskBoard board = new RiskBoard(5);
 		board.display();
 		//Note, since this is GUI stuff it mostly is better to test by hand.
 	}
