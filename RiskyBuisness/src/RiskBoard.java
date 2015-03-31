@@ -10,10 +10,13 @@ import javax.swing.JPanel;
 public class RiskBoard {
 	private Iterator<Player> itr;
 
-	public RiskBoard(int i) {
+	public RiskBoard() {
 		ArrayList<Player> players = new ArrayList<Player>();
 		players.add(new Player("Player One"));
 		players.add(new Player("Player Two"));
+		players.add(new Player("Player Three"));
+		players.add(new Player("Player Four"));
+		players.add(new Player("Player Five"));
 		this.itr = players.iterator();
 	}
 
