@@ -25,5 +25,9 @@ public class Tests {
 		RiskBoard board = new RiskBoard(5);
 		board.setUp();
 		assertEquals(board.getPlayers().size(),5);
+		Player player1 = new Player("Player One")
+		Player player2 = new Player("Player Two");
+		assertEquals(board.getNextPlayer(),player1);
+		assertEquals(board.getNextPlayer(),player2);
 	}
 }
