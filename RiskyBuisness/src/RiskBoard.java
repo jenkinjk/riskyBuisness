@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -10,9 +11,11 @@ import javax.swing.JPanel;
 public class RiskBoard {
 	private Iterator<Player> itr;
 	private ArrayList<Player> players;
+	private ArrayList<Territory> territories;
 
 	public RiskBoard() {
 		ArrayList<Player> players = new ArrayList<Player>();
+		// Note, this assumes you have 5 players!
 		players.add(new Player("Player One"));
 		players.add(new Player("Player Two"));
 		players.add(new Player("Player Three"));
@@ -20,6 +23,44 @@ public class RiskBoard {
 		players.add(new Player("Player Five"));
 		this.players = players;
 		this.itr = players.iterator();
+		ArrayList<Territory> territories = new ArrayList<Territory>();
+		randomAdd(territories);
+		this.territories = territories;
+	}
+
+	private void randomAdd(ArrayList<Territory> territories) {
+		// Note, this assumes you have 5 players and 25 territories!
+		int p1 = 0, p2 = 0, p3 = 0, p4 = 0, p5 = 0, p, count = 0;
+		Random rand = new Random();
+		while (count < 25) {
+			p = rand.nextInt(5);
+			if (p == 0 && p1 < 5) {
+				territories.add(new Territory(count + 1 + "", players.get(p)));
+				p1++;
+				count++;
+			}
+			if (p == 1 && p2 < 5){
+				territories.add(new Territory(count + 1 + "", players.get(p)));
+				p2++;
+				count++;
+			}
+			if (p == 2 && p3 < 5){
+				territories.add(new Territory(count + 1 + "", players.get(p)));
+				p3++;
+				count++;
+			}
+			if (p == 3 && p4 < 5){
+				territories.add(new Territory(count + 1 + "", players.get(p)));
+				p4++;
+				count++;
+			}
+			if (p == 4 && p5 < 5){
+				territories.add(new Territory(count + 1 + "", players.get(p)));
+				p5++;
+				count++;
+			}
+			
+		}
 	}
 
 	public void display() throws IOException {
@@ -73,33 +114,6 @@ public class RiskBoard {
 	}
 
 	public ArrayList<Territory> getTerritories() {
-		// Note we are hard coding in 25 arbitrary territories for now. Since all they have is titles we do not need a field... Yet.
-		ArrayList<Territory> territories = new ArrayList<Territory>();
-		territories.add(new Territory("1"));
-		territories.add(new Territory("2"));
-		territories.add(new Territory("3"));
-		territories.add(new Territory("4"));
-		territories.add(new Territory("5"));
-		territories.add(new Territory("6"));
-		territories.add(new Territory("7"));
-		territories.add(new Territory("8"));
-		territories.add(new Territory("9"));
-		territories.add(new Territory("10"));
-		territories.add(new Territory("11"));
-		territories.add(new Territory("12"));
-		territories.add(new Territory("13"));
-		territories.add(new Territory("14"));
-		territories.add(new Territory("15"));
-		territories.add(new Territory("16"));
-		territories.add(new Territory("17"));
-		territories.add(new Territory("18"));
-		territories.add(new Territory("19"));
-		territories.add(new Territory("20"));
-		territories.add(new Territory("21"));
-		territories.add(new Territory("22"));
-		territories.add(new Territory("23"));
-		territories.add(new Territory("24"));
-		territories.add(new Territory("25"));
-		return territories;
+		return this.territories;
 	}
 }
