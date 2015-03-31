@@ -77,34 +77,34 @@ public class RiskBoard {
 		return this.itr.next();
 	}
 
-	public ArrayList<Integer> getTerritories() {
+	public ArrayList<Territory> getTerritories() {
 		// TODO Auto-generated method stub
-		ArrayList<Integer> territories = new ArrayList<Integer>();
-		territories.add(1);
-		territories.add(1);
-		territories.add(1);
-		territories.add(1);
-		territories.add(1);
-		territories.add(1);
-		territories.add(1);
-		territories.add(1);
-		territories.add(1);
-		territories.add(1);
-		territories.add(1);
-		territories.add(1);
-		territories.add(1);
-		territories.add(1);
-		territories.add(1);
-		territories.add(1);
-		territories.add(1);
-		territories.add(1);
-		territories.add(1);
-		territories.add(1);
-		territories.add(1);
-		territories.add(1);
-		territories.add(1);
-		territories.add(1);
-		territories.add(1);
+		ArrayList<Territory> territories = new ArrayList<Territory>();
+		territories.add(new Territory("1"));
+		territories.add(new Territory("1"));
+		territories.add(new Territory("1"));
+		territories.add(new Territory("1"));
+		territories.add(new Territory("1"));
+		territories.add(new Territory("1"));
+		territories.add(new Territory("1"));
+		territories.add(new Territory("1"));
+		territories.add(new Territory("1"));
+		territories.add(new Territory("1"));
+		territories.add(new Territory("1"));
+		territories.add(new Territory("1"));
+		territories.add(new Territory("1"));
+		territories.add(new Territory("1"));
+		territories.add(new Territory("1"));
+		territories.add(new Territory("1"));
+		territories.add(new Territory("1"));
+		territories.add(new Territory("1"));
+		territories.add(new Territory("1"));
+		territories.add(new Territory("1"));
+		territories.add(new Territory("1"));
+		territories.add(new Territory("1"));
+		territories.add(new Territory("1"));
+		territories.add(new Territory("1"));
+		territories.add(new Territory("1"));
 		return territories;
 	}
 }

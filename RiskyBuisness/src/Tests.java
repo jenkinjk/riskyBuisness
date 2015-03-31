@@ -39,6 +39,7 @@ public class Tests {
 		assertEquals(board.getNextPlayer().getName(),player1.getName());
 		//Part of set up is the initialization of territories
 		assertEquals(board.getTerritories().size(),25);
+		assertEquals(board.getTerritories().get(0).getClass(),new Territory("Name").getClass());
 	}
 	
 	
