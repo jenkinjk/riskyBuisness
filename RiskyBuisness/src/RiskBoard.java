@@ -1,11 +1,15 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -74,15 +78,22 @@ public class RiskBoard {
 		this.itr = this.players.iterator();
 	}
 
+	@SuppressWarnings("serial")
 	public void display() throws IOException {
 		JFrame frame = new JFrame("Risk Board");
-		frame.setSize(1000, 750);
+		frame.setSize(1025, 740);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		frame.setResizable(false);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.blue);
+		JPanel panel = new JPanel() {
+			private Image backgroundImage = ImageIO.read(new File("risk.png"));
+			public void paint( Graphics g ) { 
+				super.paint(g);
+				g.drawImage(backgroundImage, 0, 30, null);
+			  	}
+			};
+		//panel.setBackground(Color.blue);
 		
 		JButton NA = new JButton();
 		NA.addActionListener(new ContinentListener("North America", this));
@@ -114,18 +125,17 @@ public class RiskBoard {
 		panel.add(D);
 		panel.add(A);
 		panel.add(Asia);
+		//panel.setSize(1000, 50);
 		frame.setContentPane(panel);
-		//frame.setFocusable(false);
 		panel.setFocusable(true);
 		//while(!panel.hasFocus()){
 		//	panel.requestFocusInWindow();
 		//}
 		//System.out.println(panel.hasFocus());
-		//panel.setSize(1000, 749);
-		//panel.setSize(1000, 750);
 		//panel.requestFocus();
 		panel.revalidate();
 		frame.revalidate();
+		frame.repaint();
 		//System.out.println(javax.swing.SwingUtilities.isEventDispatchThread());
 	}
 
