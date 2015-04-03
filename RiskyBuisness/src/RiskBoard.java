@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -114,13 +115,17 @@ public class RiskBoard {
 		panel.add(A);
 		panel.add(Asia);
 		frame.setContentPane(panel);
+		//frame.setFocusable(false);
 		panel.setFocusable(true);
 		//while(!panel.hasFocus()){
 		//	panel.requestFocusInWindow();
 		//}
 		//System.out.println(panel.hasFocus());
-		panel.repaint();
-		frame.repaint();
+		//panel.setSize(1000, 749);
+		//panel.setSize(1000, 750);
+		//panel.requestFocus();
+		panel.revalidate();
+		frame.revalidate();
 		//System.out.println(javax.swing.SwingUtilities.isEventDispatchThread());
 	}
 
