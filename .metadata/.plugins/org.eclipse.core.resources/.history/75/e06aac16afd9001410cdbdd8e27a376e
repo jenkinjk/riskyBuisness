@@ -154,6 +154,7 @@ public class RiskBoard {
 	public Player getNextPlayer() {
 		if (!itr.hasNext())
 			this.itr = this.players.iterator();
+		System.out.println(this.itr.next().getName());
 		return this.itr.next();
 	}
 

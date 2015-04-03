@@ -40,8 +40,9 @@ public class Tests {
 		board.initialGame(5);
 		Player player1 = new Player("Player One");
 		Player player2 = new Player("Player Two");
-		assertEquals(player1.getName(), board.getNextPlayer().getName());
+		Player player3 = new Player("Player Three");
 		assertEquals(player2.getName(), board.getNextPlayer().getName());
+		assertEquals(player3.getName(), board.getNextPlayer().getName());
 		board.getNextPlayer();
 		board.getNextPlayer();
 		Player player5 = new Player("Player Five");
