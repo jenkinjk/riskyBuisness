@@ -18,11 +18,13 @@ public class RiskBoard {
 	private Integer[] numPlayerArray = { 1, 2, 3, 4, 5, 6 };
 	private String[] playerName = { "Player One", "Player Two", "Player Three",
 			"Player Four", "Player Five", };
+	//private ArrayList<Territory> territories;
 
 	public RiskBoard() {
 		ArrayList<Player> players = new ArrayList<Player>();
 		this.players = players;
 		this.itr = players.iterator();
+		//this.territories = new ArrayList<Territory>();
 	}
 
 	public void selectNumberOfPlayers() {
@@ -77,8 +79,10 @@ public class RiskBoard {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		frame.setResizable(false);
+		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.blue);
+		
 		JButton NA = new JButton();
 		NA.addActionListener(new ContinentListener("North America", this));
 		NA.setText("North America");
@@ -93,23 +97,31 @@ public class RiskBoard {
 
 		JButton E = new JButton();
 		E.setText("Europe");
-
 		E.addActionListener(new ContinentListener("Europe", this));
+		
 		JButton D = new JButton();
 		D.setText("Austrailia");
-
 		D.addActionListener(new ContinentListener("Austraila", this));
+		
 		JButton Asia = new JButton();
-
 		Asia.addActionListener(new ContinentListener("Asia", this));
 		Asia.setText("Asia");
-		frame.add(panel);
+		
 		panel.add(NA);
 		panel.add(SA);
 		panel.add(E);
 		panel.add(D);
 		panel.add(A);
 		panel.add(Asia);
+		frame.setContentPane(panel);
+		panel.setFocusable(true);
+		//while(!panel.hasFocus()){
+		//	panel.requestFocusInWindow();
+		//}
+		//System.out.println(panel.hasFocus());
+		panel.repaint();
+		frame.repaint();
+		//System.out.println(javax.swing.SwingUtilities.isEventDispatchThread());
 	}
 
 	public ArrayList<Player> getPlayers() {

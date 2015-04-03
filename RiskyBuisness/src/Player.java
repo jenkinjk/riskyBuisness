@@ -13,7 +13,7 @@ public class Player {
 		this.territories = new ArrayList<Territory>();
 	}
 	
-	public void addTerritoty(Territory t) {
+	public void addTerritory(Territory t) {
 		this.territories.add(t);
 		this.numberOfTerritories++;
 	}
