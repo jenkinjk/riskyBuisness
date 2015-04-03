@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="Tests" project="RiskyBuisness" tests="5" started="5" failures="0" errors="0" ignored="0">
-  <testsuite name="Tests" time="0.247">
-    <testcase name="listenerTest" classname="Tests" time="0.001"/>
-    <testcase name="setupTerritoriesTest" classname="Tests" time="0.176"/>
-    <testcase name="displayBoardTest" classname="Tests" time="0.016"/>
-    <testcase name="setupPlayerTest" classname="Tests" time="0.041"/>
-    <testcase name="nextPlayerTest" classname="Tests" time="0.012"/>
-  </testsuite>
-</testrun>

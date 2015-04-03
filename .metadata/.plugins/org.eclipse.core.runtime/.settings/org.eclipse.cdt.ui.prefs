@@ -1,4 +1,3 @@
-TerminalPrefInvertColors=true
 asm_directive=147,199,99
 asm_label=224,226,228
 c_braces=232,226,183
@@ -20,7 +19,6 @@ inactiveCodeColor=97,97,97
 org.eclipse.cdt.internal.ui.text.doctools.multi=125,140,147
 org.eclipse.cdt.internal.ui.text.doctools.recognizedTag=224,226,228
 org.eclipse.cdt.internal.ui.text.doctools.single=125,140,147
-overriddenByCSS=,TerminalPrefInvertColors,
 pp_default=224,226,228
 pp_directive=147,199,99
 pp_header=236,118,0

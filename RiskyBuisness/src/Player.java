@@ -12,6 +12,11 @@ public class Player {
 		this.numberOfTerritories = 0;
 		this.territories = new ArrayList<Territory>();
 	}
+	
+	public void addTerritoty(Territory t) {
+		this.territories.add(t);
+		this.numberOfTerritories++;
+	}
 
 	public String getName() {
 		return this.name;

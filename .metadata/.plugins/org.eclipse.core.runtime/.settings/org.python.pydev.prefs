@@ -25,6 +25,4 @@ SELF_COLOR=147,199,99
 SELF_STYLE=0
 STRING_COLOR=236,118,0
 STRING_STYLE=0
-TerminalPrefInvertColors=true
 eclipse.preferences.version=1
-overriddenByCSS=,TerminalPrefInvertColors,

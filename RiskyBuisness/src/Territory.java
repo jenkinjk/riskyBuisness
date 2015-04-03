@@ -2,19 +2,12 @@
 public class Territory {
 
 	private String name;
-	private Player player;
 
-	public Territory(String string, Player player) {
+	public Territory(String string) {
 		this.name = string;
-		this.player = player;
 	}
 
 	public String getName() {
 		return this.name;
 	}
-
-	public Player getPlayer() {
-		return player;
-	}
-
 }

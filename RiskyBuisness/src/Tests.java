@@ -57,11 +57,11 @@ public class Tests {
 		c.setUpTerritories();
 		
 		ArrayList<Player> players = board.getPlayers();
-		assertEquals(players.get(0).getNumberOfTerritories(), 3);
-		assertEquals(players.get(1).getNumberOfTerritories(), 3);
-		assertEquals(players.get(2).getNumberOfTerritories(), 2);
-		assertEquals(players.get(3).getNumberOfTerritories(), 2);
-		assertEquals(players.get(4).getNumberOfTerritories(), 2);
+		assertEquals(3, players.get(0).getNumberOfTerritories());
+		assertEquals(3, players.get(1).getNumberOfTerritories());
+		assertEquals(2, players.get(2).getNumberOfTerritories());
+		assertEquals(2, players.get(3).getNumberOfTerritories());
+		assertEquals(2, players.get(4).getNumberOfTerritories());
 	}
 
 }
