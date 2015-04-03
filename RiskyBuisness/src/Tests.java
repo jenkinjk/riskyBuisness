@@ -3,7 +3,6 @@ import static org.junit.Assert.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import org.junit.Before;
 import org.junit.Test;
 
 public class Tests {
@@ -18,8 +17,9 @@ public class Tests {
 
 	@Test
 	public void listenerTest() {
+		RiskBoard board = new RiskBoard();
 		ContinentListener riskyBuisness = new ContinentListener(
-				"Risky Buisness");
+				"Risky Buisness", board);
 		assertEquals("I am Risky Buisness. Fear me!\n",
 				riskyBuisness.identity());
 	}
@@ -52,38 +52,16 @@ public class Tests {
 	@Test
 	public void setupTerritoriesTest() {
 		RiskBoard board = new RiskBoard();
-		// Part of set up is the initialization of territories. Note that for
-		// now we are simply hardcoding in 25 territories
-		ArrayList<Territory> territories = board.getTerritories();
-		assertEquals(territories.size(), 25);
-		assertEquals(territories.get(0).getClass(),
-				new Territory("Name",new Player(null)).getClass());
-		assertEquals(territories.get(0).getName(), "1");
-		assertEquals(territories.get(24).getName(), "25");
-		int player1cnt = 0, player2cnt = 0, player3cnt = 0, player4cnt = 0, player5cnt = 0;
-		for (Territory t : territories) {
-			assertNotNull(t.getPlayer());
-			if (t.getPlayer().getName().equals("Player One")) {
-				player1cnt++;
-			}
-			if (t.getPlayer().getName().equals("Player Two")) {
-				player2cnt++;
-			}
-			if (t.getPlayer().getName().equals("Player Three")) {
-				player3cnt++;
-			}
-			if (t.getPlayer().getName().equals("Player Four")) {
-				player4cnt++;
-			}
-			if (t.getPlayer().getName().equals("Player Five")) {
-				player5cnt++;
-			}
-		}
-		assertEquals(player1cnt, 5);
-		assertEquals(player2cnt, 5);
-		assertEquals(player3cnt, 5);
-		assertEquals(player4cnt, 5);
-		assertEquals(player5cnt, 5);
+		board.initialGame(5);
+		ContinentListener c = new ContinentListener("Asia", board);
+		c.setUpTerritories();
+		
+		ArrayList<Player> players = board.getPlayers();
+		assertEquals(players.get(0).getNumberOfTerritories(), 3);
+		assertEquals(players.get(1).getNumberOfTerritories(), 3);
+		assertEquals(players.get(2).getNumberOfTerritories(), 2);
+		assertEquals(players.get(3).getNumberOfTerritories(), 2);
+		assertEquals(players.get(4).getNumberOfTerritories(), 2);
 	}
 
 }

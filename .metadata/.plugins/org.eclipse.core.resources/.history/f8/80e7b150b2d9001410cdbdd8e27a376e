@@ -1,0 +1,31 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Map;
+
+public class ContinentListener implements ActionListener {
+	private String label;
+	private RiskBoard board;
+	private String[] asianCountries = { "Afghanistan", "China", "India",
+			"Irkutsk", "Japan", "Kamchatka", "Middle East", "Mongolia", "Siam",
+			"Siberia", "Ural", "Yakutsk"};
+	private Map<String, String[]> continentToCountriesMap;
+
+	public ContinentListener(String label, RiskBoard board) {
+		this.label = label;
+		this.board = board;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		System.out.printf(identity());
+		setUpTerritories();
+	}
+
+	private void setUpTerritories() {
+
+	}
+
+	public String identity() {
+		return String.format("I am %s. Fear me!\n", label);
+	}
+}

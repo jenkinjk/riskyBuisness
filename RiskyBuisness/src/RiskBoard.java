@@ -5,8 +5,6 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Random;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -17,7 +15,6 @@ public class RiskBoard {
 	private int numberOfPlayers;
 	private Iterator<Player> itr;
 	private ArrayList<Player> players;
-	private ArrayList<Territory> territories;
 	private Integer[] numPlayerArray = { 1, 2, 3, 4, 5, 6 };
 	private String[] playerName = { "Player One", "Player Two", "Player Three",
 			"Player Four", "Player Five", };
@@ -26,8 +23,6 @@ public class RiskBoard {
 		ArrayList<Player> players = new ArrayList<Player>();
 		this.players = players;
 		this.itr = players.iterator();
-		ArrayList<Territory> territories = new ArrayList<Territory>();
-		this.territories = territories;
 	}
 
 	public void selectNumberOfPlayers() {
@@ -60,6 +55,12 @@ public class RiskBoard {
 	public void initialGame(int numberOfPlayers) {
 		this.numberOfPlayers = numberOfPlayers;
 		setUpPlayers();
+		try {
+			display();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private void setUpPlayers() {
@@ -68,42 +69,6 @@ public class RiskBoard {
 			this.players.add(p);
 		}
 		this.itr = this.players.iterator();
-	}
-
-	private void randomAdd(ArrayList<Territory> territories) {
-		// Note, this assumes you have 5 players and 25 territories to be named
-		// 1 through 25!
-		int p1 = 0, p2 = 0, p3 = 0, p4 = 0, p5 = 0, p, count = 0;
-		Random rand = new Random();
-		while (count < 25) {
-			p = rand.nextInt(5);
-			if (p == 0 && p1 < 5) {
-				territories.add(new Territory(count + 1 + "", players.get(p)));
-				p1++;
-				count++;
-			}
-			if (p == 1 && p2 < 5) {
-				territories.add(new Territory(count + 1 + "", players.get(p)));
-				p2++;
-				count++;
-			}
-			if (p == 2 && p3 < 5) {
-				territories.add(new Territory(count + 1 + "", players.get(p)));
-				p3++;
-				count++;
-			}
-			if (p == 3 && p4 < 5) {
-				territories.add(new Territory(count + 1 + "", players.get(p)));
-				p4++;
-				count++;
-			}
-			if (p == 4 && p5 < 5) {
-				territories.add(new Territory(count + 1 + "", players.get(p)));
-				p5++;
-				count++;
-			}
-
-		}
 	}
 
 	public void display() throws IOException {
@@ -115,28 +80,28 @@ public class RiskBoard {
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.blue);
 		JButton NA = new JButton();
-		NA.addActionListener(new ContinentListener("North America"));
+		NA.addActionListener(new ContinentListener("North America", this));
 		NA.setText("North America");
 
 		JButton SA = new JButton();
-		SA.addActionListener(new ContinentListener("South America"));
+		SA.addActionListener(new ContinentListener("South America", this));
 		SA.setText("South America");
 
 		JButton A = new JButton();
 		A.setText("Africa");
-		A.addActionListener(new ContinentListener("Africa"));
+		A.addActionListener(new ContinentListener("Africa", this));
 
 		JButton E = new JButton();
 		E.setText("Europe");
 
-		E.addActionListener(new ContinentListener("Europe"));
+		E.addActionListener(new ContinentListener("Europe", this));
 		JButton D = new JButton();
 		D.setText("Austrailia");
 
-		D.addActionListener(new ContinentListener("Austraila"));
+		D.addActionListener(new ContinentListener("Austraila", this));
 		JButton Asia = new JButton();
 
-		Asia.addActionListener(new ContinentListener("Asia"));
+		Asia.addActionListener(new ContinentListener("Asia", this));
 		Asia.setText("Asia");
 		frame.add(panel);
 		panel.add(NA);
@@ -155,9 +120,5 @@ public class RiskBoard {
 		if (!itr.hasNext())
 			this.itr = this.players.iterator();
 		return this.itr.next();
-	}
-
-	public ArrayList<Territory> getTerritories() {
-		return this.territories;
 	}
 }

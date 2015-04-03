@@ -1,0 +1,26 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class ContinentListener implements ActionListener {
+	private String label;
+	private int numberOfPlayers;
+
+	public ContinentListener(String label, int numberOfPlayers) {
+		this.label = label;
+		this.numberOfPlayers = numberOfPlayers;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		System.out.printf(identity());
+		setUpTerritories();
+	}
+	
+	private void setUpTerritories() {
+		
+	}
+
+	public String identity() {
+		return String.format("I am %s. Fear me!\n", label);
+	}
+}

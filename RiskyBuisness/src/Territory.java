@@ -4,9 +4,9 @@ public class Territory {
 	private String name;
 	private Player player;
 
-	public Territory(String string, Player player2) {
+	public Territory(String string, Player player) {
 		this.name = string;
-		this.player = player2;
+		this.player = player;
 	}
 
 	public String getName() {
