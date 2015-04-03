@@ -28,20 +28,14 @@ public class Tests {
 	public void setupPlayerTest() {
 		RiskBoard board = new RiskBoard();
 		board.initialGame(5);
+		
 		assertEquals(board.getPlayers().size(), 5);
 		assertEquals(board.getPlayers().get(0).getName(), "Player One");
 		assertEquals(board.getPlayers().get(4).getName(), "Player Five");
-	}
-	
-	
-	@Test
-	public void nextPlayerTest() {	
-		RiskBoard board = new RiskBoard();
-		board.initialGame(5);
 		Player player1 = new Player("Player One");
 		Player player2 = new Player("Player Two");
-		assertEquals(player1.getName(), board.getNextPlayer().getName());
-		assertEquals(player2.getName(), board.getNextPlayer().getName());
+		assertEquals(board.getNextPlayer().getName(), player1.getName());
+		assertEquals(board.getNextPlayer().getName(), player2.getName());
 		board.getNextPlayer();
 		board.getNextPlayer();
 		Player player5 = new Player("Player Five");

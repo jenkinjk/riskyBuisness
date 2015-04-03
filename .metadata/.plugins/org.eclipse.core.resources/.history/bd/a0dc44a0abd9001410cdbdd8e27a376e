@@ -18,9 +18,7 @@ public class RiskBoard {
 	private Iterator<Player> itr;
 	private ArrayList<Player> players;
 	private ArrayList<Territory> territories;
-	private Integer[] numPlayerArray = { 1, 2, 3, 4, 5, 6 };
-	private String[] playerName = { "Player One", "Player Two", "Player Three",
-			"Player Four", "Player Five", };
+	private Integer[] numPlayerArray = {1, 2, 3, 4, 5, 6};
 
 	public RiskBoard() {
 		ArrayList<Player> players = new ArrayList<Player>();
@@ -29,45 +27,39 @@ public class RiskBoard {
 		ArrayList<Territory> territories = new ArrayList<Territory>();
 		this.territories = territories;
 	}
-
+	
 	public void selectNumberOfPlayers() {
 		JFrame setUpFrame = new JFrame("Risk");
 		JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());
-
+		
 		JLabel select = new JLabel("Please select number of player(s)");
 		panel.add(select, BorderLayout.NORTH);
-
+		
 		JComboBox<Integer> box = new JComboBox<>(numPlayerArray);
 		box.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg) {
 				@SuppressWarnings("unchecked")
 				JComboBox<Integer> cb = (JComboBox<Integer>) arg.getSource();
-				int num = (int) cb.getSelectedItem();
+				int num = (int)cb.getSelectedItem();
 				initialGame(num);
 			}
 		});
 		panel.add(box, BorderLayout.CENTER);
-
+		
 		setUpFrame.add(panel);
 		setUpFrame.setSize(300, 150);
 		setUpFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setUpFrame.setVisible(true);
 		setUpFrame.setResizable(false);
 	}
-
+	
 	public void initialGame(int numberOfPlayers) {
-		this.numberOfPlayers = numberOfPlayers;
-		setUpPlayers();
 	}
-
+	
 	private void setUpPlayers() {
-		for(int i=0; i< this.numberOfPlayers; i++) {
-			Player p = new Player(this.playerName[i]);
-			this.players.add(p);
-		}
-		this.itr = this.players.iterator();
+		
 	}
 
 	private void randomAdd(ArrayList<Territory> territories) {
@@ -154,7 +146,6 @@ public class RiskBoard {
 	public Player getNextPlayer() {
 		if (!itr.hasNext())
 			this.itr = this.players.iterator();
-		System.out.println(this.itr.next().getName());
 		return this.itr.next();
 	}
 

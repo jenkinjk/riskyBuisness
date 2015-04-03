@@ -59,7 +59,6 @@ public class RiskBoard {
 
 	public void initialGame(int numberOfPlayers) {
 		this.numberOfPlayers = numberOfPlayers;
-		setUpPlayers();
 	}
 
 	private void setUpPlayers() {
@@ -67,7 +66,6 @@ public class RiskBoard {
 			Player p = new Player(this.playerName[i]);
 			this.players.add(p);
 		}
-		this.itr = this.players.iterator();
 	}
 
 	private void randomAdd(ArrayList<Territory> territories) {
@@ -154,7 +152,6 @@ public class RiskBoard {
 	public Player getNextPlayer() {
 		if (!itr.hasNext())
 			this.itr = this.players.iterator();
-		System.out.println(this.itr.next().getName());
 		return this.itr.next();
 	}
 

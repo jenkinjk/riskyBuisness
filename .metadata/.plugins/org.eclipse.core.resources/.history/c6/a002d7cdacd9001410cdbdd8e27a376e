@@ -67,7 +67,6 @@ public class RiskBoard {
 			Player p = new Player(this.playerName[i]);
 			this.players.add(p);
 		}
-		this.itr = this.players.iterator();
 	}
 
 	private void randomAdd(ArrayList<Territory> territories) {
