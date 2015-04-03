@@ -17,24 +17,17 @@ public class RiskBoard {
 	private Iterator<Player> itr;
 	private ArrayList<Player> players;
 	private ArrayList<Territory> territories;
-	private String[] numPlayerStrings = {"1", "2", "3", "4", "5", "6"};
+	private Integer[] numPlayerArray = {1, 2, 3, 4, 5, 6};
 
 	public RiskBoard() {
 		ArrayList<Player> players = new ArrayList<Player>();
-		// Note, this assumes you have 5 players!
-//		players.add(new Player("Player One"));
-//		players.add(new Player("Player Two"));
-//		players.add(new Player("Player Three"));
-//		players.add(new Player("Player Four"));
-//		players.add(new Player("Player Five"));
 		this.players = players;
 		this.itr = players.iterator();
 		ArrayList<Territory> territories = new ArrayList<Territory>();
-//		randomAdd(territories);
 		this.territories = territories;
 	}
 	
-	public void initialGame() {
+	public void selectNumberOfPlayers() {
 		JFrame setUpFrame = new JFrame("Risk");
 		JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());
@@ -42,28 +35,26 @@ public class RiskBoard {
 		JLabel select = new JLabel("Please select number of player(s)");
 		panel.add(select, BorderLayout.NORTH);
 		
-		JComboBox<String> box = new JComboBox<>(numPlayerStrings);
-		panel.add(box, BorderLayout.CENTER);
-		
-		JButton start = new JButton("Star Game");
-		panel.add(start, BorderLayout.SOUTH);
-		start.addActionListener(new ActionListener() {
+		JComboBox<Integer> box = new JComboBox<>(numPlayerArray);
+		box.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-					display();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+			public void actionPerformed(ActionEvent arg) {
+				@SuppressWarnings("unchecked")
+				JComboBox<Integer> cb = (JComboBox<Integer>) arg.getSource();
+				int num = (int)cb.getSelectedItem();
+				initialGame(num);
 			}
 		});
-		
+		panel.add(box, BorderLayout.CENTER);
 		
 		setUpFrame.add(panel);
 		setUpFrame.setSize(300, 150);
 		setUpFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setUpFrame.setVisible(true);
 		setUpFrame.setResizable(false);
+	}
+	
+	public void initialGame(int numberOfPlayers) {
 	}
 
 	private void randomAdd(ArrayList<Territory> territories) {

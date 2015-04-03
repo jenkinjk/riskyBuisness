@@ -27,8 +27,8 @@ public class Tests {
 	@Test
 	public void setupPlayerTest() {
 		RiskBoard board = new RiskBoard();
-		// Part of the set up is players. Note for now we are assuming 5
-		// players.
+		board.initialGame(5);
+		
 		assertEquals(board.getPlayers().size(), 5);
 		assertEquals(board.getPlayers().get(0).getName(), "Player One");
 		assertEquals(board.getPlayers().get(4).getName(), "Player Five");
