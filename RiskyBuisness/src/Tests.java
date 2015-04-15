@@ -3,6 +3,7 @@ import static org.junit.Assert.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -120,16 +121,23 @@ public class Tests {
 	@Test
 	public void nextPlayerTest() {
 		RiskBoard board = new RiskBoard();
-		board.initialGame(5);
-		Player player1 = new Player("Player One");
-		Player player2 = new Player("Player Two");
-		assertEquals(player1.getName(), board.getNextPlayer().getName());
-		assertEquals(player2.getName(), board.getNextPlayer().getName());
-		board.getNextPlayer();
-		board.getNextPlayer();
-		Player player5 = new Player("Player Five");
-		assertEquals(player5.getName(), board.getNextPlayer().getName());
-		assertEquals(player1.getName(), board.getNextPlayer().getName());
+		board.initialGame(fInput);
+		HashMap<Integer, String> numToNum = new HashMap<Integer, String>();
+		numToNum.put(1, "One");
+		numToNum.put(2, "Two");
+		numToNum.put(3, "Three");
+		numToNum.put(4, "Four");
+		numToNum.put(5, "Five");
+		numToNum.put(6, "Six");
+		for(int i = 0; i<fInput;i++){
+			assertEquals("Player "+numToNum.get(i+1),board.getNextPlayer().getName());
+		}
+		assertEquals("Player "+numToNum.get(1),board.getNextPlayer().getName());
 	}
+	
+//	@Test
+//	public void allTerriories(){
+//		RiskBoard board = new RiskBoard();
+//	}
 
 }

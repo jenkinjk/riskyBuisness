@@ -11,7 +11,7 @@ public class ContinentListener implements ActionListener {
 	private String[] asianCountries = { "Afghanistan", "China", "India",
 			"Irkutsk", "Japan", "Kamchatka", "Middle East", "Mongolia", "Siam",
 			"Siberia", "Ural", "Yakutsk" };
-	private String[] europeCountries = { "" };
+	private String[] europeCountries = { "Great Britain", "Iceland", "Northen Europe", "Scandinavia" };
 	//private String[] arcticCountries = { "" };
 	private String[] naCountries = { "" };
 	private String[] saCountries = { "" };
