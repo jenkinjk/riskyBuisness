@@ -135,9 +135,45 @@ public class Tests {
 		assertEquals("Player "+numToNum.get(1),board.getNextPlayer().getName());
 	}
 	
-//	@Test
-//	public void allTerriories(){
-//		RiskBoard board = new RiskBoard();
-//	}
-
+	@Test
+	public void allTerriories(){
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		assertEquals(42,board.getTerritories().size());
+	}
+	@Test
+	public void AsiaTerriories(){
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		assertEquals(12,board.getAsiaTerritories().size());
+	}
+	@Test
+	public void EuropeTerriories(){
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		assertEquals(7,board.getEuropeTerritories().size());
+	}
+	@Test
+	public void NATerriories(){
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		assertEquals(9,board.getNATerritories().size());
+	}
+	@Test
+	public void SATerriories(){
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		assertEquals(4,board.getSATerritories().size());
+	}
+	@Test
+	public void AustrailaTerriories(){
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		assertEquals(4,board.getAustralaTerritories().size());
+	}	@Test
+	public void AfricaTerriories(){
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		assertEquals(6,board.getAfricaTerritories().size());
+	}
 }

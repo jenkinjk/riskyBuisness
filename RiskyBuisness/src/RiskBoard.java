@@ -1,5 +1,4 @@
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -8,9 +7,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -23,13 +22,25 @@ public class RiskBoard {
 	private Integer[] numPlayerArray = { 1, 2, 3, 4, 5, 6 };
 	private String[] playerName = { "Player One", "Player Two", "Player Three",
 			"Player Four", "Player Five", "Player Six"};
-	//private ArrayList<Territory> territories;
+	private ArrayList<Territory> territories;
+	private ArrayList<Territory> Asia;
+	private ArrayList<Territory> Europe;
+	private ArrayList<Territory> Africa;
+	private ArrayList<Territory> Australia;
+	private ArrayList<Territory> NA;
+	private ArrayList<Territory> SA;
 
 	public RiskBoard() {
 		ArrayList<Player> players = new ArrayList<Player>();
 		this.players = players;
 		this.itr = players.iterator();
-		//this.territories = new ArrayList<Territory>();
+		territories=new ArrayList<Territory>();
+		Asia=new ArrayList<Territory>();
+		Europe=new ArrayList<Territory>();
+		Africa=new ArrayList<Territory>();
+		Australia=new ArrayList<Territory>();
+		NA=new ArrayList<Territory>();
+		SA=new ArrayList<Territory>();
 	}
 
 	public void selectNumberOfPlayers() {
@@ -62,12 +73,93 @@ public class RiskBoard {
 	public void initialGame(int numberOfPlayers) {
 		this.numberOfPlayers = numberOfPlayers;
 		setUpPlayers();
+		setUpTerritories();
 		try {
 			display();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	private void setUpTerritories() {
+		String[] asianCountries = { "Afghanistan", "China", "India",
+				"Irkutsk", "Japan", "Kamchatka", "Middle East", "Mongolia", "Siam",
+				"Siberia", "Ural", "Yakutsk" };
+		String[] europeCountries = { "Great Britain", "Iceland", "Northen Europe", "Scandinavia", "Southern Europe", "Ukraine", "Western Europe"};
+		String[] naCountries = { "Alaska", "Alberta", "Centeral America", "Eastern United States", "Greenland", "Northwest Territory", "Ontario", "Quebec", "Western United States" };
+		String[] saCountries = { "Argentina", "Brazil", "Peru", "Venezula" };
+		String[] africaCountries = { "Congo", "East Africa", "Egypt", "Madagascar", "North Africa", "South Africa" };
+		String[] australiaCountries = { "Eastern Australia", "Indonesia", "New Guinea", "Western Australia" };
+		for(String country: asianCountries) {
+			Territory t = new Territory(country);
+			territories.add(t);
+			Asia.add(t);
+			randomPlayer().addTerritory(t);
+		}
+		for(String country: europeCountries) {
+			Territory t = new Territory(country);
+			territories.add(t);
+			Europe.add(t);
+			randomPlayer().addTerritory(t);
+		}
+		for(String country: naCountries) {
+			Territory t = new Territory(country);
+			territories.add(t);
+			NA.add(t);
+			randomPlayer().addTerritory(t);
+		}
+		for(String country: saCountries) {
+			Territory t = new Territory(country);
+			territories.add(t);
+			SA.add(t);
+			randomPlayer().addTerritory(t);
+		}
+		for(String country: africaCountries) {
+			Territory t = new Territory(country);
+			territories.add(t);
+			Africa.add(t);
+			randomPlayer().addTerritory(t);
+		}for(String country: australiaCountries) {
+			Territory t = new Territory(country);
+			territories.add(t);
+			Australia.add(t);
+			randomPlayer().addTerritory(t);
+		}
+	}
+	
+	private Player randomPlayer() {
+		Random playerChooser = new Random();
+		int max = 0;
+		for(Player p: players){
+			if(p.getNumberOfTerritories()>max){
+				max = p.getNumberOfTerritories();
+			}
+		}
+		Player player;
+		boolean added = false;
+		while(!added){
+			player = players.get(playerChooser.nextInt(players.size()));
+			if(player.getNumberOfTerritories()<max){
+				return player;
+			}else{
+				if(allHaveMax(players, max)){
+					return player;
+				}
+			}
+		}
+		//Can't get here
+		return null;
+	}
+
+
+	private boolean allHaveMax(ArrayList<Player> players, int max) {
+		for(Player p: players){
+			if(p.getTerritories().size()!=max){
+				return false;
+			}
+		}
+		return true;
 	}
 
 	private void setUpPlayers() {
@@ -94,6 +186,9 @@ public class RiskBoard {
 			  	}
 			};
 		//panel.setBackground(Color.blue);
+		/*
+		
+		This only existed for the first week. Has no actual reason to show up.
 		
 		JButton NA = new JButton();
 		NA.addActionListener(new ContinentListener("North America", this));
@@ -125,6 +220,7 @@ public class RiskBoard {
 		panel.add(D);
 		panel.add(A);
 		panel.add(Asia);
+		*/
 		//panel.setSize(1000, 50);
 		frame.setContentPane(panel);
 		panel.setFocusable(true);
@@ -147,5 +243,28 @@ public class RiskBoard {
 		if (!itr.hasNext())
 			this.itr = this.players.iterator();
 		return this.itr.next();
+	}
+
+	public ArrayList<Territory> getTerritories() {
+		return territories;
+	}
+
+	public ArrayList<Territory> getAsiaTerritories() {
+		return Asia;
+	}
+	public ArrayList<Territory> getEuropeTerritories() {
+		return Europe;
+	}
+	public ArrayList<Territory> getAfricaTerritories() {
+		return Africa;
+	}
+	public ArrayList<Territory> getAustralaTerritories() {
+		return Australia;
+	}
+	public ArrayList<Territory> getNATerritories() {
+		return NA;
+	}
+	public ArrayList<Territory> getSATerritories() {
+		return SA;
 	}
 }
