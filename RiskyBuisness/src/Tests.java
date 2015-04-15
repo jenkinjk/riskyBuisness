@@ -31,10 +31,9 @@ public class Tests {
 		assertEquals(board.getPlayers().get(0).getName(), "Player One");
 		assertEquals(board.getPlayers().get(4).getName(), "Player Five");
 	}
-	
-	
+
 	@Test
-	public void nextPlayerTest() {	
+	public void nextPlayerTest() {
 		RiskBoard board = new RiskBoard();
 		board.initialGame(5);
 		Player player1 = new Player("Player One");
@@ -48,7 +47,8 @@ public class Tests {
 		assertEquals(player1.getName(), board.getNextPlayer().getName());
 	}
 
-	//This is unsatisfactorily tested. It only tests if there are exactly 5 players. Should be generalized and parameterized.
+	// This is unsatisfactorily tested. It only tests if there are exactly 5
+	// players. Should be generalized and parameterized.
 	@Test
 	public void setupTerritoriesEquallyTest() {
 		RiskBoard board = new RiskBoard();
@@ -56,14 +56,26 @@ public class Tests {
 		ContinentListener c = new ContinentListener("Asia", board);
 		c.setUpTerritories();
 		ArrayList<Player> players = board.getPlayers();
-		assertEquals(3, players.get(0).getNumberOfTerritories());
-		assertEquals(3, players.get(1).getNumberOfTerritories());
-		assertEquals(2, players.get(2).getNumberOfTerritories());
-		assertEquals(2, players.get(3).getNumberOfTerritories());
-		assertEquals(2, players.get(4).getNumberOfTerritories());
+		assertTrue(playersEquallyDiveded(players));
 	}
-	
-	//This is unsatisfactorily tested. It only tests if there are exactly 5 players. Should be parameterized.
+
+	private boolean playersEquallyDiveded(ArrayList<Player> players) {
+		for (Player p : players) {
+			for (Player p2 : players) {
+				if (!(p.getNumberOfTerritories() == p2.getNumberOfTerritories()
+						|| p.getNumberOfTerritories() == p2
+								.getNumberOfTerritories() + 1 || p
+						.getNumberOfTerritories() + 1 == p2
+						.getNumberOfTerritories())) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	// This is unsatisfactorily tested. It only tests if there are exactly 5
+	// players. Should be parameterized.
 	@Test
 	public void setupTerritoriesRandomlyTest() {
 		RiskBoard board = new RiskBoard();
@@ -78,22 +90,26 @@ public class Tests {
 		ArrayList<Player> players2 = board2.getPlayers();
 		int count = 0;
 		boolean failing = true;
-		while(failing){
-			for(int i = 0; i<5;i++){
-				ArrayList<Territory> territories = players.get(i).getTerritories();
-				ArrayList<Territory> territories2 = players2.get(i).getTerritories();
-				if(territories.size()>territories2.size()||territories.size()<territories2.size()){
+		while (failing) {
+			for (int i = 0; i < 5; i++) {
+				ArrayList<Territory> territories = players.get(i)
+						.getTerritories();
+				ArrayList<Territory> territories2 = players2.get(i)
+						.getTerritories();
+				if (territories.size() > territories2.size()
+						|| territories.size() < territories2.size()) {
 					failing = false;
-				}else{
-				for(int j = 0; j<territories.size(); j++){
-					if(!territories2.contains(territories.get(j))){
-						failing = false;
-						break;
+				} else {
+					for (int j = 0; j < territories.size(); j++) {
+						if (!territories2.contains(territories.get(j))) {
+							failing = false;
+							break;
+						}
 					}
 				}
-				}
 			}
-			if(count >=100) break;
+			if (count >= 100)
+				break;
 			count++;
 		}
 		assertFalse(failing);
