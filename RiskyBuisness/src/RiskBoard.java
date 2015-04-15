@@ -101,30 +101,28 @@ public class RiskBoard {
 			Territory t = new Territory(country);
 			territories.add(t);
 			Europe.add(t);
-			randomPlayer().addTerritory(t);
 		}
 		for(String country: naCountries) {
 			Territory t = new Territory(country);
 			territories.add(t);
 			NA.add(t);
-			randomPlayer().addTerritory(t);
 		}
 		for(String country: saCountries) {
 			Territory t = new Territory(country);
 			territories.add(t);
 			SA.add(t);
-			randomPlayer().addTerritory(t);
 		}
 		for(String country: africaCountries) {
 			Territory t = new Territory(country);
 			territories.add(t);
 			Africa.add(t);
-			randomPlayer().addTerritory(t);
 		}for(String country: australiaCountries) {
 			Territory t = new Territory(country);
 			territories.add(t);
 			Australia.add(t);
-			randomPlayer().addTerritory(t);
+		}
+		for(Territory t: territories){
+		randomPlayer().addTerritory(t);
 		}
 	}
 	
