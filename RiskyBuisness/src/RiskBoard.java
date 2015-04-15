@@ -22,7 +22,7 @@ public class RiskBoard {
 	private ArrayList<Player> players;
 	private Integer[] numPlayerArray = { 1, 2, 3, 4, 5, 6 };
 	private String[] playerName = { "Player One", "Player Two", "Player Three",
-			"Player Four", "Player Five", };
+			"Player Four", "Player Five", "Player Six"};
 	//private ArrayList<Territory> territories;
 
 	public RiskBoard() {

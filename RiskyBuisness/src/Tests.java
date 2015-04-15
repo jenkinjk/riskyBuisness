@@ -2,8 +2,6 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.math.*;
-
 import org.junit.Test;
 
 public class Tests {
@@ -75,9 +73,9 @@ public class Tests {
 		ContinentListener c = new ContinentListener("Asia", board);
 		c.setUpTerritories();
 		ArrayList<Player> players = board.getPlayers();
-		ContinentListener c2 = new ContinentListener("Asia", board);
+		ContinentListener c2 = new ContinentListener("Asia", board2);
 		c2.setUpTerritories();
-		ArrayList<Player> players2 = board.getPlayers();
+		ArrayList<Player> players2 = board2.getPlayers();
 		int count = 0;
 		boolean failing = true;
 		while(failing){
