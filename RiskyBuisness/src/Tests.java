@@ -304,7 +304,7 @@ public class Tests {
 		assertTrue(neighbors.contains(board.getTerritoryNamed("Siberia")));
 		assertTrue(neighbors.contains(board.getTerritoryNamed("Irkutsk")));
 		assertTrue(neighbors.contains(board.getTerritoryNamed("Kamchatka")));
-		assertTrue(neighbors.size()==4);
+		assertTrue(neighbors.size()==3);
 	}
 	@Test
 	public void getNeighborsKamchatka() throws Exception{
@@ -315,6 +315,7 @@ public class Tests {
 		assertTrue(neighbors.contains(board.getTerritoryNamed("Yakutsk")));
 		assertTrue(neighbors.contains(board.getTerritoryNamed("Alaska")));
 		assertTrue(neighbors.contains(board.getTerritoryNamed("Irkutsk")));
-		assertTrue(neighbors.size()==4);
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Japan")));
+		assertTrue(neighbors.size()==5);
 	}
 }

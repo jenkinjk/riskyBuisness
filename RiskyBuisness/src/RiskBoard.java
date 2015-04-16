@@ -198,6 +198,18 @@ public class RiskBoard {
 		neighbors.add(getTerritoryNamed("Yakutsk"));
 		neighbors.add(getTerritoryNamed("Kamchatka"));
 		nameToNeigbhors.put("Irkutsk",neighbors);
+		neighbors = new ArrayList<Territory>();
+		neighbors.add(getTerritoryNamed("Siberia"));
+		neighbors.add(getTerritoryNamed("Irkutsk"));
+		neighbors.add(getTerritoryNamed("Kamchatka"));
+		nameToNeigbhors.put("Yakutsk",neighbors);
+		neighbors = new ArrayList<Territory>();
+		neighbors.add(getTerritoryNamed("Japan"));
+		neighbors.add(getTerritoryNamed("Mongolia"));
+		neighbors.add(getTerritoryNamed("Yakutsk"));
+		neighbors.add(getTerritoryNamed("Irkutsk"));
+		neighbors.add(getTerritoryNamed("Alaska"));
+		nameToNeigbhors.put("Kamchatka",neighbors);
 		t.setNeighbors(nameToNeigbhors.get(t.getName()));
 		
 	}
