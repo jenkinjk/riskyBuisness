@@ -227,6 +227,6 @@ public class Tests {
 		assertTrue(neighbors.contains(board.getTerritoryNamed("India")));
 		assertTrue(neighbors.contains(board.getTerritoryNamed("China")));
 		assertTrue(neighbors.contains(board.getTerritoryNamed("Indonesia")));
-		assertTrue(neighbors.size()==4);
+		assertTrue(neighbors.size()==3);
 	}
 }
