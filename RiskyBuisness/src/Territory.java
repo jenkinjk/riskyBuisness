@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Territory {
 
 	private String name;
-	private ArrayList<Territory> neighbors;
+	private ArrayList<Territory> neighbors=null;
 
 	public void setNeighbors(ArrayList<Territory> neighbors) {
 		this.neighbors = neighbors;

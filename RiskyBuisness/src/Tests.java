@@ -318,4 +318,12 @@ public class Tests {
 		assertTrue(neighbors.contains(board.getTerritoryNamed("Japan")));
 		assertTrue(neighbors.size()==5);
 	}
+	@Test
+	public void AsianNeighbors(){
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		for(Territory t: board.getAsiaTerritories()){
+			assertTrue(t.getNeighbors()!=null);
+		}
+	}
 }
