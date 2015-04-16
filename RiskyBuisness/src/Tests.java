@@ -243,4 +243,15 @@ public class Tests {
 		assertTrue(neighbors.contains(board.getTerritoryNamed("Japan")));
 		assertTrue(neighbors.size()==7);
 	}
+	@Test
+	public void getNeighborsUral() throws Exception{
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		ArrayList<Territory> neighbors = board.getTerritoryNamed("Ural").getNeighbors();
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Ukraine")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Siberia")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Afghanistan")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("China")));
+		assertTrue(neighbors.size()==4);
+	}
 }
