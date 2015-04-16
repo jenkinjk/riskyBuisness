@@ -183,4 +183,18 @@ public class Tests {
 		ArrayList<Territory> neighbors = board.getTerritories().get(0).getNeighbors();
 		//Should just run. Auto passes if no errors.
 	}
+	@Test
+	public void getNeighborsAfghanistan(){
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		ArrayList<Territory> neighbors = board.getTerritoryNamed("Afghanistan").getNeighbors();
+		ArrayList<Territory> expectedNeighbors = new ArrayList<Territory>();
+		expectedNeighbors.add(board.getTerritoryNamed("Ukraine"));
+		expectedNeighbors.add(board.getTerritoryNamed("Middle East"));
+		expectedNeighbors.add(board.getTerritoryNamed("India"));
+		expectedNeighbors.add(board.getTerritoryNamed("China"));
+		expectedNeighbors.add(board.getTerritoryNamed("Ural"));
+		assertEquals(neighbors, expectedNeighbors);
+	}
+	
 }

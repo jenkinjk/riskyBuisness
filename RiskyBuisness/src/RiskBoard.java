@@ -124,9 +124,20 @@ public class RiskBoard {
 		}
 		for(Territory t: territories){
 		randomPlayer().addTerritory(t);
+		generateNeighbors(t);
 		}
 	}
-	
+
+	private void generateNeighbors(Territory t) {
+		ArrayList<Territory> neighbors = new ArrayList<Territory>();
+		neighbors.add(getTerritoryNamed("Ukraine"));
+		neighbors.add(getTerritoryNamed("Middle East"));
+		neighbors.add(getTerritoryNamed("India"));
+		neighbors.add(getTerritoryNamed("China"));
+		neighbors.add(getTerritoryNamed("Ural"));
+		t.setNeighbors(neighbors);
+	}
+
 	private Player randomPlayer() {
 		Random playerChooser = new Random();
 		int max = 0;
@@ -265,5 +276,12 @@ public class RiskBoard {
 	}
 	public ArrayList<Territory> getSATerritories() {
 		return SA;
+	}
+
+	public Territory getTerritoryNamed(String string) {
+		for(Territory t: territories){
+			if(t.getName().equals(string)) return t;
+		}
+		return null;
 	}
 }

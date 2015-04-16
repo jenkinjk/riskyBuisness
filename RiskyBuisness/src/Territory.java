@@ -4,6 +4,11 @@ import java.util.ArrayList;
 public class Territory {
 
 	private String name;
+	private ArrayList<Territory> neighbors;
+
+	public void setNeighbors(ArrayList<Territory> neighbors) {
+		this.neighbors = neighbors;
+	}
 
 	public Territory(String string) {
 		this.name = string;
@@ -13,6 +18,6 @@ public class Territory {
 		return this.name;
 	}
 	public ArrayList<Territory> getNeighbors(){
-		return null;
+		return this.neighbors;
 	}
 }
