@@ -196,5 +196,16 @@ public class Tests {
 		expectedNeighbors.add(board.getTerritoryNamed("Ural"));
 		assertEquals(neighbors, expectedNeighbors);
 	}
-	
+	@Test
+	public void getNeighborsMiddleEast(){
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		ArrayList<Territory> neighbors = board.getTerritoryNamed("Middle East").getNeighbors();
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Egypt")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Southern Europe")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Ukraine")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Afghanistan")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("India")));
+		assertTrue(neighbors.size()==5);
+	}
 }

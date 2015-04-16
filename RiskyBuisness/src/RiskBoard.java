@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Random;
 
@@ -129,13 +130,23 @@ public class RiskBoard {
 	}
 
 	private void generateNeighbors(Territory t) {
+		HashMap<String, ArrayList<Territory>> nameToNeigbhors= new HashMap<String, ArrayList<Territory>>();
 		ArrayList<Territory> neighbors = new ArrayList<Territory>();
 		neighbors.add(getTerritoryNamed("Ukraine"));
 		neighbors.add(getTerritoryNamed("Middle East"));
 		neighbors.add(getTerritoryNamed("India"));
 		neighbors.add(getTerritoryNamed("China"));
 		neighbors.add(getTerritoryNamed("Ural"));
-		t.setNeighbors(neighbors);
+		nameToNeigbhors.put("Afghanistan",neighbors);
+		neighbors = new ArrayList<Territory>();
+		neighbors.add(getTerritoryNamed("Ukraine"));
+		neighbors.add(getTerritoryNamed("Afghanistan"));
+		neighbors.add(getTerritoryNamed("India"));
+		neighbors.add(getTerritoryNamed("Egypt"));
+		neighbors.add(getTerritoryNamed("Southern Europe"));
+		nameToNeigbhors.put("Middle East",neighbors);
+		t.setNeighbors(nameToNeigbhors.get(t.getName()));
+		
 	}
 
 	private Player randomPlayer() {
