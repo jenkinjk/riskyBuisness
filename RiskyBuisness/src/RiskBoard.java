@@ -107,16 +107,17 @@ public class RiskBoard {
 			territories.add(t);
 			NA.add(t);
 		}
+		for(String country: africaCountries) {
+			Territory t = new Territory(country);
+			territories.add(t);
+			Africa.add(t);
+		}
 		for(String country: saCountries) {
 			Territory t = new Territory(country);
 			territories.add(t);
 			SA.add(t);
 		}
-		for(String country: africaCountries) {
-			Territory t = new Territory(country);
-			territories.add(t);
-			Africa.add(t);
-		}for(String country: australiaCountries) {
+		for(String country: australiaCountries) {
 			Territory t = new Territory(country);
 			territories.add(t);
 			Australia.add(t);
