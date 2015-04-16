@@ -125,11 +125,16 @@ public class RiskBoard {
 		}
 		for(Territory t: territories){
 		randomPlayer().addTerritory(t);
-		generateNeighbors(t);
+		try {
+			generateNeighbors(t);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		}
 	}
 
-	private void generateNeighbors(Territory t) {
+	private void generateNeighbors(Territory t) throws Exception {
 		HashMap<String, ArrayList<Territory>> nameToNeigbhors= new HashMap<String, ArrayList<Territory>>();
 		ArrayList<Territory> neighbors = new ArrayList<Territory>();
 		neighbors.add(getTerritoryNamed("Ukraine"));
@@ -296,10 +301,10 @@ public class RiskBoard {
 		return SA;
 	}
 
-	public Territory getTerritoryNamed(String string) {
+	public Territory getTerritoryNamed(String string) throws Exception {
 		for(Territory t: territories){
 			if(t.getName().equals(string)) return t;
 		}
-		return null;
+		throw new Exception("This territory does not exist. "+string);
 	}
 }
