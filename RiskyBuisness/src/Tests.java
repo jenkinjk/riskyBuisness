@@ -181,5 +181,6 @@ public class Tests {
 		RiskBoard board = new RiskBoard();
 		board.initialGame(fInput);
 		ArrayList<Territory> neighbors = board.getTerritories().get(0).getNeighbors();
+		//Should just run. Auto passes if no errors.
 	}
 }
