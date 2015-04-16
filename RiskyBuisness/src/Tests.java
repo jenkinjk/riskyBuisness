@@ -326,4 +326,47 @@ public class Tests {
 			assertTrue(t.getNeighbors()!=null);
 		}
 	}
+	@Test
+	public void getNeighborsAlaska() throws Exception{
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		ArrayList<Territory> neighbors = board.getTerritoryNamed("Alaska").getNeighbors();
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Kamchatka")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Northwest Territory")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Alberta")));
+		assertTrue(neighbors.size()==3);
+	}
+	@Test
+	public void getNeighborsNorthWestTerritory() throws Exception{
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		ArrayList<Territory> neighbors = board.getTerritoryNamed("Northwest Territory").getNeighbors();
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Greenland")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Ontario")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Alaska")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Alberta")));
+		assertTrue(neighbors.size()==4);
+	}
+	@Test
+	public void getNeighborsAlberta() throws Exception{
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		ArrayList<Territory> neighbors = board.getTerritoryNamed("Alberta").getNeighbors();
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Northwest Territory")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Ontario")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Alaska")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Western United States")));
+		assertTrue(neighbors.size()==4);
+	}
+	@Test
+	public void getNeighborsGreenland() throws Exception{
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		ArrayList<Territory> neighbors = board.getTerritoryNamed("Greenland").getNeighbors();
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Iceland")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Northwest Territory")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Ontario")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Quebec")));
+		assertTrue(neighbors.size()==4);
+	}
 }
