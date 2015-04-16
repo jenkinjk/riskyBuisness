@@ -176,4 +176,10 @@ public class Tests {
 		board.initialGame(fInput);
 		assertEquals(6,board.getAfricaTerritories().size());
 	}
+	@Test
+	public void getNeighborsExists(){
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		ArrayList<Territory> neighbors = board.getTerritories().get(0).getNeighbors();
+	}
 }
