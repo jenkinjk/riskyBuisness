@@ -176,6 +176,12 @@ public class RiskBoard {
 		neighbors.add(getTerritoryNamed("China"));
 		neighbors.add(getTerritoryNamed("Siberia"));
 		nameToNeigbhors.put("Ural",neighbors);
+		neighbors = new ArrayList<Territory>();
+		neighbors.add(getTerritoryNamed("Ural"));
+		neighbors.add(getTerritoryNamed("Irkutsk"));
+		neighbors.add(getTerritoryNamed("Mongolia"));
+		neighbors.add(getTerritoryNamed("Yakutsk"));
+		nameToNeigbhors.put("Siberia",neighbors);
 		t.setNeighbors(nameToNeigbhors.get(t.getName()));
 		
 	}
