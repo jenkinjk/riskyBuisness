@@ -210,6 +210,29 @@ public class RiskBoard {
 		neighbors.add(getTerritoryNamed("Irkutsk"));
 		neighbors.add(getTerritoryNamed("Alaska"));
 		nameToNeigbhors.put("Kamchatka",neighbors);
+		neighbors = new ArrayList<Territory>();
+		neighbors.add(getTerritoryNamed("Kamchatka"));
+		neighbors.add(getTerritoryNamed("Northwest Territory"));
+		neighbors.add(getTerritoryNamed("Alberta"));
+		nameToNeigbhors.put("Alaska",neighbors);
+		neighbors = new ArrayList<Territory>();
+		neighbors.add(getTerritoryNamed("Greenland"));
+		neighbors.add(getTerritoryNamed("Ontario"));
+		neighbors.add(getTerritoryNamed("Alberta"));
+		neighbors.add(getTerritoryNamed("Alaska"));
+		nameToNeigbhors.put("Northwest Territory",neighbors);
+		neighbors = new ArrayList<Territory>();
+		neighbors.add(getTerritoryNamed("Northwest Territory"));
+		neighbors.add(getTerritoryNamed("Western United States"));
+		neighbors.add(getTerritoryNamed("Ontario"));
+		neighbors.add(getTerritoryNamed("Alaska"));
+		nameToNeigbhors.put("Alberta",neighbors);
+		neighbors = new ArrayList<Territory>();
+		neighbors.add(getTerritoryNamed("Quebec"));
+		neighbors.add(getTerritoryNamed("Ontario"));
+		neighbors.add(getTerritoryNamed("Northwest Territory"));
+		neighbors.add(getTerritoryNamed("Iceland"));
+		nameToNeigbhors.put("Greenland",neighbors);
 		t.setNeighbors(nameToNeigbhors.get(t.getName()));
 		
 	}
