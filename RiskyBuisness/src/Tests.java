@@ -208,4 +208,15 @@ public class Tests {
 		assertTrue(neighbors.contains(board.getTerritoryNamed("India")));
 		assertTrue(neighbors.size()==5);
 	}
+	@Test
+	public void getNeighborsIndia(){
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		ArrayList<Territory> neighbors = board.getTerritoryNamed("India").getNeighbors();
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Middle East")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Afghanistan")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("China")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Siam")));
+		assertTrue(neighbors.size()==4);
+	}
 }
