@@ -465,7 +465,7 @@ public class Tests {
 		assertTrue(neighbors.contains(board.getTerritoryNamed("Scandinavia")));
 		assertTrue(neighbors.contains(board.getTerritoryNamed("Ukraine")));
 		assertTrue(neighbors.contains(board.getTerritoryNamed("West Europe")));
-		assertTrue(neighbors.contains(board.getTerritoryNamed("Middle East")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Great Britain")));
 		assertTrue(neighbors.size()==5);
 	}
 	
