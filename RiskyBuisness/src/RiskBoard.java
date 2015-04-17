@@ -19,6 +19,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import org.junit.Test;
+
 public class RiskBoard {
 	private int numberOfPlayers;
 	private Iterator<Player> itr;
@@ -406,6 +408,28 @@ public class RiskBoard {
 		neighbors.add(getTerritoryNamed("East Africa"));
 		neighbors.add(getTerritoryNamed("Madagascar"));
 		nameToNeigbhors.put("South Africa", neighbors);
+		t.setNeighbors(nameToNeigbhors.get(t.getName()));
+		neighbors = new ArrayList<Territory>();
+		neighbors.add(getTerritoryNamed("Western Australia"));
+		neighbors.add(getTerritoryNamed("New Guinea"));
+		neighbors.add(getTerritoryNamed("Indonesia"));
+		nameToNeigbhors.put("Eastern Australia", neighbors);
+		t.setNeighbors(nameToNeigbhors.get(t.getName()));
+		neighbors = new ArrayList<Territory>();
+		neighbors.add(getTerritoryNamed("Siam"));
+		neighbors.add(getTerritoryNamed("Western Australia"));
+		neighbors.add(getTerritoryNamed("New Guinea"));
+		nameToNeigbhors.put("Indonesia", neighbors);
+		t.setNeighbors(nameToNeigbhors.get(t.getName()));
+		neighbors = new ArrayList<Territory>();
+		neighbors.add(getTerritoryNamed("Indonesia"));
+		neighbors.add(getTerritoryNamed("Eastern Australia"));
+		nameToNeigbhors.put("New Guinea", neighbors);
+		t.setNeighbors(nameToNeigbhors.get(t.getName()));
+		neighbors = new ArrayList<Territory>();
+		neighbors.add(getTerritoryNamed("Eastern Australia"));
+		neighbors.add(getTerritoryNamed("Indonesia"));
+		nameToNeigbhors.put("Western Australia", neighbors);
 		t.setNeighbors(nameToNeigbhors.get(t.getName()));
 	}
 

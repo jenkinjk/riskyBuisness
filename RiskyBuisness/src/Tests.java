@@ -656,7 +656,7 @@ public class Tests {
 		assertTrue(neighbors.contains(board.getTerritoryNamed("Western Australia")));
 		assertTrue(neighbors.contains(board.getTerritoryNamed("New Guinea")));
 		assertTrue(neighbors.contains(board.getTerritoryNamed("Indonesia")));
-		assertTrue(neighbors.size()==2);
+		assertTrue(neighbors.size()==3);
 	}
 	@Test
 	public void getNeighborsIndonesia() throws Exception{
