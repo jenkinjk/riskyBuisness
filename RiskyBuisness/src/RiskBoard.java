@@ -368,49 +368,45 @@ public class RiskBoard {
 		neighbors.add(getTerritoryNamed("Centeral America"));
 		nameToNeigbhors.put("Venezula", neighbors);
 		t.setNeighbors(nameToNeigbhors.get(t.getName()));
-		
-		
-//		@Test
-//		public void getNeighborsEgypt() throws Exception{
-//			RiskBoard board = new RiskBoard();
-//			ArrayList<Territory> neighbors = board.getTerritoryNamed("Egypt").getNeighbors();
-//			board.initialGame(fInput);
-//			assertTrue(neighbors.contains(board.getTerritoryNamed("Middle East")));
-//			assertTrue(neighbors.contains(board.getTerritoryNamed("North Africa")));
-//			assertTrue(neighbors.contains(board.getTerritoryNamed("East Africa")));
-//			assertTrue(neighbors.size()==3);
-//		}
-//		@Test
-//		public void getNeighborsMadagascar() throws Exception{
-//			RiskBoard board = new RiskBoard();
-//			board.initialGame(fInput);
-//			ArrayList<Territory> neighbors = board.getTerritoryNamed("Madagascar").getNeighbors();
-//			assertTrue(neighbors.contains(board.getTerritoryNamed("East Africa")));
-//			assertTrue(neighbors.contains(board.getTerritoryNamed("South Africa")));
-//			assertTrue(neighbors.size()==2);
-//		}
-//		@Test
-//		public void getNeighborsNorthAfrica() throws Exception{
-//			RiskBoard board = new RiskBoard();
-//			board.initialGame(fInput);
-//			ArrayList<Territory> neighbors = board.getTerritoryNamed("North Africa").getNeighbors();
-//			assertTrue(neighbors.contains(board.getTerritoryNamed("Congo")));
-//			assertTrue(neighbors.contains(board.getTerritoryNamed("East Africa")));
-//			assertTrue(neighbors.contains(board.getTerritoryNamed("Egypt")));
-//			assertTrue(neighbors.contains(board.getTerritoryNamed("Brazil")));
-//			assertTrue(neighbors.contains(board.getTerritoryNamed("Western Europe")));
-//			assertTrue(neighbors.size()==5);
-//		}
-//		@Test
-//		public void getNeighborsSouthAfrica() throws Exception{
-//			RiskBoard board = new RiskBoard();
-//			board.initialGame(fInput);
-//			ArrayList<Territory> neighbors = board.getTerritoryNamed("South Africa").getNeighbors();
-//			assertTrue(neighbors.contains(board.getTerritoryNamed("Congo")));
-//			assertTrue(neighbors.contains(board.getTerritoryNamed("East Africa")));
-//			assertTrue(neighbors.contains(board.getTerritoryNamed("Madagascar")));
-//			assertTrue(neighbors.size()==3);
-//		}
+		neighbors = new ArrayList<Territory>();
+		neighbors.add(getTerritoryNamed("North Africa"));
+		neighbors.add(getTerritoryNamed("East Africa"));
+		neighbors.add(getTerritoryNamed("South Africa"));
+		nameToNeigbhors.put("Congo", neighbors);
+		t.setNeighbors(nameToNeigbhors.get(t.getName()));
+		neighbors = new ArrayList<Territory>();
+		neighbors.add(getTerritoryNamed("Congo"));
+		neighbors.add(getTerritoryNamed("Egypt"));
+		neighbors.add(getTerritoryNamed("Madagascar"));
+		neighbors.add(getTerritoryNamed("North Africa"));
+		neighbors.add(getTerritoryNamed("South Africa"));
+		nameToNeigbhors.put("East Africa", neighbors);
+		t.setNeighbors(nameToNeigbhors.get(t.getName()));
+		neighbors = new ArrayList<Territory>();
+		neighbors.add(getTerritoryNamed("Middle East"));
+		neighbors.add(getTerritoryNamed("North Africa"));
+		neighbors.add(getTerritoryNamed("East Africa"));
+		nameToNeigbhors.put("Egypt", neighbors);
+		t.setNeighbors(nameToNeigbhors.get(t.getName()));
+		neighbors = new ArrayList<Territory>();
+		neighbors.add(getTerritoryNamed("South Africa"));
+		neighbors.add(getTerritoryNamed("East Africa"));
+		nameToNeigbhors.put("Madagascar", neighbors);
+		t.setNeighbors(nameToNeigbhors.get(t.getName()));
+		neighbors = new ArrayList<Territory>();
+		neighbors.add(getTerritoryNamed("Congo"));
+		neighbors.add(getTerritoryNamed("Egypt"));
+		neighbors.add(getTerritoryNamed("Western Europe"));
+		neighbors.add(getTerritoryNamed("East Africa"));
+		neighbors.add(getTerritoryNamed("Brazil"));
+		nameToNeigbhors.put("North Africa", neighbors);
+		t.setNeighbors(nameToNeigbhors.get(t.getName()));
+		neighbors = new ArrayList<Territory>();
+		neighbors.add(getTerritoryNamed("Congo"));
+		neighbors.add(getTerritoryNamed("East Africa"));
+		neighbors.add(getTerritoryNamed("Madagascar"));
+		nameToNeigbhors.put("South Africa", neighbors);
+		t.setNeighbors(nameToNeigbhors.get(t.getName()));
 	}
 
 	private Player randomPlayer() {

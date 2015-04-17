@@ -600,8 +600,8 @@ public class Tests {
 	@Test
 	public void getNeighborsEgypt() throws Exception{
 		RiskBoard board = new RiskBoard();
-		ArrayList<Territory> neighbors = board.getTerritoryNamed("Egypt").getNeighbors();
 		board.initialGame(fInput);
+		ArrayList<Territory> neighbors = board.getTerritoryNamed("Egypt").getNeighbors();
 		assertTrue(neighbors.contains(board.getTerritoryNamed("Middle East")));
 		assertTrue(neighbors.contains(board.getTerritoryNamed("North Africa")));
 		assertTrue(neighbors.contains(board.getTerritoryNamed("East Africa")));
