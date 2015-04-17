@@ -8,10 +8,8 @@ import java.util.Random;
 public class ContinentListener implements ActionListener {
 	private String label;
 	private RiskBoard board;
-	private String[] asianCountries = { "Afghanistan", "China", "India",
-			"Irkutsk", "Japan", "Kamchatka", "Middle East", "Mongolia", "Siam",
-			"Siberia", "Ural", "Yakutsk" };
-	private String[] europeCountries = { "Great Britain", "Iceland", "Northen Europe", "Scandinavia" };
+	private String[] asianCountries = { "" };
+	private String[] europeCountries = { "" };
 	//private String[] arcticCountries = { "" };
 	private String[] naCountries = { "" };
 	private String[] saCountries = { "" };
@@ -44,10 +42,10 @@ public class ContinentListener implements ActionListener {
 	}
 
 	public void setUpTerritories() {
-		for(String country: asianCountries) {
-			Territory t = new Territory(country);
-			randomPlayer().addTerritory(t);
-		}
+//		for(String country: asianCountries) {
+//			Territory t = new Territory(country);
+//			randomPlayer().addTerritory(t);
+//		}
 //		for(String country: europeCountries) {
 //			Territory t = new Territory(country);
 //			randomPlayer().addTerritory(t);

@@ -5,17 +5,26 @@ public class Player {
 
 	private String name;
 	private int numberOfTerritories;
+	private int numberOfArmies;
 	private ArrayList<Territory> territories;
+	private ArrayList<Army> armies;
 
 	public Player(String string) {
 		this.name = string;
 		this.numberOfTerritories = 0;
+		this.numberOfArmies = 0;
 		this.territories = new ArrayList<Territory>();
+		this.armies = new ArrayList<Army>();
 	}
 	
 	public void addTerritory(Territory t) {
 		this.territories.add(t);
 		this.numberOfTerritories++;
+	}
+	
+	public void addArmy(Army a) {
+		this.armies.add(a);
+		this.numberOfArmies++;
 	}
 
 	public String getName() {
@@ -26,8 +35,23 @@ public class Player {
 		return this.numberOfTerritories;
 	}
 	
+	public int getNumberOfArmies() {
+		return this.numberOfArmies;
+	}
+	
 	public ArrayList<Territory> getTerritories() {
 		return this.territories;
 	}
-
+	
+	public ArrayList<Army> getArmies() {
+		return this.armies;
+	}
+	
+	public String listTerritories() {
+		String listOfTerretories = "\n";
+		for(Territory t: this.territories) {
+			listOfTerretories+=t.getName()+"\n";
+		}
+		return listOfTerretories;
+	}
 }

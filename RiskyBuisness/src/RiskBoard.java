@@ -75,6 +75,7 @@ public class RiskBoard {
 		this.numberOfPlayers = numberOfPlayers;
 		setUpPlayers();
 		setUpTerritories();
+		setUpArmy();
 		try {
 			display();
 		} catch (IOException e) {
@@ -82,7 +83,15 @@ public class RiskBoard {
 			e.printStackTrace();
 		}
 	}
-
+	
+	private void setUpPlayers() {
+		for(int i=0; i< this.numberOfPlayers; i++) {
+			Player p = new Player(this.playerName[i]);
+			this.players.add(p);
+		}
+		this.itr = this.players.iterator();
+	}
+	
 	private void setUpTerritories() {
 		String[] asianCountries = { "Afghanistan", "China", "India",
 				"Irkutsk", "Japan", "Kamchatka", "Middle East", "Mongolia", "Siam",
@@ -96,7 +105,6 @@ public class RiskBoard {
 			Territory t = new Territory(country);
 			territories.add(t);
 			Asia.add(t);
-			randomPlayer().addTerritory(t);
 		}
 		for(String country: europeCountries) {
 			Territory t = new Territory(country);
@@ -124,16 +132,20 @@ public class RiskBoard {
 			Australia.add(t);
 		}
 		for(Territory t: territories){
-		randomPlayer().addTerritory(t);
-		try {
-			generateNeighbors(t);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			randomPlayer().addTerritory(t);
+			try {
+				generateNeighbors(t);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
+	private void setUpArmy() {
+		
+	}
+	
 	private void generateNeighbors(Territory t) throws Exception {
 		HashMap<String, ArrayList<Territory>> nameToNeigbhors= new HashMap<String, ArrayList<Territory>>();
 		ArrayList<Territory> neighbors = new ArrayList<Territory>();
@@ -290,7 +302,6 @@ public class RiskBoard {
 		return null;
 	}
 
-
 	private boolean allHaveMax(ArrayList<Player> players, int max) {
 		for(Player p: players){
 			if(p.getTerritories().size()!=max){
@@ -298,14 +309,6 @@ public class RiskBoard {
 			}
 		}
 		return true;
-	}
-
-	private void setUpPlayers() {
-		for(int i=0; i< this.numberOfPlayers; i++) {
-			Player p = new Player(this.playerName[i]);
-			this.players.add(p);
-		}
-		this.itr = this.players.iterator();
 	}
 
 	@SuppressWarnings("serial")

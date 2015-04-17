@@ -22,7 +22,8 @@ public class Tests {
 	public Tests(int input) {
 		fInput = input;
 	}
-
+	
+	/* 
 	@Test
 	public void setupTerritoriesEquallyTest() {
 		RiskBoard board = new RiskBoard();
@@ -431,6 +432,31 @@ public class Tests {
 			assertTrue(t.getNeighbors()!=null);
 		}
 	}
-
 	
+	*/
+	
+	@Test
+	public void setUpArmyTest() {
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		
+//		System.out.println("Case " + fInput);
+//		ArrayList<Player> players = board.getPlayers();
+//		for(Player p: players) {
+//			System.out.println("Player "+ p.getName() + " has " + p.getNumberOfTerritories() + "territories.");
+//			System.out.println("He occupies " + p.listTerritories());
+//			
+//		}
+//		System.out.println();
+//		System.out.println();
+		
+		/* 
+		 * Currently, 3 armies for each country
+		 * need to improve algorithm
+		 */
+		ArrayList<Player> players = board.getPlayers();
+		for(Player p: players) {
+			assertEquals(p.getNumberOfArmies(), 3 * p.getNumberOfTerritories());
+		}
+	}
 }
