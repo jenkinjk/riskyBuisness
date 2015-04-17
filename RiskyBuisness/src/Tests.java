@@ -433,6 +433,29 @@ public class Tests {
 	}
 	
 	@Test
+	public void getNeighborsUkraine() throws Exception{
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		ArrayList<Territory> neighbors = board.getTerritoryNamed("Ukraine").getNeighbors();
+		assertTrue(neighbors.contains(board.getTerritoryNamed("N. Europe")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("S. Europe")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Scandinavia")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Middle East")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Afghanistan")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Ural")));
+		assertTrue(neighbors.size()==6);
+	}
+	
+	@Test
+	public void EuropeNeighbors(){
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		for(Territory t: board.getEuropeTerritories()){
+			assertTrue(t.getNeighbors()!=null);
+		}
+	}
+	
+	@Test
 	public void setUpArmyTest() {
 		RiskBoard board = new RiskBoard();
 		board.initialGame(fInput);
