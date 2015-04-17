@@ -526,6 +526,55 @@ public class Tests {
 	}
 	
 	@Test
+	public void getNeighborsBrazil() throws Exception{
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		ArrayList<Territory> neighbors = board.getTerritoryNamed("Brazil").getNeighbors();
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Venezuela")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Peru")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Argentina")));
+		assertTrue(neighbors.size()==2);
+	}
+	@Test
+	public void getNeighborsPeru() throws Exception{
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		ArrayList<Territory> neighbors = board.getTerritoryNamed("Peru").getNeighbors();
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Brazil")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Venezuela")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Argentina")));
+		assertTrue(neighbors.size()==2);
+	}
+	@Test
+	public void getNeighborsArgentina() throws Exception{
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		ArrayList<Territory> neighbors = board.getTerritoryNamed("Iceland").getNeighbors();
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Brazil")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Peru")));
+		assertTrue(neighbors.size()==2);
+	}
+	@Test
+	public void getNeighborsVenezuela() throws Exception{
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		ArrayList<Territory> neighbors = board.getTerritoryNamed("Iceland").getNeighbors();
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Brazil")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Peru")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Centeral America")));
+		assertTrue(neighbors.size()==2);
+	}
+	
+	@Test
+	public void SANeighbors(){
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		for(Territory t: board.getSATerritories()){
+			assertTrue(t.getNeighbors()!=null);
+		}
+	}
+	
+	@Test
 	public void setUpArmyTest() {
 		RiskBoard board = new RiskBoard();
 		board.initialGame(fInput);
