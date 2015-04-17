@@ -1,16 +1,19 @@
+import java.awt.Color;
 import java.util.ArrayList;
 
 //Just a data class for now. Won't stay that way!
 public class Player {
 
 	private String name;
+	private Color color;
 	private int numberOfTerritories;
 	private int numberOfArmies;
 	private ArrayList<Territory> territories;
 	private ArrayList<Army> armies;
 
-	public Player(String string) {
-		this.name = string;
+	public Player(String name, Color color) {
+		this.name = name;
+		this.color = color;
 		this.numberOfTerritories = 0;
 		this.numberOfArmies = 0;
 		this.territories = new ArrayList<Territory>();
@@ -29,6 +32,10 @@ public class Player {
 
 	public String getName() {
 		return this.name;
+	}
+	
+	public Color getColor() {
+		return this.color;
 	}
 	
 	public int getNumberOfTerritories() {

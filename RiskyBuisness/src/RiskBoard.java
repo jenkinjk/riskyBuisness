@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -23,6 +24,7 @@ public class RiskBoard {
 	private Integer[] numPlayerArray = { 1, 2, 3, 4, 5, 6 };
 	private String[] playerName = { "Player One", "Player Two", "Player Three",
 			"Player Four", "Player Five", "Player Six"};
+	private Color[] playerColor = { Color.RED, Color.YELLOW, Color.BLUE, Color.GREEN, Color.ORANGE, Color.PINK};
 	private ArrayList<Territory> territories;
 	private ArrayList<Territory> Asia;
 	private ArrayList<Territory> Europe;
@@ -86,7 +88,7 @@ public class RiskBoard {
 	
 	private void setUpPlayers() {
 		for(int i=0; i< this.numberOfPlayers; i++) {
-			Player p = new Player(this.playerName[i]);
+			Player p = new Player(this.playerName[i], this.playerColor[i]);
 			this.players.add(p);
 		}
 		this.itr = this.players.iterator();
