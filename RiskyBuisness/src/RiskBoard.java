@@ -314,9 +314,35 @@ public class RiskBoard {
 		neighbors.add(getTerritoryNamed("Southern Europe"));
 		neighbors.add(getTerritoryNamed("Great Britain"));
 		neighbors.add(getTerritoryNamed("Scandinavia"));
-		neighbors.add(getTerritoryNamed("West Europe"));
+		neighbors.add(getTerritoryNamed("Western Europe"));
 		neighbors.add(getTerritoryNamed("Ukraine"));
 		nameToNeigbhors.put("Northen Europe", neighbors);
+		t.setNeighbors(nameToNeigbhors.get(t.getName()));
+		neighbors = new ArrayList<Territory>();
+		neighbors.add(getTerritoryNamed("Western Europe"));
+		neighbors.add(getTerritoryNamed("Northen Europe"));
+		neighbors.add(getTerritoryNamed("Ukraine"));
+		neighbors.add(getTerritoryNamed("Middle East"));
+		nameToNeigbhors.put("Southern Europe", neighbors);
+		t.setNeighbors(nameToNeigbhors.get(t.getName()));
+		neighbors = new ArrayList<Territory>();
+		neighbors.add(getTerritoryNamed("Southern Europe"));
+		neighbors.add(getTerritoryNamed("Northen Europe"));
+		neighbors.add(getTerritoryNamed("Great Britain"));
+		neighbors.add(getTerritoryNamed("North Africa"));
+		nameToNeigbhors.put("Western Europe", neighbors);
+		t.setNeighbors(nameToNeigbhors.get(t.getName()));
+		neighbors = new ArrayList<Territory>();
+		neighbors.add(getTerritoryNamed("Southern Europe"));
+		neighbors.add(getTerritoryNamed("Northen Europe"));
+		neighbors.add(getTerritoryNamed("Scandinavia"));
+		neighbors.add(getTerritoryNamed("Iceland"));
+		nameToNeigbhors.put("Great Britain", neighbors);
+		t.setNeighbors(nameToNeigbhors.get(t.getName()));
+		neighbors = new ArrayList<Territory>();
+		neighbors.add(getTerritoryNamed("Scandinavia"));
+		neighbors.add(getTerritoryNamed("Great Britain"));
+		nameToNeigbhors.put("Iceland", neighbors);
 		t.setNeighbors(nameToNeigbhors.get(t.getName()));
 
 	}

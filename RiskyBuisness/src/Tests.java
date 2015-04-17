@@ -465,7 +465,7 @@ public class Tests {
 		assertTrue(neighbors.contains(board.getTerritoryNamed("Southern Europe")));
 		assertTrue(neighbors.contains(board.getTerritoryNamed("Scandinavia")));
 		assertTrue(neighbors.contains(board.getTerritoryNamed("Ukraine")));
-		assertTrue(neighbors.contains(board.getTerritoryNamed("West Europe")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Western Europe")));
 		assertTrue(neighbors.contains(board.getTerritoryNamed("Great Britain")));
 		assertTrue(neighbors.size()==5);
 	}
@@ -475,7 +475,7 @@ public class Tests {
 		RiskBoard board = new RiskBoard();
 		board.initialGame(fInput);
 		ArrayList<Territory> neighbors = board.getTerritoryNamed("Southern Europe").getNeighbors();
-		assertTrue(neighbors.contains(board.getTerritoryNamed("West Europe")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Western Europe")));
 		assertTrue(neighbors.contains(board.getTerritoryNamed("Northen Europe")));
 		assertTrue(neighbors.contains(board.getTerritoryNamed("Ukraine")));
 		assertTrue(neighbors.contains(board.getTerritoryNamed("Middle East")));
@@ -486,7 +486,7 @@ public class Tests {
 	public void getNeighborsWestEurope() throws Exception{
 		RiskBoard board = new RiskBoard();
 		board.initialGame(fInput);
-		ArrayList<Territory> neighbors = board.getTerritoryNamed("West Europe").getNeighbors();
+		ArrayList<Territory> neighbors = board.getTerritoryNamed("Western Europe").getNeighbors();
 		assertTrue(neighbors.contains(board.getTerritoryNamed("North Africa")));
 		assertTrue(neighbors.contains(board.getTerritoryNamed("Great Britain")));
 		assertTrue(neighbors.contains(board.getTerritoryNamed("Northen Europe")));
