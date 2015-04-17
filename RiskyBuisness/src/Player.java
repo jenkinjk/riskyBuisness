@@ -19,12 +19,12 @@ public class Player {
 		this.territories = new ArrayList<Territory>();
 		this.armies = new ArrayList<Army>();
 	}
-	
+
 	public void addTerritory(Territory t) {
 		this.territories.add(t);
 		this.numberOfTerritories++;
 	}
-	
+
 	public void addArmy(Army a) {
 		this.armies.add(a);
 		this.numberOfArmies++;
@@ -33,31 +33,31 @@ public class Player {
 	public String getName() {
 		return this.name;
 	}
-	
+
 	public Color getColor() {
 		return this.color;
 	}
-	
+
 	public int getNumberOfTerritories() {
 		return this.numberOfTerritories;
 	}
-	
+
 	public int getNumberOfArmies() {
 		return this.numberOfArmies;
 	}
-	
+
 	public ArrayList<Territory> getTerritories() {
 		return this.territories;
 	}
-	
+
 	public ArrayList<Army> getArmies() {
 		return this.armies;
 	}
-	
+
 	public String listTerritories() {
 		String listOfTerretories = "\n";
-		for(Territory t: this.territories) {
-			listOfTerretories+=t.getName()+"\n";
+		for (Territory t : this.territories) {
+			listOfTerretories += t.getName() + "\n";
 		}
 		return listOfTerretories;
 	}

@@ -23,8 +23,9 @@ public class RiskBoard {
 	private ArrayList<Player> players;
 	private Integer[] numPlayerArray = { 1, 2, 3, 4, 5, 6 };
 	private String[] playerName = { "Player One", "Player Two", "Player Three",
-			"Player Four", "Player Five", "Player Six"};
-	private Color[] playerColor = { Color.RED, Color.YELLOW, Color.BLUE, Color.GREEN, Color.ORANGE, Color.PINK};
+			"Player Four", "Player Five", "Player Six" };
+	private Color[] playerColor = { Color.RED, Color.YELLOW, Color.BLUE,
+			Color.GREEN, Color.ORANGE, Color.PINK };
 	private ArrayList<Territory> territories;
 	private ArrayList<Territory> Asia;
 	private ArrayList<Territory> Europe;
@@ -32,18 +33,20 @@ public class RiskBoard {
 	private ArrayList<Territory> Australia;
 	private ArrayList<Territory> NA;
 	private ArrayList<Territory> SA;
+	private ArrayList<Army> armies;
 
 	public RiskBoard() {
 		ArrayList<Player> players = new ArrayList<Player>();
 		this.players = players;
 		this.itr = players.iterator();
-		territories=new ArrayList<Territory>();
-		Asia=new ArrayList<Territory>();
-		Europe=new ArrayList<Territory>();
-		Africa=new ArrayList<Territory>();
-		Australia=new ArrayList<Territory>();
-		NA=new ArrayList<Territory>();
-		SA=new ArrayList<Territory>();
+		territories = new ArrayList<Territory>();
+		Asia = new ArrayList<Territory>();
+		Europe = new ArrayList<Territory>();
+		Africa = new ArrayList<Territory>();
+		Australia = new ArrayList<Territory>();
+		NA = new ArrayList<Territory>();
+		SA = new ArrayList<Territory>();
+		armies = new ArrayList<Army>();
 	}
 
 	public void selectNumberOfPlayers() {
@@ -85,55 +88,61 @@ public class RiskBoard {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void setUpPlayers() {
-		for(int i=0; i< this.numberOfPlayers; i++) {
+		for (int i = 0; i < this.numberOfPlayers; i++) {
 			Player p = new Player(this.playerName[i], this.playerColor[i]);
 			this.players.add(p);
 		}
 		this.itr = this.players.iterator();
 	}
-	
+
 	private void setUpTerritories() {
-		String[] asianCountries = { "Afghanistan", "China", "India",
-				"Irkutsk", "Japan", "Kamchatka", "Middle East", "Mongolia", "Siam",
+		String[] asianCountries = { "Afghanistan", "China", "India", "Irkutsk",
+				"Japan", "Kamchatka", "Middle East", "Mongolia", "Siam",
 				"Siberia", "Ural", "Yakutsk" };
-		String[] europeCountries = { "Great Britain", "Iceland", "Northen Europe", "Scandinavia", "Southern Europe", "Ukraine", "Western Europe"};
-		String[] naCountries = { "Alaska", "Alberta", "Centeral America", "Eastern United States", "Greenland", "Northwest Territory", "Ontario", "Quebec", "Western United States" };
+		String[] europeCountries = { "Great Britain", "Iceland",
+				"Northen Europe", "Scandinavia", "Southern Europe", "Ukraine",
+				"Western Europe" };
+		String[] naCountries = { "Alaska", "Alberta", "Centeral America",
+				"Eastern United States", "Greenland", "Northwest Territory",
+				"Ontario", "Quebec", "Western United States" };
 		String[] saCountries = { "Argentina", "Brazil", "Peru", "Venezula" };
-		String[] africaCountries = { "Congo", "East Africa", "Egypt", "Madagascar", "North Africa", "South Africa" };
-		String[] australiaCountries = { "Eastern Australia", "Indonesia", "New Guinea", "Western Australia" };
-		for(String country: asianCountries) {
+		String[] africaCountries = { "Congo", "East Africa", "Egypt",
+				"Madagascar", "North Africa", "South Africa" };
+		String[] australiaCountries = { "Eastern Australia", "Indonesia",
+				"New Guinea", "Western Australia" };
+		for (String country : asianCountries) {
 			Territory t = new Territory(country);
 			territories.add(t);
 			Asia.add(t);
 		}
-		for(String country: europeCountries) {
+		for (String country : europeCountries) {
 			Territory t = new Territory(country);
 			territories.add(t);
 			Europe.add(t);
 		}
-		for(String country: naCountries) {
+		for (String country : naCountries) {
 			Territory t = new Territory(country);
 			territories.add(t);
 			NA.add(t);
 		}
-		for(String country: africaCountries) {
+		for (String country : africaCountries) {
 			Territory t = new Territory(country);
 			territories.add(t);
 			Africa.add(t);
 		}
-		for(String country: saCountries) {
+		for (String country : saCountries) {
 			Territory t = new Territory(country);
 			territories.add(t);
 			SA.add(t);
 		}
-		for(String country: australiaCountries) {
+		for (String country : australiaCountries) {
 			Territory t = new Territory(country);
 			territories.add(t);
 			Australia.add(t);
 		}
-		for(Territory t: territories){
+		for (Territory t : territories) {
 			randomPlayer().addTerritory(t);
 			try {
 				generateNeighbors(t);
@@ -145,40 +154,42 @@ public class RiskBoard {
 	}
 
 	private void setUpArmy() {
-		for(Player p: players) {
-			for(Territory t: p.getTerritories()) {
-				for(int i=0;i<3;i++) p.addArmy(new Army(p, t));
+		for (Player p : players) {
+			for (Territory t : p.getTerritories()) {
+				/* add three armies */
+				for (int i = 0; i < 3; i++)
+					p.addArmy(new Army(p, t));
 			}
 		}
 	}
-	
+
 	private void generateNeighbors(Territory t) throws Exception {
-		HashMap<String, ArrayList<Territory>> nameToNeigbhors= new HashMap<String, ArrayList<Territory>>();
+		HashMap<String, ArrayList<Territory>> nameToNeigbhors = new HashMap<String, ArrayList<Territory>>();
 		ArrayList<Territory> neighbors = new ArrayList<Territory>();
 		neighbors.add(getTerritoryNamed("Ukraine"));
 		neighbors.add(getTerritoryNamed("Middle East"));
 		neighbors.add(getTerritoryNamed("India"));
 		neighbors.add(getTerritoryNamed("China"));
 		neighbors.add(getTerritoryNamed("Ural"));
-		nameToNeigbhors.put("Afghanistan",neighbors);
+		nameToNeigbhors.put("Afghanistan", neighbors);
 		neighbors = new ArrayList<Territory>();
 		neighbors.add(getTerritoryNamed("Ukraine"));
 		neighbors.add(getTerritoryNamed("Afghanistan"));
 		neighbors.add(getTerritoryNamed("India"));
 		neighbors.add(getTerritoryNamed("Egypt"));
 		neighbors.add(getTerritoryNamed("Southern Europe"));
-		nameToNeigbhors.put("Middle East",neighbors);
+		nameToNeigbhors.put("Middle East", neighbors);
 		neighbors = new ArrayList<Territory>();
 		neighbors.add(getTerritoryNamed("Afghanistan"));
 		neighbors.add(getTerritoryNamed("Middle East"));
 		neighbors.add(getTerritoryNamed("China"));
 		neighbors.add(getTerritoryNamed("Siam"));
-		nameToNeigbhors.put("India",neighbors);
+		nameToNeigbhors.put("India", neighbors);
 		neighbors = new ArrayList<Territory>();
 		neighbors.add(getTerritoryNamed("Indonesia"));
 		neighbors.add(getTerritoryNamed("China"));
 		neighbors.add(getTerritoryNamed("India"));
-		nameToNeigbhors.put("Siam",neighbors);
+		nameToNeigbhors.put("Siam", neighbors);
 		neighbors = new ArrayList<Territory>();
 		neighbors.add(getTerritoryNamed("Siam"));
 		neighbors.add(getTerritoryNamed("Afghanistan"));
@@ -186,76 +197,76 @@ public class RiskBoard {
 		neighbors.add(getTerritoryNamed("Ural"));
 		neighbors.add(getTerritoryNamed("Siberia"));
 		neighbors.add(getTerritoryNamed("Mongolia"));
-		nameToNeigbhors.put("China",neighbors);
+		nameToNeigbhors.put("China", neighbors);
 		neighbors = new ArrayList<Territory>();
 		neighbors.add(getTerritoryNamed("Ukraine"));
 		neighbors.add(getTerritoryNamed("Afghanistan"));
 		neighbors.add(getTerritoryNamed("China"));
 		neighbors.add(getTerritoryNamed("Siberia"));
-		nameToNeigbhors.put("Ural",neighbors);
+		nameToNeigbhors.put("Ural", neighbors);
 		neighbors = new ArrayList<Territory>();
 		neighbors.add(getTerritoryNamed("Ural"));
 		neighbors.add(getTerritoryNamed("Irkutsk"));
 		neighbors.add(getTerritoryNamed("Mongolia"));
 		neighbors.add(getTerritoryNamed("Yakutsk"));
-		nameToNeigbhors.put("Siberia",neighbors);
+		nameToNeigbhors.put("Siberia", neighbors);
 		neighbors = new ArrayList<Territory>();
 		neighbors.add(getTerritoryNamed("Siberia"));
 		neighbors.add(getTerritoryNamed("Irkutsk"));
 		neighbors.add(getTerritoryNamed("China"));
 		neighbors.add(getTerritoryNamed("Japan"));
 		neighbors.add(getTerritoryNamed("Kamchatka"));
-		nameToNeigbhors.put("Mongolia",neighbors);
+		nameToNeigbhors.put("Mongolia", neighbors);
 		neighbors = new ArrayList<Territory>();
 		neighbors.add(getTerritoryNamed("Mongolia"));
 		neighbors.add(getTerritoryNamed("Kamchatka"));
-		nameToNeigbhors.put("Japan",neighbors);
+		nameToNeigbhors.put("Japan", neighbors);
 		neighbors = new ArrayList<Territory>();
 		neighbors.add(getTerritoryNamed("Siberia"));
 		neighbors.add(getTerritoryNamed("Mongolia"));
 		neighbors.add(getTerritoryNamed("Yakutsk"));
 		neighbors.add(getTerritoryNamed("Kamchatka"));
-		nameToNeigbhors.put("Irkutsk",neighbors);
+		nameToNeigbhors.put("Irkutsk", neighbors);
 		neighbors = new ArrayList<Territory>();
 		neighbors.add(getTerritoryNamed("Siberia"));
 		neighbors.add(getTerritoryNamed("Irkutsk"));
 		neighbors.add(getTerritoryNamed("Kamchatka"));
-		nameToNeigbhors.put("Yakutsk",neighbors);
+		nameToNeigbhors.put("Yakutsk", neighbors);
 		neighbors = new ArrayList<Territory>();
 		neighbors.add(getTerritoryNamed("Japan"));
 		neighbors.add(getTerritoryNamed("Mongolia"));
 		neighbors.add(getTerritoryNamed("Yakutsk"));
 		neighbors.add(getTerritoryNamed("Irkutsk"));
 		neighbors.add(getTerritoryNamed("Alaska"));
-		nameToNeigbhors.put("Kamchatka",neighbors);
+		nameToNeigbhors.put("Kamchatka", neighbors);
 		neighbors = new ArrayList<Territory>();
 		neighbors.add(getTerritoryNamed("Kamchatka"));
 		neighbors.add(getTerritoryNamed("Northwest Territory"));
 		neighbors.add(getTerritoryNamed("Alberta"));
-		nameToNeigbhors.put("Alaska",neighbors);
+		nameToNeigbhors.put("Alaska", neighbors);
 		neighbors = new ArrayList<Territory>();
 		neighbors.add(getTerritoryNamed("Greenland"));
 		neighbors.add(getTerritoryNamed("Ontario"));
 		neighbors.add(getTerritoryNamed("Alberta"));
 		neighbors.add(getTerritoryNamed("Alaska"));
-		nameToNeigbhors.put("Northwest Territory",neighbors);
+		nameToNeigbhors.put("Northwest Territory", neighbors);
 		neighbors = new ArrayList<Territory>();
 		neighbors.add(getTerritoryNamed("Northwest Territory"));
 		neighbors.add(getTerritoryNamed("Western United States"));
 		neighbors.add(getTerritoryNamed("Ontario"));
 		neighbors.add(getTerritoryNamed("Alaska"));
-		nameToNeigbhors.put("Alberta",neighbors);
+		nameToNeigbhors.put("Alberta", neighbors);
 		neighbors = new ArrayList<Territory>();
 		neighbors.add(getTerritoryNamed("Quebec"));
 		neighbors.add(getTerritoryNamed("Ontario"));
 		neighbors.add(getTerritoryNamed("Northwest Territory"));
 		neighbors.add(getTerritoryNamed("Iceland"));
-		nameToNeigbhors.put("Greenland",neighbors);
+		nameToNeigbhors.put("Greenland", neighbors);
 		neighbors = new ArrayList<Territory>();
 		neighbors.add(getTerritoryNamed("Greenland"));
 		neighbors.add(getTerritoryNamed("Ontario"));
 		neighbors.add(getTerritoryNamed("Eastern United States"));
-		nameToNeigbhors.put("Quebec",neighbors);
+		nameToNeigbhors.put("Quebec", neighbors);
 		neighbors = new ArrayList<Territory>();
 		neighbors.add(getTerritoryNamed("Quebec"));
 		neighbors.add(getTerritoryNamed("Greenland"));
@@ -263,54 +274,55 @@ public class RiskBoard {
 		neighbors.add(getTerritoryNamed("Alberta"));
 		neighbors.add(getTerritoryNamed("Western United States"));
 		neighbors.add(getTerritoryNamed("Eastern United States"));
-		nameToNeigbhors.put("Ontario",neighbors);
+		nameToNeigbhors.put("Ontario", neighbors);
 		neighbors = new ArrayList<Territory>();
 		neighbors.add(getTerritoryNamed("Alberta"));
 		neighbors.add(getTerritoryNamed("Ontario"));
 		neighbors.add(getTerritoryNamed("Eastern United States"));
 		neighbors.add(getTerritoryNamed("Centeral America"));
-		nameToNeigbhors.put("Western United States",neighbors);
+		nameToNeigbhors.put("Western United States", neighbors);
 		neighbors = new ArrayList<Territory>();
 		neighbors.add(getTerritoryNamed("Quebec"));
 		neighbors.add(getTerritoryNamed("Ontario"));
 		neighbors.add(getTerritoryNamed("Western United States"));
 		neighbors.add(getTerritoryNamed("Centeral America"));
-		nameToNeigbhors.put("Eastern United States",neighbors);
+		nameToNeigbhors.put("Eastern United States", neighbors);
 		neighbors = new ArrayList<Territory>();
 		neighbors.add(getTerritoryNamed("Venezula"));
 		neighbors.add(getTerritoryNamed("Eastern United States"));
-		neighbors.add(getTerritoryNamed("Western United States"));		nameToNeigbhors.put("Centeral America",neighbors);
+		neighbors.add(getTerritoryNamed("Western United States"));
+		nameToNeigbhors.put("Centeral America", neighbors);
 		t.setNeighbors(nameToNeigbhors.get(t.getName()));
-		
+
 	}
 
 	private Player randomPlayer() {
 		Random playerChooser = new Random();
 		int max = 0;
-		for(Player p: players){
-			if(p.getNumberOfTerritories()>max){
+		for (Player p : players) {
+			if (p.getNumberOfTerritories() > max) {
 				max = p.getNumberOfTerritories();
 			}
 		}
 		Player player;
 		boolean added = false;
-		while(!added){
+		while (!added) {
 			player = players.get(playerChooser.nextInt(players.size()));
-			if(player.getNumberOfTerritories()<max){
+			if (player.getNumberOfTerritories() < max) {
 				return player;
-			}else{
-				if(allHaveMax(players, max)){
+			} else {
+				if (allHaveMax(players, max)) {
 					return player;
 				}
 			}
 		}
-		//Can't get here
+		// Can't get here
 		return null;
 	}
 
 	private boolean allHaveMax(ArrayList<Player> players, int max) {
-		for(Player p: players){
-			if(p.getTerritories().size()!=max){
+		for (Player p : players) {
+			if (p.getTerritories().size() != max) {
 				return false;
 			}
 		}
@@ -324,62 +336,64 @@ public class RiskBoard {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		frame.setResizable(false);
-		
+
 		JPanel panel = new JPanel() {
 			private Image backgroundImage = ImageIO.read(new File("risk.png"));
-			public void paint( Graphics g ) { 
+
+			public void paint(Graphics g) {
 				super.paint(g);
 				g.drawImage(backgroundImage, 0, 30, null);
-			  	}
-			};
-		//panel.setBackground(Color.blue);
+			}
+		};
+		
 		/*
+		 * Draw armies
+		 */
+		for(Army a: this.armies) {
+			panel.add(a);
+		}
 		
-		This only existed for the first week. Has no actual reason to show up.
-		
-		JButton NA = new JButton();
-		NA.addActionListener(new ContinentListener("North America", this));
-		NA.setText("North America");
-
-		JButton SA = new JButton();
-		SA.addActionListener(new ContinentListener("South America", this));
-		SA.setText("South America");
-
-		JButton A = new JButton();
-		A.setText("Africa");
-		A.addActionListener(new ContinentListener("Africa", this));
-
-		JButton E = new JButton();
-		E.setText("Europe");
-		E.addActionListener(new ContinentListener("Europe", this));
-		
-		JButton D = new JButton();
-		D.setText("Austrailia");
-		D.addActionListener(new ContinentListener("Austraila", this));
-		
-		JButton Asia = new JButton();
-		Asia.addActionListener(new ContinentListener("Asia", this));
-		Asia.setText("Asia");
-		
-		panel.add(NA);
-		panel.add(SA);
-		panel.add(E);
-		panel.add(D);
-		panel.add(A);
-		panel.add(Asia);
-		*/
-		//panel.setSize(1000, 50);
+		// panel.setBackground(Color.blue);
+		/*
+		 * 
+		 * This only existed for the first week. Has no actual reason to show
+		 * up.
+		 * 
+		 * JButton NA = new JButton(); NA.addActionListener(new
+		 * ContinentListener("North America", this));
+		 * NA.setText("North America");
+		 * 
+		 * JButton SA = new JButton(); SA.addActionListener(new
+		 * ContinentListener("South America", this));
+		 * SA.setText("South America");
+		 * 
+		 * JButton A = new JButton(); A.setText("Africa");
+		 * A.addActionListener(new ContinentListener("Africa", this));
+		 * 
+		 * JButton E = new JButton(); E.setText("Europe");
+		 * E.addActionListener(new ContinentListener("Europe", this));
+		 * 
+		 * JButton D = new JButton(); D.setText("Austrailia");
+		 * D.addActionListener(new ContinentListener("Austraila", this));
+		 * 
+		 * JButton Asia = new JButton(); Asia.addActionListener(new
+		 * ContinentListener("Asia", this)); Asia.setText("Asia");
+		 * 
+		 * panel.add(NA); panel.add(SA); panel.add(E); panel.add(D);
+		 * panel.add(A); panel.add(Asia);
+		 */
+		// panel.setSize(1000, 50);
 		frame.setContentPane(panel);
 		panel.setFocusable(true);
-		//while(!panel.hasFocus()){
-		//	panel.requestFocusInWindow();
-		//}
-		//System.out.println(panel.hasFocus());
-		//panel.requestFocus();
+		// while(!panel.hasFocus()){
+		// panel.requestFocusInWindow();
+		// }
+		// System.out.println(panel.hasFocus());
+		// panel.requestFocus();
 		panel.revalidate();
 		frame.revalidate();
 		frame.repaint();
-		//System.out.println(javax.swing.SwingUtilities.isEventDispatchThread());
+		// System.out.println(javax.swing.SwingUtilities.isEventDispatchThread());
 	}
 
 	public ArrayList<Player> getPlayers() {
@@ -399,26 +413,32 @@ public class RiskBoard {
 	public ArrayList<Territory> getAsiaTerritories() {
 		return Asia;
 	}
+
 	public ArrayList<Territory> getEuropeTerritories() {
 		return Europe;
 	}
+
 	public ArrayList<Territory> getAfricaTerritories() {
 		return Africa;
 	}
+
 	public ArrayList<Territory> getAustralaTerritories() {
 		return Australia;
 	}
+
 	public ArrayList<Territory> getNATerritories() {
 		return NA;
 	}
+
 	public ArrayList<Territory> getSATerritories() {
 		return SA;
 	}
 
 	public Territory getTerritoryNamed(String string) throws Exception {
-		for(Territory t: territories){
-			if(t.getName().equals(string)) return t;
+		for (Territory t : territories) {
+			if (t.getName().equals(string))
+				return t;
 		}
-		throw new Exception("This territory does not exist. "+string);
+		throw new Exception("This territory does not exist. " + string);
 	}
 }

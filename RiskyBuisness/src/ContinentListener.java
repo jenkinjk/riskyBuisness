@@ -10,12 +10,12 @@ public class ContinentListener implements ActionListener {
 	private RiskBoard board;
 	private String[] asianCountries = { "" };
 	private String[] europeCountries = { "" };
-	//private String[] arcticCountries = { "" };
+	// private String[] arcticCountries = { "" };
 	private String[] naCountries = { "" };
 	private String[] saCountries = { "" };
 	private String[] africaCountries = { "" };
 	private String[] aussieCountries = { "" };
-	
+
 	private Map<String, String[]> continentToCountriesMap;
 
 	public ContinentListener(String label, RiskBoard board) {
@@ -32,7 +32,7 @@ public class ContinentListener implements ActionListener {
 		this.continentToCountriesMap.put("Europe", this.europeCountries);
 		this.continentToCountriesMap.put("North America", this.naCountries);
 		this.continentToCountriesMap.put("South America", this.saCountries);
-		//this.continentToCountriesMap.put("Asia", this.arcticCountries);
+		// this.continentToCountriesMap.put("Asia", this.arcticCountries);
 	}
 
 	@Override
@@ -42,60 +42,59 @@ public class ContinentListener implements ActionListener {
 	}
 
 	public void setUpTerritories() {
-//		for(String country: asianCountries) {
-//			Territory t = new Territory(country);
-//			randomPlayer().addTerritory(t);
-//		}
-//		for(String country: europeCountries) {
-//			Territory t = new Territory(country);
-//			randomPlayer().addTerritory(t);
-//		}
-//		for(String country: naCountries) {
-//			Territory t = new Territory(country);
-//			randomPlayer().addTerritory(t);
-//		}
-//		for(String country: saCountries) {
-//			Territory t = new Territory(country);
-//			randomPlayer().addTerritory(t);
-//		}
-//		for(String country: africaCountries) {
-//			Territory t = new Territory(country);
-//			randomPlayer().addTerritory(t);
-//		}for(String country: aussieCountries) {
-//			Territory t = new Territory(country);
-//			randomPlayer().addTerritory(t);
-//		}
+		// for(String country: asianCountries) {
+		// Territory t = new Territory(country);
+		// randomPlayer().addTerritory(t);
+		// }
+		// for(String country: europeCountries) {
+		// Territory t = new Territory(country);
+		// randomPlayer().addTerritory(t);
+		// }
+		// for(String country: naCountries) {
+		// Territory t = new Territory(country);
+		// randomPlayer().addTerritory(t);
+		// }
+		// for(String country: saCountries) {
+		// Territory t = new Territory(country);
+		// randomPlayer().addTerritory(t);
+		// }
+		// for(String country: africaCountries) {
+		// Territory t = new Territory(country);
+		// randomPlayer().addTerritory(t);
+		// }for(String country: aussieCountries) {
+		// Territory t = new Territory(country);
+		// randomPlayer().addTerritory(t);
+		// }
 	}
 
 	private Player randomPlayer() {
 		Random playerChooser = new Random();
 		ArrayList<Player> players = this.board.getPlayers();
 		int max = 0;
-		for(Player p: players){
-			if(p.getNumberOfTerritories()>max){
+		for (Player p : players) {
+			if (p.getNumberOfTerritories() > max) {
 				max = p.getNumberOfTerritories();
 			}
 		}
 		Player player;
 		boolean added = false;
-		while(!added){
+		while (!added) {
 			player = players.get(playerChooser.nextInt(players.size()));
-			if(player.getNumberOfTerritories()<max){
+			if (player.getNumberOfTerritories() < max) {
 				return player;
-			}else{
-				if(allHaveMax(players, max)){
+			} else {
+				if (allHaveMax(players, max)) {
 					return player;
 				}
 			}
 		}
-		//Can't get here
+		// Can't get here
 		return null;
 	}
 
-
 	private boolean allHaveMax(ArrayList<Player> players, int max) {
-		for(Player p: players){
-			if(p.getTerritories().size()!=max){
+		for (Player p : players) {
+			if (p.getTerritories().size() != max) {
 				return false;
 			}
 		}
