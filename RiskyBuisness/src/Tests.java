@@ -456,7 +456,7 @@ public class Tests {
 		 */
 		ArrayList<Player> players = board.getPlayers();
 		for(Player p: players) {
-			assertEquals(p.getNumberOfArmies(), 3 * p.getNumberOfTerritories());
+			assertEquals(3 * p.getNumberOfTerritories(), p.getNumberOfArmies());
 		}
 	}
 }

@@ -143,7 +143,11 @@ public class RiskBoard {
 	}
 
 	private void setUpArmy() {
-		
+		for(Player p: players) {
+			for(Territory t: p.getTerritories()) {
+				for(int i=0;i<3;i++) p.addArmy(new Army(p, t));
+			}
+		}
 	}
 	
 	private void generateNeighbors(Territory t) throws Exception {

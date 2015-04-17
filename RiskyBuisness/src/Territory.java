@@ -6,12 +6,12 @@ public class Territory {
 	private String name;
 	private ArrayList<Territory> neighbors=null;
 
-	public void setNeighbors(ArrayList<Territory> neighbors) {
-		this.neighbors = neighbors;
-	}
-
 	public Territory(String string) {
 		this.name = string;
+	}
+	
+	public void setNeighbors(ArrayList<Territory> neighbors) {
+		this.neighbors = neighbors;
 	}
 
 	public String getName() {
