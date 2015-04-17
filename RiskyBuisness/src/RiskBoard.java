@@ -233,6 +233,35 @@ public class RiskBoard {
 		neighbors.add(getTerritoryNamed("Northwest Territory"));
 		neighbors.add(getTerritoryNamed("Iceland"));
 		nameToNeigbhors.put("Greenland",neighbors);
+		neighbors = new ArrayList<Territory>();
+		neighbors.add(getTerritoryNamed("Greenland"));
+		neighbors.add(getTerritoryNamed("Ontario"));
+		neighbors.add(getTerritoryNamed("Eastern United States"));
+		nameToNeigbhors.put("Quebec",neighbors);
+		neighbors = new ArrayList<Territory>();
+		neighbors.add(getTerritoryNamed("Quebec"));
+		neighbors.add(getTerritoryNamed("Greenland"));
+		neighbors.add(getTerritoryNamed("Northwest Territory"));
+		neighbors.add(getTerritoryNamed("Alberta"));
+		neighbors.add(getTerritoryNamed("Western United States"));
+		neighbors.add(getTerritoryNamed("Eastern United States"));
+		nameToNeigbhors.put("Ontario",neighbors);
+		neighbors = new ArrayList<Territory>();
+		neighbors.add(getTerritoryNamed("Alberta"));
+		neighbors.add(getTerritoryNamed("Ontario"));
+		neighbors.add(getTerritoryNamed("Eastern United States"));
+		neighbors.add(getTerritoryNamed("Centeral America"));
+		nameToNeigbhors.put("Western United States",neighbors);
+		neighbors = new ArrayList<Territory>();
+		neighbors.add(getTerritoryNamed("Quebec"));
+		neighbors.add(getTerritoryNamed("Ontario"));
+		neighbors.add(getTerritoryNamed("Western United States"));
+		neighbors.add(getTerritoryNamed("Centeral America"));
+		nameToNeigbhors.put("Eastern United States",neighbors);
+		neighbors = new ArrayList<Territory>();
+		neighbors.add(getTerritoryNamed("Venezula"));
+		neighbors.add(getTerritoryNamed("Eastern United States"));
+		neighbors.add(getTerritoryNamed("Western United States"));		nameToNeigbhors.put("Centeral America",neighbors);
 		t.setNeighbors(nameToNeigbhors.get(t.getName()));
 		
 	}
