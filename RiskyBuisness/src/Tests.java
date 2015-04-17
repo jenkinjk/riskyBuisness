@@ -369,4 +369,59 @@ public class Tests {
 		assertTrue(neighbors.contains(board.getTerritoryNamed("Quebec")));
 		assertTrue(neighbors.size()==4);
 	}
+	@Test
+	public void getNeighborsOntario() throws Exception{
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		ArrayList<Territory> neighbors = board.getTerritoryNamed("Ontario").getNeighbors();
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Greenland")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Northwest Territory")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Alberta")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Quebec")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Western United States")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Eastern United States")));
+		assertTrue(neighbors.size()==4);
+	}
+	@Test
+	public void getNeighborsQuebec() throws Exception{
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		ArrayList<Territory> neighbors = board.getTerritoryNamed("Quebec").getNeighbors();
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Greenland")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Western United States")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Ontario")));
+		assertTrue(neighbors.size()==3);
+	}
+	@Test
+	public void getNeighborsWesternUS() throws Exception{
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		ArrayList<Territory> neighbors = board.getTerritoryNamed("Western United States").getNeighbors();
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Western United States")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Centeral America")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Ontario")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Quebec")));
+		assertTrue(neighbors.size()==4);
+	}
+	@Test
+	public void getNeighborsEasternUS() throws Exception{
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		ArrayList<Territory> neighbors = board.getTerritoryNamed("Eastern United States").getNeighbors();
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Alberta")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Western United States")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Ontario")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Centeral America")));
+		assertTrue(neighbors.size()==4);
+	}
+	@Test
+	public void getNeighborsCenteralAmerica() throws Exception{
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		ArrayList<Territory> neighbors = board.getTerritoryNamed("Centeral America").getNeighbors();
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Venezula")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Western United States")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Eastern United Statees")));
+		assertTrue(neighbors.size()==3);
+	}
 }
