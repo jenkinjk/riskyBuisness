@@ -90,8 +90,6 @@ public class Tests {
 		assertFalse(failing);
 	}
 
-
-
 	@Test
 	public void displayBoardTest() throws IOException {
 		RiskBoard board = new RiskBoard();
@@ -176,6 +174,7 @@ public class Tests {
 		board.initialGame(fInput);
 		assertEquals(6,board.getAfricaTerritories().size());
 	}
+	
 	@Test
 	public void getNeighborsExists(){
 		RiskBoard board = new RiskBoard();
@@ -432,4 +431,6 @@ public class Tests {
 			assertTrue(t.getNeighbors()!=null);
 		}
 	}
+
+	
 }
