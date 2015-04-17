@@ -23,6 +23,7 @@ public class Tests {
 		fInput = input;
 	}
 	
+	/* 
 	@Test
 	public void setupTerritoriesEquallyTest() {
 		RiskBoard board = new RiskBoard();
@@ -431,6 +432,8 @@ public class Tests {
 			assertTrue(t.getNeighbors()!=null);
 		}
 	}
+	
+	*/
 	
 	@Test
 	public void setUpArmyTest() {
