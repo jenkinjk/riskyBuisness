@@ -344,46 +344,29 @@ public class RiskBoard {
 		neighbors.add(getTerritoryNamed("Great Britain"));
 		nameToNeigbhors.put("Iceland", neighbors);
 		t.setNeighbors(nameToNeigbhors.get(t.getName()));
-		
-//		@Test
-//		public void getNeighborsBrazil() throws Exception{
-//			RiskBoard board = new RiskBoard();
-//			board.initialGame(fInput);
-//			ArrayList<Territory> neighbors = board.getTerritoryNamed("Brazil").getNeighbors();
-//			assertTrue(neighbors.contains(board.getTerritoryNamed("Venezuela")));
-//			assertTrue(neighbors.contains(board.getTerritoryNamed("Peru")));
-//			assertTrue(neighbors.contains(board.getTerritoryNamed("Argentina")));
-//			assertTrue(neighbors.size()==2);
-//		}
-//		@Test
-//		public void getNeighborsPeru() throws Exception{
-//			RiskBoard board = new RiskBoard();
-//			board.initialGame(fInput);
-//			ArrayList<Territory> neighbors = board.getTerritoryNamed("Peru").getNeighbors();
-//			assertTrue(neighbors.contains(board.getTerritoryNamed("Brazil")));
-//			assertTrue(neighbors.contains(board.getTerritoryNamed("Venezuela")));
-//			assertTrue(neighbors.contains(board.getTerritoryNamed("Argentina")));
-//			assertTrue(neighbors.size()==2);
-//		}
-//		@Test
-//		public void getNeighborsArgentina() throws Exception{
-//			RiskBoard board = new RiskBoard();
-//			board.initialGame(fInput);
-//			ArrayList<Territory> neighbors = board.getTerritoryNamed("Iceland").getNeighbors();
-//			assertTrue(neighbors.contains(board.getTerritoryNamed("Brazil")));
-//			assertTrue(neighbors.contains(board.getTerritoryNamed("Peru")));
-//			assertTrue(neighbors.size()==2);
-//		}
-//		@Test
-//		public void getNeighborsVenezuela() throws Exception{
-//			RiskBoard board = new RiskBoard();
-//			board.initialGame(fInput);
-//			ArrayList<Territory> neighbors = board.getTerritoryNamed("Iceland").getNeighbors();
-//			assertTrue(neighbors.contains(board.getTerritoryNamed("Brazil")));
-//			assertTrue(neighbors.contains(board.getTerritoryNamed("Peru")));
-//			assertTrue(neighbors.contains(board.getTerritoryNamed("Centeral America")));
-//			assertTrue(neighbors.size()==2);
-//		}
+		neighbors = new ArrayList<Territory>();
+		neighbors.add(getTerritoryNamed("Venezula"));
+		neighbors.add(getTerritoryNamed("Peru"));
+		neighbors.add(getTerritoryNamed("Argentina"));
+		nameToNeigbhors.put("Brazil", neighbors);
+		t.setNeighbors(nameToNeigbhors.get(t.getName()));
+		neighbors = new ArrayList<Territory>();
+		neighbors.add(getTerritoryNamed("Venezula"));
+		neighbors.add(getTerritoryNamed("Brazil"));
+		neighbors.add(getTerritoryNamed("Argentina"));
+		nameToNeigbhors.put("Peru", neighbors);
+		t.setNeighbors(nameToNeigbhors.get(t.getName()));
+		neighbors = new ArrayList<Territory>();
+		neighbors.add(getTerritoryNamed("Brazil"));
+		neighbors.add(getTerritoryNamed("Peru"));
+		nameToNeigbhors.put("Argentina", neighbors);
+		t.setNeighbors(nameToNeigbhors.get(t.getName()));
+		neighbors = new ArrayList<Territory>();
+		neighbors.add(getTerritoryNamed("Brazil"));
+		neighbors.add(getTerritoryNamed("Peru"));
+		neighbors.add(getTerritoryNamed("Centeral America"));
+		nameToNeigbhors.put("Venezula", neighbors);
+		t.setNeighbors(nameToNeigbhors.get(t.getName()));
 	}
 
 	private Player randomPlayer() {
