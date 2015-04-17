@@ -437,8 +437,8 @@ public class Tests {
 		RiskBoard board = new RiskBoard();
 		board.initialGame(fInput);
 		ArrayList<Territory> neighbors = board.getTerritoryNamed("Ukraine").getNeighbors();
-		assertTrue(neighbors.contains(board.getTerritoryNamed("N. Europe")));
-		assertTrue(neighbors.contains(board.getTerritoryNamed("S. Europe")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Northen Europe")));
+		assertTrue(neighbors.contains(board.getTerritoryNamed("Southern Europe")));
 		assertTrue(neighbors.contains(board.getTerritoryNamed("Scandinavia")));
 		assertTrue(neighbors.contains(board.getTerritoryNamed("Middle East")));
 		assertTrue(neighbors.contains(board.getTerritoryNamed("Afghanistan")));

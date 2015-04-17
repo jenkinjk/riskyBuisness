@@ -1,3 +1,5 @@
+import static org.junit.Assert.assertTrue;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -292,6 +294,15 @@ public class RiskBoard {
 		neighbors.add(getTerritoryNamed("Eastern United States"));
 		neighbors.add(getTerritoryNamed("Western United States"));
 		nameToNeigbhors.put("Centeral America", neighbors);
+		t.setNeighbors(nameToNeigbhors.get(t.getName()));
+		neighbors = new ArrayList<Territory>();
+		neighbors.add(getTerritoryNamed("Northen Europe"));
+		neighbors.add(getTerritoryNamed("Southern Europe"));
+		neighbors.add(getTerritoryNamed("Scandinavia"));
+		neighbors.add(getTerritoryNamed("Middle East"));
+		neighbors.add(getTerritoryNamed("Ural"));
+		neighbors.add(getTerritoryNamed("Afghanistan"));
+		nameToNeigbhors.put("Ukraine", neighbors);
 		t.setNeighbors(nameToNeigbhors.get(t.getName()));
 
 	}
