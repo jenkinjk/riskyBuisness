@@ -424,4 +424,12 @@ public class Tests {
 		assertTrue(neighbors.contains(board.getTerritoryNamed("Eastern United States")));
 		assertTrue(neighbors.size()==3);
 	}
+	@Test
+	public void NANeighbors(){
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		for(Territory t: board.getNATerritories()){
+			assertTrue(t.getNeighbors()!=null);
+		}
+	}
 }
