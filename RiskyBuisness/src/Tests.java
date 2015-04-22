@@ -27,8 +27,6 @@ public class Tests {
 	public void setupTerritoriesEquallyTest() {
 		RiskBoard board = new RiskBoard();
 		board.initialGame(fInput);
-		ContinentListener c = new ContinentListener("Asia", board);
-		c.setUpTerritories();
 		ArrayList<Player> players = board.getPlayers();
 		assertTrue(playersEquallyDiveded(players));
 	}
@@ -57,11 +55,7 @@ public class Tests {
 		board.initialGame(fInput);
 		RiskBoard board2 = new RiskBoard();
 		board2.initialGame(fInput);
-		ContinentListener c = new ContinentListener("Asia", board);
-		c.setUpTerritories();
 		ArrayList<Player> players = board.getPlayers();
-		ContinentListener c2 = new ContinentListener("Asia", board2);
-		c2.setUpTerritories();
 		ArrayList<Player> players2 = board2.getPlayers();
 		int count = 0;
 		boolean failing = true;
@@ -98,14 +92,14 @@ public class Tests {
 		// This just makes sure the GUI throws no errors.
 	}
 
-	@Test
-	public void listenerTest() {
-		RiskBoard board = new RiskBoard();
-		ContinentListener riskyBuisness = new ContinentListener(
-				"Risky Buisness", board);
-		assertEquals("I am Risky Buisness. Fear me!\n",
-				riskyBuisness.identity());
-	}
+//	@Test
+//	public void listenerTest() {
+//		RiskBoard board = new RiskBoard();
+//		ContinentListener riskyBuisness = new ContinentListener(
+//				"Risky Buisness", board);
+//		assertEquals("I am Risky Buisness. Fear me!\n",
+//				riskyBuisness.identity());
+//	}
 
 	@Test
 	public void setupPlayerTest() {
