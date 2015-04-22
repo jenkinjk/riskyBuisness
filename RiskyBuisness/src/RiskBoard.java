@@ -54,7 +54,7 @@ public class RiskBoard {
 	}
 
 	public void selectNumberOfPlayers() {
-		JFrame setUpFrame = new JFrame("Risk");
+		final JFrame setUpFrame = new JFrame("Risk");
 		JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());
 
@@ -69,6 +69,7 @@ public class RiskBoard {
 				JComboBox<Integer> cb = (JComboBox<Integer>) arg.getSource();
 				int num = (int) cb.getSelectedItem();
 				initialGame(num);
+				setUpFrame.dispose();
 			}
 		});
 		panel.add(box, BorderLayout.CENTER);
@@ -85,12 +86,6 @@ public class RiskBoard {
 		setUpPlayers();
 		setUpTerritories();
 		setUpArmy();
-		try {
-			display();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 	private void setUpPlayers() {
@@ -148,12 +143,7 @@ public class RiskBoard {
 		}
 		for (Territory t : territories) {
 			randomPlayer().addTerritory(t);
-			try {
-				generateNeighbors(t);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			generateNeighbors(t);
 		}
 	}
 
@@ -167,9 +157,10 @@ public class RiskBoard {
 		}
 	}
 
-	private void generateNeighbors(Territory t) throws Exception {
+	private void generateNeighbors(Territory t) {
 		HashMap<String, ArrayList<Territory>> nameToNeigbhors = new HashMap<String, ArrayList<Territory>>();
 		ArrayList<Territory> neighbors = new ArrayList<Territory>();
+		try{
 		neighbors.add(getTerritoryNamed("Ukraine"));
 		neighbors.add(getTerritoryNamed("Middle East"));
 		neighbors.add(getTerritoryNamed("India"));
@@ -431,6 +422,10 @@ public class RiskBoard {
 		neighbors.add(getTerritoryNamed("Indonesia"));
 		nameToNeigbhors.put("Western Australia", neighbors);
 		t.setNeighbors(nameToNeigbhors.get(t.getName()));
+		}catch(Exception e){
+			System.out.println("A territory name is incorrect.");
+			e.printStackTrace();
+		}
 	}
 
 	private Player randomPlayer() {
@@ -442,8 +437,8 @@ public class RiskBoard {
 			}
 		}
 		Player player;
-		boolean added = false;
-		while (!added) {
+		while (true) { // There is no way to know how many times this must
+							// run.
 			player = players.get(playerChooser.nextInt(players.size()));
 			if (player.getNumberOfTerritories() < max) {
 				return player;
@@ -453,8 +448,6 @@ public class RiskBoard {
 				}
 			}
 		}
-		// Can't get here
-		return null;
 	}
 
 	private boolean allHaveMax(ArrayList<Player> players, int max) {
@@ -482,14 +475,14 @@ public class RiskBoard {
 				g.drawImage(backgroundImage, 0, 30, null);
 			}
 		};
-		
+
 		/*
 		 * Draw armies
 		 */
-		for(Army a: this.armies) {
+		for (Army a : this.armies) {
 			panel.add(a);
 		}
-		
+
 		// panel.setBackground(Color.blue);
 		/*
 		 * 

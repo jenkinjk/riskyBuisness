@@ -15,27 +15,27 @@ public class Army extends JComponent {
 		
 	}
 
-	public Player getOwner() {
-		return owner;
-	}
-
-	public void setOwner(Player owner) {
-		this.owner = owner;
-	}
-
-	public Territory getTerretory() {
-		return location;
-	}
-
-	public void setLocation(Territory location) {
-		this.location = location;
-	}
-	
-	public void paintComponent(Graphics g) {
-		Graphics2D g2 = (Graphics2D) g;
-		Ellipse2D armyUnit = new Ellipse2D.Double(100, 100, 10, 10);
-		g2.setPaint(this.owner.getColor());
-		g2.fill(armyUnit);
-	}
+//	public Player getOwner() {
+//		return owner;
+//	}
+//
+//	public void setOwner(Player owner) {
+//		this.owner = owner;
+//	}
+//
+//	public Territory getTerretory() {
+//		return location;
+//	}
+//
+//	public void setLocation(Territory location) {
+//		this.location = location;
+//	}
+//	
+//	public void paintComponent(Graphics g) {
+//		Graphics2D g2 = (Graphics2D) g;
+//		Ellipse2D armyUnit = new Ellipse2D.Double(100, 100, 10, 10);
+//		g2.setPaint(this.owner.getColor());
+//		g2.fill(armyUnit);
+//	}
 
 }

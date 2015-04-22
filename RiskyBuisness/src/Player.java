@@ -34,9 +34,9 @@ public class Player {
 		return this.name;
 	}
 
-	public Color getColor() {
-		return this.color;
-	}
+//	public Color getColor() {
+//		return this.color;
+//	}
 
 	public int getNumberOfTerritories() {
 		return this.numberOfTerritories;
@@ -50,15 +50,15 @@ public class Player {
 		return this.territories;
 	}
 
-	public ArrayList<Army> getArmies() {
-		return this.armies;
-	}
-
-	public String listTerritories() {
-		String listOfTerretories = "\n";
-		for (Territory t : this.territories) {
-			listOfTerretories += t.getName() + "\n";
-		}
-		return listOfTerretories;
-	}
+//	public ArrayList<Army> getArmies() {
+//		return this.armies;
+//	}
+//
+//	public String listTerritories() {
+//		String listOfTerretories = "\n";
+//		for (Territory t : this.territories) {
+//			listOfTerretories += t.getName() + "\n";
+//		}
+//		return listOfTerretories;
+//	}
 }

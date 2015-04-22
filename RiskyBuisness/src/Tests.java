@@ -45,9 +45,20 @@ public class Tests {
 		}
 		return true;
 	}
+	
+	@Test
+	public void playersEquallyDivededTest() {
+		ArrayList<Player> players = new ArrayList<Player>();
+		Player p = new Player(null, null);
+		Player p2 = new Player(null, null);
+		p.addTerritory(new Territory("Test"));
+		p.addTerritory(new Territory("Test2"));
+		p.addTerritory(new Territory("Test3"));
+		players.add(p);
+		players.add(p2);
+		assertFalse(playersEquallyDiveded(players));
+	}
 
-	// This is unsatisfactorily tested. It only tests if there are exactly 5
-	// players. Should be parameterized.
 
 	@Test
 	public void setupTerritoriesRandomlyTest() {
@@ -57,9 +68,8 @@ public class Tests {
 		board2.initialGame(fInput);
 		ArrayList<Player> players = board.getPlayers();
 		ArrayList<Player> players2 = board2.getPlayers();
-		int count = 0;
 		boolean failing = true;
-		while (failing) {
+		for(int k =0; k<100; k++) {
 			for (int i = 0; i < fInput; i++) {
 				ArrayList<Territory> territories = players.get(i)
 						.getTerritories();
@@ -73,13 +83,10 @@ public class Tests {
 						if (!territories2.contains(territories.get(j))) {
 							failing = false;
 							break;
-						}
+						}else; //Do nothing. Just need to catch for coverage.
 					}
 				}
 			}
-			if (count >= 100)
-				break;
-			count++;
 		}
 		assertFalse(failing);
 	}
@@ -712,6 +719,29 @@ public class Tests {
 		ArrayList<Player> players = board.getPlayers();
 		for(Player p: players) {
 			assertEquals(3 * p.getNumberOfTerritories(), p.getNumberOfArmies());
+		}
+	}
+	
+	@Test
+	public void retrieveNonExistantTerritory(){
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		boolean failed = false;
+		try{
+			board.getTerritoryNamed("This is not a real name");
+		}catch(Exception e){
+			failed = true;
+		}
+		assertTrue(failed);
+	}
+	
+	@Test
+	public void runMain(){ //Just check to make sure no errors
+		RiskMain main = new RiskMain();
+		try {
+			main.main(null);
+		} catch (IOException e) {
+			assertTrue(false);
 		}
 	}
 }
