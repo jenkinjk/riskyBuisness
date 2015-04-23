@@ -155,12 +155,9 @@ public class RiskBoard {
 	private void setUpArmy() {
 		for (Player p : players) {
 			for (Territory t : p.getTerritories()) {
-				/* add three armies */
-				for (int i = 0; i < 3; i++) {
-					Army a = new Army(p, t);
+					Army a = new Army(p, t); //Note this constructor defaults to a size of three.
 					p.addArmy(a);
 					this.armies.add(a);
-				}
 			}
 		}
 	}

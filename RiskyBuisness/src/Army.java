@@ -6,10 +6,18 @@ import java.awt.geom.Ellipse2D;
 public class Army {
 	private Player owner;
 	private Territory location;
+	private int size;
 
 	public Army(Player p, Territory t) {
 		this.owner = p;
 		this.location = t;
+		this.size = 3;
+	}
+
+	public Army(Player p, Territory t, int i) {
+		this.owner = p;
+		this.location = t;
+		this.size = i;
 	}
 
 	public Player getOwner() {
@@ -36,6 +44,10 @@ public class Army {
 		Ellipse2D armyUnit = new Ellipse2D.Double(x, y, 15, 15);
 		g2.setPaint(this.owner.getColor());
 		g2.fill(armyUnit);
+	}
+
+	public int size() {
+		return this.size;
 	}
 
 }
