@@ -725,4 +725,10 @@ public class Tests {
 			assertTrue(false);
 		}
 	}
+	@Test
+	public void Attack(){
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		
+	}
 }

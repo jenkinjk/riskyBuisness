@@ -12,22 +12,22 @@ public class Army {
 		this.location = t;
 	}
 
-//	public Player getOwner() {
-//		return owner;
-//	}
-//
-//	public void setOwner(Player owner) {
-//		this.owner = owner;
-//	}
-//
-//	public Territory getLocation() {
-//		return location;
-//	}
-//
-//	public void setLocation(Territory location) {
-//		this.location = location;
-//	}
-//	
+	public Player getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Player owner) {
+		this.owner = owner;
+	}
+
+	public Territory getLocation() {
+		return location;
+	}
+
+	public void setLocation(Territory location) {
+		this.location = location;
+	}
+	
 	public void drawOn(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		Point coordinates = this.location.getCoordinates();
