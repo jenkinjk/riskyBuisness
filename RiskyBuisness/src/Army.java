@@ -50,4 +50,9 @@ public class Army {
 		return this.size;
 	}
 
+	public void takeLosses(int loss) {
+		this.size=this.size-loss;
+		
+	}
+
 }
