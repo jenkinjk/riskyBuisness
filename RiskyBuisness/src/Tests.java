@@ -996,4 +996,193 @@ public class Tests {
 	 assertTrue(b.size()==2);
 	 assertTrue(a.size()==5);
 	 }
+	 
+	 @Test
+	 public void BattleExecuteLargeSizeValidation() throws Exception{
+	 RiskBoard board = new RiskBoard();
+	 board.initialGame(fInput);
+	 Player p1 = new Player("1", Color.green);
+	 Player p2 = new Player("2", Color.red);
+	 Territory Alaska = board.getTerritoryNamed("Alaska");
+	 Territory Kamchatka = board.getTerritoryNamed("Kamchatka");
+	 Army a = new Army(p1, Alaska, 7);
+	 Army b = new Army(p2, Kamchatka, 5);
+	 p1.addArmy(a);
+	 p2.addArmy(b);
+	 p1.addTerritory(Alaska);
+	 p2.addTerritory(Kamchatka);
+	 Battle battle = new Battle(a, b);
+	 int attacker = 4, defender = 2;
+	 boolean errored = false;
+	 try{
+		 battle.execute(attacker, defender);
+	 }catch(Exception e){
+		 errored = true;
+	 }
+	 assertTrue(errored);
+	 attacker = 3;
+	 defender = 3;
+	 errored = false;
+	 try{
+		 battle.execute(attacker, defender);
+	 }catch(Exception e){
+		 errored = true;
+	 }
+	 assertTrue(errored);
+	 attacker = 2;
+	 defender = 2;
+	 errored = false;
+	 try{
+		 battle.execute(attacker, defender);
+	 }catch(Exception e){
+		 errored = true;
+	 }
+	 assertFalse(errored);
+	 attacker = 1;
+	 defender = 2;
+	 errored = false;
+	 try{
+		 battle.execute(attacker, defender);
+	 }catch(Exception e){
+		 errored = true;
+	 }
+	 assertTrue(errored);
+	 attacker = 3;
+	 defender = 1;
+	 errored = false;
+	 try{
+		 battle.execute(attacker, defender);
+	 }catch(Exception e){
+		 errored = true;
+	 }
+	 assertFalse(errored);
+	 attacker = 1;
+	 defender = 1;
+	 errored = false;
+	 try{
+		 battle.execute(attacker, defender);
+	 }catch(Exception e){
+		 errored = true;
+	 }
+	 assertTrue(errored);
+	 attacker = 1;
+	 defender = 3;
+	 errored = false;
+	 try{
+		 battle.execute(attacker, defender);
+	 }catch(Exception e){
+		 errored = true;
+	 }
+	 assertTrue(errored);
+	 attacker = 3;
+	 defender = 2;
+	 errored = false;
+	 try{
+		 battle.execute(attacker, defender);
+	 }catch(Exception e){
+		 errored = true;
+	 }
+	 assertFalse(errored);
+	 attacker = 2;
+	 defender = 3;
+	 errored = false;
+	 try{
+		 battle.execute(attacker, defender);
+	 }catch(Exception e){
+		 errored = true;
+	 }
+	 assertTrue(errored);
+	 attacker = 2;
+	 defender = 1;
+	 errored = false;
+	 try{
+		 battle.execute(attacker, defender);
+	 }catch(Exception e){
+		 errored = true;
+	 }
+	 assertFalse(errored);
+	 attacker = 4;
+	 defender = 3;
+	 errored = false;
+	 try{
+		 battle.execute(attacker, defender);
+	 }catch(Exception e){
+		 errored = true;
+	 }
+	 assertTrue(errored);
+	 attacker = 4;
+	 defender = 2;
+	 errored = false;
+	 try{
+		 battle.execute(attacker, defender);
+	 }catch(Exception e){
+		 errored = true;
+	 }
+	 assertTrue(errored);
+	 attacker = 4;
+	 defender = 1;
+	 errored = false;
+	 try{
+		 battle.execute(attacker, defender);
+	 }catch(Exception e){
+		 errored = true;
+	 }
+	 assertTrue(errored);
+	 attacker = 0;
+	 defender = 3;
+	 errored = false;
+	 try{
+		 battle.execute(attacker, defender);
+	 }catch(Exception e){
+		 errored = true;
+	 }
+	 assertTrue(errored);
+	 attacker = 0;
+	 defender = 2;
+	 errored = false;
+	 try{
+		 battle.execute(attacker, defender);
+	 }catch(Exception e){
+		 errored = true;
+	 }
+	 assertTrue(errored);
+	 attacker = 0;
+	 defender = 1;
+	 errored = false;
+	 try{
+		 battle.execute(attacker, defender);
+	 }catch(Exception e){
+		 errored = true;
+	 }
+	 assertTrue(errored);
+	 attacker = 3;
+	 defender = 0;
+	 errored = false;
+	 try{
+		 battle.execute(attacker, defender);
+	 }catch(Exception e){
+		 errored = true;
+	 }
+	 assertTrue(errored);
+	 assertTrue(errored);
+	 attacker = 2;
+	 defender = 0;
+	 errored = false;
+	 try{
+		 battle.execute(attacker, defender);
+	 }catch(Exception e){
+		 errored = true;
+	 }
+	 assertTrue(errored);
+	 assertTrue(errored);
+	 attacker = 1;
+	 defender = 0;
+	 errored = false;
+	 try{
+		 battle.execute(attacker, defender);
+	 }catch(Exception e){
+		 errored = true;
+	 }
+	 assertTrue(errored);
+	 }
 }
