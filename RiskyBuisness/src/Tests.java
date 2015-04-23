@@ -742,4 +742,25 @@ public class Tests {
 		p2.addTerritory(Kamchatka);
 		Battle battle = new Battle(a, b);
 	}
+	@Test
+	public void BattleConstructorBadPlayers() throws Exception{
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		Player p1 = new Player("1", Color.green);
+		Territory Alaska = board.getTerritoryNamed("Alaska");
+		Territory Kamchatka = board.getTerritoryNamed("Kamchatka");
+		Army a = new Army(p1, Alaska);
+		Army b = new Army(p1, Kamchatka);
+		p1.addArmy(a);
+		p1.addArmy(b);
+		p1.addTerritory(Alaska);
+		p1.addTerritory(Kamchatka);
+		boolean errored = false;
+		try{
+		Battle battle = new Battle(a, b);
+		}catch(Exception e){
+			errored = true;
+		}
+		assertTrue(errored);
+	}
 }
