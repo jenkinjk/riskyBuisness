@@ -972,5 +972,28 @@ public class Tests {
 	 Battle battle = new Battle(a, b);
 	 int attacker = 3, defender = 2;
 	 battle.execute(attacker, defender);
+	 assertTrue(b.size()==0);
+	 assertTrue(a.size()==1);
+	 }
+	 
+	 @Test
+	 public void BattleExecuteLarge() throws Exception{
+	 RiskBoard board = new RiskBoard();
+	 board.initialGame(fInput);
+	 Player p1 = new Player("1", Color.green);
+	 Player p2 = new Player("2", Color.red);
+	 Territory Alaska = board.getTerritoryNamed("Alaska");
+	 Territory Kamchatka = board.getTerritoryNamed("Kamchatka");
+	 Army a = new Army(p1, Alaska, 7);
+	 Army b = new Army(p2, Kamchatka, 5);
+	 p1.addArmy(a);
+	 p2.addArmy(b);
+	 p1.addTerritory(Alaska);
+	 p2.addTerritory(Kamchatka);
+	 Battle battle = new Battle(a, b);
+	 int attacker = 3, defender = 2;
+	 battle.execute(attacker, defender);
+	 assertTrue(b.size()==2);
+	 assertTrue(a.size()==5);
 	 }
 }
