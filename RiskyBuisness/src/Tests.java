@@ -1247,4 +1247,39 @@ public class Tests {
 		}
 		assertFalse(errored);
 	}
+	@Test
+	public void BattleExecuteSmallSizeValidation() throws Exception {
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		Player p1 = new Player("1", Color.green);
+		Player p2 = new Player("2", Color.red);
+		Territory Alaska = board.getTerritoryNamed("Alaska");
+		Territory Kamchatka = board.getTerritoryNamed("Kamchatka");
+		Army a = new Army(p1, Alaska, 2);
+		Army b = new Army(p2, Kamchatka, 1);
+		p1.addArmy(a);
+		p2.addArmy(b);
+		p1.addTerritory(Alaska);
+		p2.addTerritory(Kamchatka);
+		Battle battle = new Battle(a, b);
+		int attacker = 3, defender = 1;
+		boolean errored = false;
+		try {
+			battle.execute(attacker, defender);
+		} catch (Exception e) {
+			errored = true;
+		}
+		assertTrue(errored);
+		a = new Army(p1, Alaska, 2);
+		b = new Army(p2, Kamchatka, 1);
+		attacker = 2;
+		defender = 2;
+		errored = false;
+		try {
+			battle.execute(attacker, defender);
+		} catch (Exception e) {
+			errored = true;
+		}
+		assertTrue(errored);
+	}
 }
