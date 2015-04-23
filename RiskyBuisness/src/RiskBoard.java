@@ -2,12 +2,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -524,40 +521,6 @@ public class RiskBoard {
 			}
 		};
 		
-		MouseListener l = new MouseListener() {
-
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				System.out.println(arg0.getPoint().x 
-						+ "." + arg0.getPoint().y);
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-		};
-		panel.addMouseListener(l);
 		frame.setContentPane(panel);
 		panel.setFocusable(true);
 		panel.revalidate();

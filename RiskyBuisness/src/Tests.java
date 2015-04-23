@@ -99,15 +99,6 @@ public class Tests {
 		// This just makes sure the GUI throws no errors.
 	}
 
-//	@Test
-//	public void listenerTest() {
-//		RiskBoard board = new RiskBoard();
-//		ContinentListener riskyBuisness = new ContinentListener(
-//				"Risky Buisness", board);
-//		assertEquals("I am Risky Buisness. Fear me!\n",
-//				riskyBuisness.identity());
-//	}
-
 	@Test
 	public void setupPlayerTest() {
 		RiskBoard board = new RiskBoard();
@@ -180,6 +171,7 @@ public class Tests {
 	public void getNeighborsExists(){
 		RiskBoard board = new RiskBoard();
 		board.initialGame(fInput);
+		@SuppressWarnings("unused")
 		ArrayList<Territory> neighbors = board.getTerritories().get(0).getNeighbors();
 		//Should just run. Auto passes if no errors.
 	}
@@ -700,18 +692,7 @@ public class Tests {
 	@Test
 	public void setUpArmyTest() {
 		RiskBoard board = new RiskBoard();
-		board.initialGame(fInput);
-		
-//		System.out.println("Case " + fInput);
-//		ArrayList<Player> players = board.getPlayers();
-//		for(Player p: players) {
-//			System.out.println("Player "+ p.getName() + " has " + p.getNumberOfTerritories() + "territories.");
-//			System.out.println("He occupies " + p.listTerritories());
-//			
-//		}
-//		System.out.println();
-//		System.out.println();
-		
+		board.initialGame(fInput);		
 		/* 
 		 * Currently, 3 armies for each country
 		 * need to improve algorithm

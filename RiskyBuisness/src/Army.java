@@ -3,8 +3,6 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.geom.Ellipse2D;
 
-import javax.swing.JComponent;
-
 public class Army {
 	private Player owner;
 	private Territory location;
