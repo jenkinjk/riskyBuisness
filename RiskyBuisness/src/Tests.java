@@ -807,4 +807,46 @@ public class Tests {
 		}
 		assertTrue(errored);
 	}
+	@Test
+	public void BattleConstructorAttackLargerArmy() throws Exception{
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		Player p1 = new Player("1", Color.green);
+		Player p2 = new Player("2", Color.red);
+		Territory Alaska = board.getTerritoryNamed("Alaska");
+		Territory Kamchatka = board.getTerritoryNamed("Kamchatka");
+		Army a = new Army(p1, Alaska);
+		Army b = new Army(p2, Kamchatka);
+		p1.addArmy(a);
+		p2.addArmy(b);
+		p1.addTerritory(Alaska);
+		p2.addTerritory(Kamchatka);
+		boolean errored = false;
+		try{
+		Battle battle = new Battle(a, b);
+		}catch(Exception e){
+			errored = true;
+		}
+		assertTrue(errored);
+	}
+	
+//	@Test
+//	public void BattleExecute() throws Exception{
+//		RiskBoard board = new RiskBoard();
+//		board.initialGame(fInput);
+//		Player p1 = new Player("1", Color.green);
+//		Player p2 = new Player("2", Color.red);
+//		Territory Alaska = board.getTerritoryNamed("Alaska");
+//		Territory Kamchatka = board.getTerritoryNamed("Kamchatka");
+//		Army a = new Army(p1, Alaska);
+//		Army b = new Army(p2, Kamchatka);
+//		p1.addArmy(a);
+//		p2.addArmy(b);
+//		p1.addTerritory(Alaska);
+//		p2.addTerritory(Kamchatka);
+//		Battle battle = new Battle(a, b);
+//		int attacker = 3, defender = 2;
+//		battle.execute();
+//		
+//	}
 }
