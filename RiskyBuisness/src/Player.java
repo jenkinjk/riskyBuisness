@@ -34,9 +34,9 @@ public class Player {
 		return this.name;
 	}
 
-//	public Color getColor() {
-//		return this.color;
-//	}
+	public Color getColor() {
+		return this.color;
+	}
 
 	public int getNumberOfTerritories() {
 		return this.numberOfTerritories;

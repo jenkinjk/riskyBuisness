@@ -1,18 +1,17 @@
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.geom.Ellipse2D;
 
 import javax.swing.JComponent;
 
-@SuppressWarnings("serial")
-public class Army extends JComponent {
+public class Army {
 	private Player owner;
 	private Territory location;
 
 	public Army(Player p, Territory t) {
 		this.owner = p;
 		this.location = t;
-		
 	}
 
 //	public Player getOwner() {
@@ -23,7 +22,7 @@ public class Army extends JComponent {
 //		this.owner = owner;
 //	}
 //
-//	public Territory getTerretory() {
+//	public Territory getLocation() {
 //		return location;
 //	}
 //
@@ -31,11 +30,14 @@ public class Army extends JComponent {
 //		this.location = location;
 //	}
 //	
-//	public void paintComponent(Graphics g) {
-//		Graphics2D g2 = (Graphics2D) g;
-//		Ellipse2D armyUnit = new Ellipse2D.Double(100, 100, 10, 10);
-//		g2.setPaint(this.owner.getColor());
-//		g2.fill(armyUnit);
-//	}
+	public void drawOn(Graphics g) {
+		Graphics2D g2 = (Graphics2D) g;
+		Point coordinates = this.location.getCoordinates();
+		double x = coordinates.x;
+		double y = coordinates.y;
+		Ellipse2D armyUnit = new Ellipse2D.Double(x, y, 15, 15);
+		g2.setPaint(this.owner.getColor());
+		g2.fill(armyUnit);
+	}
 
 }
