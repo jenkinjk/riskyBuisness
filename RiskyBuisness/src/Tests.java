@@ -1293,4 +1293,17 @@ public class Tests {
 		Army a = new Army(p1, Alaska);
 		Army b = new Army(p2, Kamchatka);
 	}
+	@Test
+	public void ArmyOwner() throws Exception {
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		Player p1 = new Player("1", Color.RED);
+		Player p2 = new Player("2", Color.YELLOW);
+		Territory Alaska = board.getTerritoryNamed("Alaska");
+		Territory Kamchatka = board.getTerritoryNamed("Kamchatka");
+		Army a = new Army(p1, Alaska);
+		Army b = new Army(p2, Kamchatka);
+		assertEquals("1", a.getOwner().getName());
+		assertEquals("2", b.getOwner().getName());
+	}
 }
