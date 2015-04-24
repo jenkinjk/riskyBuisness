@@ -1306,4 +1306,30 @@ public class Tests {
 		assertEquals("1", a.getOwner().getName());
 		assertEquals("2", b.getOwner().getName());
 	}
+	@Test
+	public void ArmyLocation() throws Exception {
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		Player p1 = new Player("1", Color.RED);
+		Player p2 = new Player("2", Color.YELLOW);
+		Territory Alaska = board.getTerritoryNamed("Alaska");
+		Territory Kamchatka = board.getTerritoryNamed("Kamchatka");
+		Army a = new Army(p1, Alaska);
+		Army b = new Army(p2, Kamchatka);
+		assertEquals("Alaska", a.getLocation().getName());
+		assertEquals("Kamchatka", b.getLocation().getName());
+	}
+	@Test
+	public void ArmySize() throws Exception {
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		Player p1 = new Player("1", Color.RED);
+		Player p2 = new Player("2", Color.YELLOW);
+		Territory Alaska = board.getTerritoryNamed("Alaska");
+		Territory Kamchatka = board.getTerritoryNamed("Kamchatka");
+		Army a = new Army(p1, Alaska);
+		Army b = new Army(p2, Kamchatka);
+		assertEquals(3, a.getSize());
+		assertEquals(3, b.getSize());
+	}
 }
