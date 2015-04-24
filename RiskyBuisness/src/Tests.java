@@ -1282,6 +1282,62 @@ public class Tests {
 		}
 		assertTrue(errored);
 	}
+	
+	@Test
+	public void BattleRandomTester() throws Exception {
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		Player p1 = new Player("1", Color.green);
+		Player p2 = new Player("2", Color.red);
+		Territory Alaska = board.getTerritoryNamed("Alaska");
+		Territory Kamchatka = board.getTerritoryNamed("Kamchatka");
+		Army a = new Army(p1, Alaska, 5);
+		Army b = new Army(p2, Kamchatka, 1);
+		p1.addArmy(a);
+		p2.addArmy(b);
+		p1.addTerritory(Alaska);
+		p2.addTerritory(Kamchatka);
+		Battle battle = new Battle(a, b);
+		int attacker = 3, defender = 1;
+		boolean errored = false;
+		try {
+			battle.execute(attacker, defender);
+		} catch (Exception e) {
+			errored = true;
+		}
+		assertFalse(errored);
+		int originalArmiesLeftAttk = a.getSize();
+		int originalArmiesLeftDef = b.getSize();
+		int maxRuns = 100;
+		int runs = 0;
+		boolean failing = true;
+		while (runs < maxRuns) {
+			a = new Army(p1, Alaska, 5);
+			b = new Army(p2, Kamchatka, 1);
+			p1.addArmy(a);
+			p2.addArmy(b);
+			battle = new Battle(a, b);
+			attacker = 3; 
+			defender = 1;
+			errored = false;
+			try {
+				battle.execute(attacker, defender);
+			} catch (Exception e) {
+				errored = true;
+			}
+			assertFalse(errored);
+			if (a.getSize() != originalArmiesLeftAttk) {
+				failing = false;
+				break;
+			}
+			if (b.getSize() != originalArmiesLeftDef) {
+				failing = false;
+				break;
+			}
+		}
+		assertFalse(failing);
+	}
+	
 	@Test
 	public void ArmyConstructer() throws Exception {
 		RiskBoard board = new RiskBoard();
