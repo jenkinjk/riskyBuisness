@@ -1282,4 +1282,15 @@ public class Tests {
 		}
 		assertTrue(errored);
 	}
+	@Test
+	public void ArmyConstructer() throws Exception {
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		Player p1 = new Player("1", Color.RED);
+		Player p2 = new Player("2", Color.YELLOW);
+		Territory Alaska = board.getTerritoryNamed("Alaska");
+		Territory Kamchatka = board.getTerritoryNamed("Kamchatka");
+		Army a = new Army(p1, Alaska);
+		Army b = new Army(p2, Kamchatka);
+	}
 }
