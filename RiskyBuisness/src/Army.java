@@ -60,8 +60,11 @@ public class Army {
 	}
 
 	public void takeLosses(int loss) {
-		this.size=this.size-loss;
-		
+		if(loss >= this.size) {
+			this.size = 0;
+		} else {
+			this.size = this.size - loss;
+		}
 	}
 
 }
