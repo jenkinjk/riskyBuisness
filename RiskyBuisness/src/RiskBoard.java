@@ -87,6 +87,11 @@ public class RiskBoard {
 		setUpPlayers();
 		setUpTerritories();
 		setUpArmy();
+		try {
+			display();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void setUpPlayers() {
