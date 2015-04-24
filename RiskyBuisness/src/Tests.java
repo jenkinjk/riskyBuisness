@@ -1328,8 +1328,8 @@ public class Tests {
 		Territory Alaska = board.getTerritoryNamed("Alaska");
 		Territory Kamchatka = board.getTerritoryNamed("Kamchatka");
 		Army a = new Army(p1, Alaska);
-		Army b = new Army(p2, Kamchatka);
+		Army b = new Army(p2, Kamchatka, 4);
 		assertEquals(3, a.getSize());
-		assertEquals(3, b.getSize());
+		assertEquals(4, b.getSize());
 	}
 }

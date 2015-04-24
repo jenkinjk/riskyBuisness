@@ -20,6 +20,14 @@ public class Army {
 		this.size = i;
 	}
 
+	public int getSize() {
+		return size;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
+	}
+
 	public Player getOwner() {
 		return owner;
 	}
