@@ -52,6 +52,7 @@ public class Army {
 		Ellipse2D armyUnit = new Ellipse2D.Double(x, y, 15, 15);
 		g2.setPaint(this.owner.getColor());
 		g2.fill(armyUnit);
+		g2.drawString(Integer.toString(this.size), coordinates.x, coordinates.y);
 	}
 
 	public int size() {
