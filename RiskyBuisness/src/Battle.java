@@ -12,6 +12,7 @@ public class Battle {
 
 	private Army attacker;
 	private Army defender;
+	private String title;
 
 	public Battle(Army a, Army b) throws Exception {
 		if(a.getOwner().equals(b.getOwner())) throw new Exception("You cannot attack your own armies.");
@@ -19,6 +20,8 @@ public class Battle {
 		if(a.size()<b.size()) throw new Exception("You cannot attack a larger army.");
 		this.attacker = a;
 		this.defender = b;
+		this.title = "Battle between " + attacker.getOwner().getName() + " and " + defender.getOwner().getName() + " in " + defender.getLocation().getName();
+		
 	}
 
 	public void execute(int attacker, int defender) throws Exception {
@@ -54,7 +57,7 @@ public class Battle {
 	
 	@SuppressWarnings("serial")
 	public void display() throws IOException {
-		JFrame frame = new JFrame("Battle between " + attacker.getOwner() + " and " + defender.getOwner() + " in " + defender.getLocation());
+		JFrame frame = new JFrame(title);
 		frame.setSize(1025, 740);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
@@ -74,6 +77,10 @@ public class Battle {
 		panel.revalidate();
 		frame.revalidate();
 		frame.repaint();
+	}
+	//For test only
+	public String getTitle() {
+		return title;
 	}
 
 }
