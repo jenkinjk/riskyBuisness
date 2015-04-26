@@ -1494,7 +1494,7 @@ public class Tests {
 		p1.addTerritory(Alaska);
 		p2.addTerritory(Kamchatka);
 		Battle battle = new Battle(a, b);
-		Integer[] options = { 1 };
+		Integer[] options = {  1 };
 		assertEquals(options,battle.getDefenderOptions());
 	}
 	

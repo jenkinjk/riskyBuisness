@@ -1,7 +1,9 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -21,6 +23,8 @@ public class Battle {
 	private String title;
 	private Integer[] AttackerDiceOptions;
 	private Integer[] DefenderDiceOptions;
+	protected int AttackerDice;
+	protected int DefenderDice;
 	
 
 	public Battle(Army a, Army b) throws Exception {
@@ -137,27 +141,31 @@ public class Battle {
 		};
 		
 		
-//		JComboBox<Integer> boxA = new JComboBox<Integer>(AttackerDiceOptions);
-//		box.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent arg) {
-//				@SuppressWarnings("unchecked")
-//				JComboBox<Integer> cb = (JComboBox<Integer>) arg.getSource();
-//				int num = (int) cb.getSelectedItem();
-//				initialGame(num);
-//				try {
-//					display();
-//				} catch (IOException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//				setUpFrame.dispose();
-//			}
-//		});
-//		panel.add(box, BorderLayout.CENTER);
-//
-//		setUpFrame.add(panel);
+		JComboBox<Object> boxA = new JComboBox<Object>(AttackerDiceOptions);
+		boxA.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg) {
+				@SuppressWarnings("unchecked")
+				JComboBox<Object> cb = (JComboBox<Object>) arg.getSource();
+				int num = (int) cb.getSelectedItem();
+				AttackerDice = num;
+			}
+		});
 		
+		JComboBox<Object> boxD = new JComboBox<Object>(DefenderDiceOptions);
+		boxD.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg) {
+				@SuppressWarnings("unchecked")
+				JComboBox<Object> cb = (JComboBox<Object>) arg.getSource();
+				int num = (int) cb.getSelectedItem();
+				DefenderDice = num;
+			}
+		});
+
+		panel.setLayout(new GridLayout(10,10));
+		panel.add(boxA, 30);
+		panel.add(boxD, 39);
 		frame.setContentPane(panel);
 		panel.setFocusable(true);
 		panel.revalidate();
