@@ -76,13 +76,13 @@ public class RiskBoard {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				Battle b = new Battle();
-				try {
-					b.display();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+//				Battle b = new Battle();
+//				try {
+//					b.display();
+//				} catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
 				setUpFrame.dispose();
 			}
 		});
