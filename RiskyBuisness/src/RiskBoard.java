@@ -70,6 +70,12 @@ public class RiskBoard {
 				JComboBox<Integer> cb = (JComboBox<Integer>) arg.getSource();
 				int num = (int) cb.getSelectedItem();
 				initialGame(num);
+				try {
+					display();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				setUpFrame.dispose();
 			}
 		});
@@ -87,11 +93,6 @@ public class RiskBoard {
 		setUpPlayers();
 		setUpTerritories();
 		setUpArmy();
-		try {
-			display();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 	private void setUpPlayers() {

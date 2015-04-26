@@ -1388,4 +1388,22 @@ public class Tests {
 		assertEquals(3, a.getSize());
 		assertEquals(4, b.getSize());
 	}
+	@Test
+	public void BattleDisplay() throws Exception {
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		Player p1 = new Player("1", Color.green);
+		Player p2 = new Player("2", Color.red);
+		Territory Alaska = board.getTerritoryNamed("Alaska");
+		Territory Kamchatka = board.getTerritoryNamed("Kamchatka");
+		Army a = new Army(p1, Alaska, 5);
+		Army b = new Army(p2, Kamchatka, 1);
+		p1.addArmy(a);
+		p2.addArmy(b);
+		p1.addTerritory(Alaska);
+		p2.addTerritory(Kamchatka);
+		Battle battle = new Battle(a, b);
+		battle.display();
+	}
+	
 }
