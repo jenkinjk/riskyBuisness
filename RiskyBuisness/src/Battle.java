@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -45,6 +46,46 @@ public class Battle {
 		}
 		this.DefenderDiceOptions=DefenderDiceOptions;
 		
+	}
+
+	public Battle() {
+		RiskBoard board = new RiskBoard();
+		board.initialGame(4);
+		Player p1 = new Player("Jonathan", Color.green);
+		Player p2 = new Player("Zach", Color.red);
+		try{
+		Territory Alaska = board.getTerritoryNamed("Alaska");
+		Territory Kamchatka = board.getTerritoryNamed("Kamchatka");
+		Army a = new Army(p1, Alaska, 7);
+		Army b = new Army(p2, Kamchatka, 3);
+		p1.addArmy(a);
+		p2.addArmy(b);
+		p1.addTerritory(Alaska);
+		p2.addTerritory(Kamchatka);
+		if(a.getOwner().equals(b.getOwner())) throw new Exception("You cannot attack your own armies.");
+		if(!(a.getLocation().getNeighbors().contains(b.getLocation()))) throw new Exception("You cannot attack non adjacent territories.");
+		if(a.size()<b.size()) throw new Exception("You cannot attack a larger army.");
+		this.attacker = a;
+		this.defender = b;
+		this.title = "Battle between " + attacker.getOwner().getName() + " and " + defender.getOwner().getName() + " in " + defender.getLocation().getName();
+		int size;
+		if(attacker.getSize()!=2) size = 3;
+		else size = 2;
+		Integer[] AttackerDiceOptions=new Integer[size];
+		for(int i = 1; i<= size;i++){
+			AttackerDiceOptions[i-1]=i;
+		}
+		this.AttackerDiceOptions=AttackerDiceOptions;
+		if(defender.getSize()!=1) size = 2;
+		else size = 1;
+		Integer[] DefenderDiceOptions=new Integer[size];
+		for(int i = 1; i<= size;i++){
+			DefenderDiceOptions[i-1]=i;
+		}
+		this.DefenderDiceOptions=DefenderDiceOptions;
+		}catch(Exception e){
+			
+		}
 	}
 
 	public void execute(int attacker, int defender) throws Exception {
