@@ -1,7 +1,11 @@
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Point;
-import java.awt.geom.Ellipse2D;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public class Army {
 	private Player owner;
@@ -47,12 +51,18 @@ public class Army {
 	public void drawOn(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		Point coordinates = this.location.getCoordinates();
-		double x = coordinates.x;
-		double y = coordinates.y;
-		Ellipse2D armyUnit = new Ellipse2D.Double(x, y, 15, 15);
+		int x = coordinates.x;
+		int y = coordinates.y;
 		g2.setPaint(this.owner.getColor());
-		g2.fill(armyUnit);
-		g2.drawString(Integer.toString(this.size), coordinates.x, coordinates.y);
+		Image soldier = null;
+		try {
+			soldier = ImageIO.read(new File("soldier.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		g2.drawImage(soldier, x, y, 20, 40, null);
+		g2.fillRect(x, y + 40, 20, 5);
+		g2.drawString(Integer.toString(this.size), x, y);
 	}
 
 	public int size() {
