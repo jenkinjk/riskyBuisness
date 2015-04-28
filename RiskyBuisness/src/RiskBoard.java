@@ -516,12 +516,12 @@ public class RiskBoard {
 
 		JPanel panel = new JPanel() {
 			private Image backgroundImage = ImageIO.read(new File("risk.png"));
-
+			private Image soldier = ImageIO.read(new File("soldier.png"));
 			public void paint(Graphics g) {
 				super.paint(g);
 				g.drawImage(backgroundImage, 0, 30, null);
 				for (Army a : RiskBoard.this.armies) {
-					a.drawOn(g);
+					a.drawOn(g, soldier);
 				}
 			}
 		};
