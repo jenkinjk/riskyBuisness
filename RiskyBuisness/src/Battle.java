@@ -226,8 +226,10 @@ public class Battle {
 						@SuppressWarnings("unchecked")
 						JComboBox<Integer> cb = (JComboBox<Integer>) arg
 								.getSource();
-						int num = (int) cb.getSelectedItem();
-						
+						int numberToSend = (int) cb.getSelectedItem();
+						defender.setOwner(attacker.getOwner());
+						defender.setSize(numberToSend);
+						attacker.setSize(attacker.getArmySize()-numberToSend);
 						setUpFrame.dispose();
 					}
 				});

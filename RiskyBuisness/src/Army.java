@@ -2,9 +2,11 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
 public class Army extends JButton {
@@ -16,6 +18,7 @@ public class Army extends JButton {
 	private int y;
 	private int w;
 	private int h;
+	private RiskBoard board = null;
 
 	public Army(Player p, Territory t) {
 		this.owner = p;
@@ -48,6 +51,23 @@ public class Army extends JButton {
 		this.owner = p;
 		this.location = t;
 		this.size = i;
+		
+		this.x = t.getCoordinates().x;
+		this.y = t.getCoordinates().y;
+		this.w = 20;
+		this.h = 40;
+	}
+	
+	public Army(Player p, Territory t, RiskBoard b) {
+		this.owner = p;
+		this.location = t;
+		this.size = 3;
+		this.board = b;
+		
+		this.x = t.getCoordinates().x;
+		this.y = t.getCoordinates().y;
+		this.w = 20;
+		this.h = 40;
 	}
 
 	public int getArmySize() {
@@ -81,7 +101,13 @@ public class Army extends JButton {
 		int x = coordinates.x;
 		int y = coordinates.y;
 		g2.setPaint(this.owner.getColor());
-//		g2.drawImage(soldier, x, y, 20, 40, null);
+		Image soldier = null;
+		try {
+			soldier = ImageIO.read(new File("soldier.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		g2.drawImage(soldier, x, y, 20, 40, null);
 		g2.fillRect(x, y + 40, 20, 5);
 		g2.drawString(Integer.toString(this.size), x, y);
 	}
@@ -92,6 +118,10 @@ public class Army extends JButton {
 		} else {
 			this.size = this.size - loss;
 		}
+	}
+
+	public RiskBoard getBoard() {
+		return this.board;
 	}
 
 }

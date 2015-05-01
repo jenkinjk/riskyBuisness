@@ -43,8 +43,10 @@ public class RiskBoard {
 	private JLabel statusLabel;
 	private JFrame frame;
 	private JPanel panel;
+	private ArrayList<Army> setupBattle;
 
 	public RiskBoard() {
+		setupBattle = new ArrayList<Army>();
 		ArrayList<Player> players = new ArrayList<Player>();
 		this.players = players;
 		this.itr = players.iterator();
@@ -84,13 +86,6 @@ public class RiskBoard {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-//				Battle b = new Battle();
-//				try {
-//					b.display();
-//				} catch (IOException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
 				setUpFrame.dispose();
 			}
 		});
@@ -176,7 +171,7 @@ public class RiskBoard {
 	private void setUpArmy() {
 		for (Player p : players) {
 			for (Territory t : p.getTerritories()) {
-					Army a = new Army(p, t); //Note this constructor defaults to a size of three.
+					Army a = new Army(p, t, this); //Note this constructor defaults to a size of three.
 					p.addArmy(a);
 					this.armies.add(a);
 			}
@@ -604,5 +599,9 @@ public class RiskBoard {
 				return t;
 		}
 		throw new Exception("This territory does not exist. " + string);
+	}
+
+	public ArrayList<Army> getBattleSetup() {
+		return this.setupBattle;
 	}
 }
