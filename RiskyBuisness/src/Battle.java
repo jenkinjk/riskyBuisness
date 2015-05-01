@@ -31,22 +31,22 @@ public class Battle {
 	public Battle(Army a, Army b) throws Exception {
 		if (a.getOwner().equals(b.getOwner()))
 			throw new Exception("You cannot attack your own armies.");
-		if (!(a.getLocation().getNeighbors().contains(b.getLocation())))
+		if (!(a.getArmyLocation().getNeighbors().contains(b.getArmyLocation())))
 			throw new Exception("You cannot attack non adjacent territories.");
-		if (a.size() < b.size())
+		if (a.getArmySize() < b.getArmySize())
 			throw new Exception("You cannot attack a larger army.");
 		this.attacker = a;
 		this.defender = b;
 		this.title = "Battle between " + attacker.getOwner().getName()
 				+ " and " + defender.getOwner().getName() + " in "
-				+ defender.getLocation().getName();
+				+ defender.getArmyLocation().getName();
 		this.AttackerDiceOptions = calcAttackerDiceOptions();
 		this.DefenderDiceOptions = calcDefenderDiceOptions();
 	}
 
 	private Integer[] calcDefenderDiceOptions() {
 		int size;
-		if (defender.getSize() != 1)
+		if (defender.getArmySize() != 1)
 			size = 2;
 		else
 			size = 1;
@@ -59,7 +59,7 @@ public class Battle {
 
 	private Integer[] calcAttackerDiceOptions() {
 		int size;
-		if (attacker.getSize() != 2)
+		if (attacker.getArmySize() != 2)
 			size = 3;
 		else
 			size = 2;
@@ -86,16 +86,16 @@ public class Battle {
 			p2.addTerritory(Kamchatka);
 			if (a.getOwner().equals(b.getOwner()))
 				throw new Exception("You cannot attack your own armies.");
-			if (!(a.getLocation().getNeighbors().contains(b.getLocation())))
+			if (!(a.getArmyLocation().getNeighbors().contains(b.getArmyLocation())))
 				throw new Exception(
 						"You cannot attack non adjacent territories.");
-			if (a.size() < b.size())
+			if (a.getArmySize() < b.getArmySize())
 				throw new Exception("You cannot attack a larger army.");
 			this.attacker = a;
 			this.defender = b;
 			this.title = "Battle between " + attacker.getOwner().getName()
 					+ " and " + defender.getOwner().getName() + " in "
-					+ defender.getLocation().getName();
+					+ defender.getArmyLocation().getName();
 			this.AttackerDiceOptions = calcAttackerDiceOptions();
 			this.DefenderDiceOptions = calcDefenderDiceOptions();
 		} catch (Exception e) {
@@ -105,7 +105,7 @@ public class Battle {
 
 	public void execute(int attacker, int defender) throws Exception {
 		Random gen = new Random();
-		if (attacker > this.attacker.size() || defender > this.defender.size())
+		if (attacker > this.attacker.getArmySize() || defender > this.defender.getArmySize())
 			throw new Exception(
 					"You cannot Roll more dice than you have armies.");
 		if (defender != 1 && defender != 2)
@@ -189,10 +189,10 @@ public class Battle {
 				"Select the number of dice to roll for the attacker.");
 
 		final Label defenderSize = new Label("The defender has "
-				+ defender.getSize() + " armies left.");
+				+ defender.getArmySize() + " armies left.");
 
 		final Label attackerSize = new Label("The attacker has "
-				+ attacker.getSize() + " armies left.");
+				+ attacker.getArmySize() + " armies left.");
 
 		final Label derictions = new Label("Do you wish to continue?");
 
@@ -214,8 +214,8 @@ public class Battle {
 				JLabel select = new JLabel("Please select the number of armies you wish to send to the conquered territory.");
 				panel.add(select, BorderLayout.NORTH);
 				
-				Integer[] armiesToSendOptions = new Integer[attacker.size()-1];
-				for (int i = 1; i <= attacker.size()-1; i++) {
+				Integer[] armiesToSendOptions = new Integer[attacker.getArmySize()-1];
+				for (int i = 1; i <= attacker.getArmySize()-1; i++) {
 					armiesToSendOptions[i - 1] = i;
 				}
 
@@ -251,20 +251,20 @@ public class Battle {
 				try {
 					execute(AttackerDice, DefenderDice);
 					defenderSize.setText("The defender has "
-							+ defender.getSize() + " armies left.");
+							+ defender.getArmySize() + " armies left.");
 					attackerSize.setText("The attacker has "
-							+ attacker.getSize() + " armies left.");
+							+ attacker.getArmySize() + " armies left.");
 					DefenderDiceOptions = calcDefenderDiceOptions();
 					AttackerDiceOptions = calcAttackerDiceOptions();
 					updateAttackerAndDefenderOptions();
-					if (defender.getSize() == 0) {
+					if (defender.getArmySize() == 0) {
 						derictions.setText(attacker.getOwner().getName()
 								+ " has won!");
 						fight.disable();
 						attackerWon = true;
 					}
-					if (attacker.size() < defender.size()
-							|| attacker.size() == 1) {
+					if (attacker.getArmySize() < defender.getArmySize()
+							|| attacker.getArmySize() == 1) {
 						derictions.setText(defender.getOwner().getName()
 								+ " has won!");
 						fight.disable();

@@ -8,9 +8,11 @@ public class ArmyListener implements MouseListener {
 	public ArmyListener(Army a) {
 		this.army = a;
 	}
+	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		System.out.println("Hi");
+		System.out.println("Owner: " + this.army.getOwner().getName()
+				+ " Territory: " + this.army.getArmyLocation().getName());
 	}
 
 	@Override

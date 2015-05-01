@@ -13,6 +13,8 @@ import java.util.Iterator;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -516,15 +518,22 @@ public class RiskBoard {
 
 		JPanel panel = new JPanel() {
 			private Image backgroundImage = ImageIO.read(new File("risk.png"));
-			private Image soldier = ImageIO.read(new File("soldier.png"));
 			public void paint(Graphics g) {
 				super.paint(g);
 				g.drawImage(backgroundImage, 0, 30, null);
-				for (Army a : RiskBoard.this.armies) {
-					a.drawOn(g, soldier);
-				}
 			}
 		};
+		
+		panel.setLayout(null);
+		Image soldierImage = ImageIO.read(new File("soldier.png"));
+		Icon soldierIcon = new ImageIcon(soldierImage);
+		for(Army a : this.armies) {
+			a.setBounds(a.getX(), a.getY(), a.getW(), a.getH());
+			a.setIcon(soldierIcon);
+			ArmyListener al = new ArmyListener(a);
+			a.addMouseListener(al);
+			panel.add(a);
+		}
 		
 		frame.setContentPane(panel);
 		panel.setFocusable(true);

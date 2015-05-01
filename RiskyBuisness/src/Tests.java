@@ -1306,8 +1306,8 @@ public class Tests {
 			errored = true;
 		}
 		assertFalse(errored);
-		int originalArmiesLeftAttk = a.getSize();
-		int originalArmiesLeftDef = b.getSize();
+		int originalArmiesLeftAttk = a.getArmySize();
+		int originalArmiesLeftDef = b.getArmySize();
 		int maxRuns = 100;
 		int runs = 0;
 		boolean failing = true;
@@ -1326,11 +1326,11 @@ public class Tests {
 				errored = true;
 			}
 			assertFalse(errored);
-			if (a.getSize() != originalArmiesLeftAttk) {
+			if (a.getArmySize() != originalArmiesLeftAttk) {
 				failing = false;
 				break;
 			}
-			if (b.getSize() != originalArmiesLeftDef) {
+			if (b.getArmySize() != originalArmiesLeftDef) {
 				failing = false;
 				break;
 			}
@@ -1372,8 +1372,8 @@ public class Tests {
 		Territory Kamchatka = board.getTerritoryNamed("Kamchatka");
 		Army a = new Army(p1, Alaska);
 		Army b = new Army(p2, Kamchatka);
-		assertEquals("Alaska", a.getLocation().getName());
-		assertEquals("Kamchatka", b.getLocation().getName());
+		assertEquals("Alaska", a.getArmyLocation().getName());
+		assertEquals("Kamchatka", b.getArmyLocation().getName());
 	}
 	@Test
 	public void ArmySize() throws Exception {
@@ -1385,8 +1385,8 @@ public class Tests {
 		Territory Kamchatka = board.getTerritoryNamed("Kamchatka");
 		Army a = new Army(p1, Alaska);
 		Army b = new Army(p2, Kamchatka, 4);
-		assertEquals(3, a.getSize());
-		assertEquals(4, b.getSize());
+		assertEquals(3, a.getArmySize());
+		assertEquals(4, b.getArmySize());
 	}
 	@Test
 	public void BattleDisplay() throws Exception {
