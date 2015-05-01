@@ -7,6 +7,7 @@ public class Territory {
 	private String name;
 	private ArrayList<Territory> neighbors=null;
 	private Point coordinates;
+	private Army army;
 
 	public Territory(String string) {
 		this.name = string;
@@ -29,5 +30,13 @@ public class Territory {
 	}
 	public ArrayList<Territory> getNeighbors(){
 		return this.neighbors;
+	}
+
+	public Army getArmy() {
+		return this.army;
+	}
+
+	public void setArmy(Army a) {
+		this.army = a;
 	}
 }

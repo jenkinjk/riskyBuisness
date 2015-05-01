@@ -2,7 +2,11 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.geom.Ellipse2D;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
@@ -16,6 +20,7 @@ public class Army extends JButton {
 	private int y;
 	private int w;
 	private int h;
+	private RiskBoard board;
 
 	public Army(Player p, Territory t) {
 		this.owner = p;
@@ -24,8 +29,8 @@ public class Army extends JButton {
 		
 		this.x = t.getCoordinates().x;
 		this.y = t.getCoordinates().y;
-		this.w = 20;
-		this.h = 40;
+		this.w = 15;
+		this.h = 15;
 	}
 
 	public int getX() {
@@ -44,10 +49,18 @@ public class Army extends JButton {
 		return h;
 	}
 
-	public Army(Player p, Territory t, int i) {
+	public Army(Player p, Territory t, RiskBoard riskBoard) {
 		this.owner = p;
 		this.location = t;
-		this.size = i;
+		this.board = riskBoard;
+		this.size = 3;
+	}
+	
+	public Army(Player p, Territory t, int size) {
+		this.owner = p;
+		this.location = t;
+		this.board = null;
+		this.size = size;
 	}
 
 	public int getArmySize() {
@@ -78,12 +91,13 @@ public class Army extends JButton {
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		Point coordinates = this.location.getCoordinates();
-		int x = coordinates.x;
-		int y = coordinates.y;
+		double x = coordinates.x;
+		double y = coordinates.y;
+		Ellipse2D armyUnit = new Ellipse2D.Double(x, y, 15, 15);
 		g2.setPaint(this.owner.getColor());
-//		g2.drawImage(soldier, x, y, 20, 40, null);
-		g2.fillRect(x, y + 40, 20, 5);
-		g2.drawString(Integer.toString(this.size), x, y);
+		g2.fill(armyUnit);
+		g2.drawString(Integer.toString(this.size), coordinates.x, coordinates.y);
+		this.setEnabled(true);
 	}
 
 	public void takeLosses(int loss) {
@@ -92,6 +106,10 @@ public class Army extends JButton {
 		} else {
 			this.size = this.size - loss;
 		}
+	}
+
+	public RiskBoard getBoard() {
+		return this.board;
 	}
 
 }
