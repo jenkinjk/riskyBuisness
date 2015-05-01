@@ -1568,4 +1568,11 @@ public class Tests {
 			assertEquals("Player " + numToNum.get(i + 1), board.getCurrentPlayer().getName());
 		}
 	}
+	
+	@Test
+	public void getLabelTextTest() {
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		assertEquals(board.getLabelText(), "Player One's Turn");
+	}
 }
