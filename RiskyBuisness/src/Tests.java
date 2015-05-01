@@ -1534,4 +1534,11 @@ public class Tests {
 		Integer[] options = { 1, 2 };
 		assertEquals(options,battle.getDefenderOptions());
 	}
+	@Test
+	public void armyClick() {
+		/*
+		 * Test that battles display are called when two armies are selected to battle
+		 * But dont know how.
+		 */
+	}
 }
