@@ -529,7 +529,8 @@ public class RiskBoard {
 		this.statusLabel.setBounds(15, 0, 500, 30);
 		panel.add(this.statusLabel);
 		Image soldierImage = ImageIO.read(new File("soldier.png"));
-		Icon soldierIcon = new ImageIcon(soldierImage);
+		Image scaledImage = soldierImage.getScaledInstance(20, 40, Image.SCALE_SMOOTH);
+		Icon soldierIcon = new ImageIcon(scaledImage);
 		for(Army a : this.armies) {
 			a.setBounds(a.getX(), a.getY(), a.getW(), a.getH());
 			a.setIcon(soldierIcon);
