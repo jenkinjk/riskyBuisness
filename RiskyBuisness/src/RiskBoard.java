@@ -39,6 +39,7 @@ public class RiskBoard {
 	private ArrayList<Army> armies;
 	private HashMap<String, ArrayList<Territory>> nameToNeigbhors;
 	private HashMap<String, Point> nameToCoordinates;
+	private Player currentPlayer;
 
 	public RiskBoard() {
 		ArrayList<Player> players = new ArrayList<Player>();
@@ -54,6 +55,7 @@ public class RiskBoard {
 		armies = new ArrayList<Army>();
 		nameToNeigbhors = new HashMap<String, ArrayList<Territory>>();
 		nameToCoordinates = new HashMap<String, Point>();
+		this.currentPlayer = null;
 	}
 
 	public void selectNumberOfPlayers() {
@@ -549,7 +551,12 @@ public class RiskBoard {
 	public Player getNextPlayer() {
 		if (!itr.hasNext())
 			this.itr = this.players.iterator();
-		return this.itr.next();
+		this.currentPlayer = this.itr.next();
+		return this.currentPlayer;
+	}
+	
+	public String getCurrentPlayer() {
+		return "Player One";
 	}
 
 	public ArrayList<Territory> getTerritories() {

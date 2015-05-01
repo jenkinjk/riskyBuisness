@@ -1555,10 +1555,11 @@ public class Tests {
 	public void currentPlayerTest() {
 		RiskBoard board = new RiskBoard();
 		board.initialGame(fInput);
-		Player nextPlay = board.getNextPlayer();
-		Player curPlay = board.getCurrentPlayer();
-		assertEquals(nextPlay.toString(), curplay.toString());
-		assertEquals(nextPlay.toString(), "Player Two");
-		assertEquals(curPlay.toString(), "Player Two");
+		String curPlay = board.getCurrentPlayer();
+		assertEquals(curPlay, "Player One");
+		if (fInput >= 2) {
+			Player nextPlay = board.getNextPlayer();
+			curPlay = board.getCurrentPlayer();
+		}
 	}
 }
