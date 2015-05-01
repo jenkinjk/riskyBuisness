@@ -81,7 +81,7 @@ public class Army extends JButton {
 		int x = coordinates.x;
 		int y = coordinates.y;
 		g2.setPaint(this.owner.getColor());
-		g2.drawImage(soldier, x, y, 20, 40, null);
+//		g2.drawImage(soldier, x, y, 20, 40, null);
 		g2.fillRect(x, y + 40, 20, 5);
 		g2.drawString(Integer.toString(this.size), x, y);
 	}

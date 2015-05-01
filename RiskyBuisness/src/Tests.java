@@ -1593,48 +1593,4 @@ public class Tests {
 			assertEquals(board.getLabelText(), "Player " + numToNum.get(i + 1) + "'s Turn");
 		}
 	}
-	
-	@Test
-	public void armyListenerStorageTest() {
-		RiskBoard board = new RiskBoard();
-		board.initialGame(fInput);
-		Army army = null;
-		try {
-			army = board.getArmy(1);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		army.doClick();
-		assertTrue(board.getBattleSetup().get(0).equals(army));
-	}
-	@Test
-	public void armyListenerChangedMindTest() {
-		RiskBoard board = new RiskBoard();
-		board.initialGame(fInput);
-		Army army=null;
-		try {
-			army = board.getArmy(1);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		army.doClick();
-		army.doClick();
-		assertTrue(board.getBattleSetup().isEmpty());
-	}
-	@Test
-	public void armyListenerBattleCreationTest() {
-		RiskBoard board = new RiskBoard();
-		board.initialGame(fInput);
-		Army army=null;
-		try {
-			army = board.getArmy(1);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		army.doClick();
-		assertTrue(board.getBattleSetup().get(0).equals(army));
-	}
 }
