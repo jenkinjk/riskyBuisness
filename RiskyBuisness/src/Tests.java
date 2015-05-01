@@ -1575,4 +1575,22 @@ public class Tests {
 		board.initialGame(fInput);
 		assertEquals(board.getLabelText(), "Player One's Turn");
 	}
+	
+	@Test
+	public void getLabelAdvancingLogicTest() {
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		HashMap<Integer, String> numToNum = new HashMap<Integer, String>();
+		numToNum.put(1, "One");
+		numToNum.put(2, "Two");
+		numToNum.put(3, "Three");
+		numToNum.put(4, "Four");
+		numToNum.put(5, "Five");
+		numToNum.put(6, "Six");
+		for (int i = 0; i < fInput; i++) {
+			String nextPlayer = board.getNextPlayer().getName();
+			assertEquals("Player " + numToNum.get(i + 1), nextPlayer);
+			assertEquals(board.getLabelText(), "Player " + numToNum.get(i + 1) + "'s Turn");
+		}
+	}
 }
