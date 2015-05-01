@@ -608,4 +608,8 @@ public class RiskBoard {
 	public ArrayList<Army> getBattleSetup() {
 		return this.setupBattle;
 	}
+
+	public Army getArmy(int i) {
+		return armies.get(i);
+	}
 }
