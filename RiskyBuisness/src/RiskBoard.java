@@ -555,8 +555,8 @@ public class RiskBoard {
 		return this.currentPlayer;
 	}
 	
-	public String getCurrentPlayer() {
-		return "Player One";
+	public Player getCurrentPlayer() {
+		return this.currentPlayer;
 	}
 
 	public ArrayList<Territory> getTerritories() {

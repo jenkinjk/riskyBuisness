@@ -1562,12 +1562,10 @@ public class Tests {
 		numToNum.put(4, "Four");
 		numToNum.put(5, "Five");
 		numToNum.put(6, "Six");
-		String curPlay = board.getCurrentPlayer();
-		assertEquals(curPlay, "Player One");
 		for (int i = 0; i < fInput; i++) {
 			String nextPlayer = board.getNextPlayer().getName();
 			assertEquals("Player " + numToNum.get(i + 1) , nextPlayer);
-			assertEquals("Player " + numToNum.get(i), board.getCurrentPlayer());
+			assertEquals("Player " + numToNum.get(i + 1), board.getCurrentPlayer().getName());
 		}
 	}
 }
