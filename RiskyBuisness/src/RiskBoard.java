@@ -41,6 +41,8 @@ public class RiskBoard {
 	private HashMap<String, Point> nameToCoordinates;
 	private Player currentPlayer;
 	private JLabel statusLabel;
+	private JFrame frame;
+	private JPanel panel;
 
 	public RiskBoard() {
 		ArrayList<Player> players = new ArrayList<Player>();
@@ -514,13 +516,13 @@ public class RiskBoard {
 
 	@SuppressWarnings("serial")
 	public void display() throws IOException {
-		JFrame frame = new JFrame("Risk Board");
+		frame = new JFrame("Risk Board");
 		frame.setSize(1025, 740);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		frame.setResizable(false);
 
-		JPanel panel = new JPanel() {
+		panel = new JPanel() {
 			private Image backgroundImage = ImageIO.read(new File("risk.png"));
 			public void paint(Graphics g) {
 				super.paint(g);
@@ -529,6 +531,8 @@ public class RiskBoard {
 		};
 		
 		panel.setLayout(null);
+		this.statusLabel.setBounds(15, 0, 500, 30);
+		panel.add(this.statusLabel);
 		Image soldierImage = ImageIO.read(new File("soldier.png"));
 		Icon soldierIcon = new ImageIcon(soldierImage);
 		for(Army a : this.armies) {
