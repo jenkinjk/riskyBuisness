@@ -517,11 +517,14 @@ public class RiskBoard {
 		frame.setVisible(true);
 		frame.setResizable(false);
 
-		panel = new JPanel() {
+		JPanel panel = new JPanel() {
 			private Image backgroundImage = ImageIO.read(new File("risk.png"));
 			public void paint(Graphics g) {
 				super.paint(g);
 				g.drawImage(backgroundImage, 0, 30, null);
+				for (Army a : RiskBoard.this.armies) {
+					a.paint(g);
+				}
 			}
 		};
 		
