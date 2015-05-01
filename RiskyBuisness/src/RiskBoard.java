@@ -554,6 +554,7 @@ public class RiskBoard {
 		if (!itr.hasNext())
 			this.itr = this.players.iterator();
 		this.currentPlayer = this.itr.next();
+		this.statusLabel.setText(this.currentPlayer.getName() + "'s Turn");
 		return this.currentPlayer;
 	}
 	
