@@ -1550,4 +1550,15 @@ public class Tests {
 		Army a = new Army(p1, Alaska);
 		ArmyListener al = new ArmyListener(a);
 	}
+	
+	@Test
+	public void currentPlayerTest() {
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		Player nextPlay = board.getNextPlayer();
+		Player curPlay = board.getCurrentPlayer();
+		assertEquals(nextPlay.toString(), curplay.toString());
+		assertEquals(nextPlay.toString(), "Player Two");
+		assertEquals(curPlay.toString(), "Player Two");
+	}
 }
