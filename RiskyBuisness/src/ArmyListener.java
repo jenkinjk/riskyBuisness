@@ -3,7 +3,11 @@ import java.awt.event.MouseListener;
 
 
 public class ArmyListener implements MouseListener {
-
+	private Army army;
+	
+	public ArmyListener(Army a) {
+		this.army = a;
+	}
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		System.out.println("Hi");
