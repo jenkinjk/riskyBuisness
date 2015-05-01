@@ -1541,4 +1541,13 @@ public class Tests {
 		 * But dont know how.
 		 */
 	}
+	@Test
+	public void armyListenerConstructor() throws Exception {
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		Player p1 = new Player("1", Color.RED);
+		Territory Alaska = board.getTerritoryNamed("Alaska");
+		Army a = new Army(p1, Alaska);
+		ArmyListener al = new ArmyListener(a);
+	}
 }

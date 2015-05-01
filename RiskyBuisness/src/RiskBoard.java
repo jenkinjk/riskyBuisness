@@ -25,8 +25,8 @@ public class RiskBoard {
 	private Integer[] numPlayerArray = { 1, 2, 3, 4, 5, 6 };
 	private String[] playerName = { "Player One", "Player Two", "Player Three",
 			"Player Four", "Player Five", "Player Six" };
-	private Color[] playerColor = { Color.RED, Color.YELLOW, Color.BLUE,
-			Color.GREEN, Color.ORANGE, Color.PINK };
+	private Color[] playerColor = { Color.RED, Color.BLACK, Color.BLUE,
+			Color.GREEN, Color.ORANGE, Color.DARK_GRAY };
 	private ArrayList<Territory> territories;
 	private ArrayList<Territory> Asia;
 	private ArrayList<Territory> Europe;
