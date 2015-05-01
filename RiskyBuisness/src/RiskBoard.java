@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
@@ -43,6 +44,7 @@ public class RiskBoard {
 	private JLabel statusLabel;
 	private JFrame frame;
 	private JPanel panel;
+	private ArrayList<Army> battleSetup=new ArrayList<Army>();
 
 	public RiskBoard() {
 		ArrayList<Player> players = new ArrayList<Player>();
@@ -84,6 +86,7 @@ public class RiskBoard {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				getArmy(1).doClick();
 //				Battle b = new Battle();
 //				try {
 //					b.display();
@@ -604,5 +607,13 @@ public class RiskBoard {
 				return t;
 		}
 		throw new Exception("This territory does not exist. " + string);
+	}
+
+	public Army getArmy(int i) {
+		return this.armies.get(i);
+	}
+
+	public ArrayList<Army> getBattleSetup() {
+		return this.battleSetup;
 	}
 }
