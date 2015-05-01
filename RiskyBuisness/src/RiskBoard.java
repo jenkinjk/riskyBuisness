@@ -43,7 +43,6 @@ public class RiskBoard {
 	private JLabel statusLabel;
 	private JFrame frame;
 	private JPanel panel;
-	private ArrayList<Army> battleSetup=new ArrayList<Army>();
 
 	public RiskBoard() {
 		ArrayList<Player> players = new ArrayList<Player>();
@@ -177,10 +176,9 @@ public class RiskBoard {
 	private void setUpArmy() {
 		for (Player p : players) {
 			for (Territory t : p.getTerritories()) {
-					Army a = new Army(p, t, this); //Note this constructor defaults to a size of three.
+					Army a = new Army(p, t); //Note this constructor defaults to a size of three.
 					p.addArmy(a);
 					this.armies.add(a);
-					t.setArmy(a);
 			}
 		}
 	}
@@ -529,17 +527,17 @@ public class RiskBoard {
 			public void paint(Graphics g) {
 				super.paint(g);
 				g.drawImage(backgroundImage, 0, 30, null);
-				for(Army a: armies){
-					a.paintComponent(g);
-				}
 			}
 		};
 		
 		panel.setLayout(null);
 		this.statusLabel.setBounds(15, 0, 500, 30);
 		panel.add(this.statusLabel);
+		Image soldierImage = ImageIO.read(new File("soldier.png"));
+		Icon soldierIcon = new ImageIcon(soldierImage);
 		for(Army a : this.armies) {
 			a.setBounds(a.getX(), a.getY(), a.getW(), a.getH());
+			a.setIcon(soldierIcon);
 			ArmyListener al = new ArmyListener(a);
 			a.addMouseListener(al);
 			panel.add(a);
@@ -606,13 +604,5 @@ public class RiskBoard {
 				return t;
 		}
 		throw new Exception("This territory does not exist. " + string);
-	}
-
-	public ArrayList<Army> getBattleSetup() {
-		return battleSetup;
-	}
-
-	public void setBattleSetup(ArrayList<Army> battleSetup) {
-		this.battleSetup = battleSetup;
 	}
 }

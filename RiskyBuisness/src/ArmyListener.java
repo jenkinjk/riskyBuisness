@@ -1,7 +1,5 @@
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.IOException;
-import java.util.ArrayList;
 
 
 public class ArmyListener implements MouseListener {
@@ -13,27 +11,8 @@ public class ArmyListener implements MouseListener {
 	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		System.out.println("Clicked");
-		RiskBoard board = army.getBoard();
-		if(board.getBattleSetup().isEmpty()) board.getBattleSetup().add(0, army);
-		else{
-			if(!board.getBattleSetup().get(0).equals(army)){
-				Battle battle = null;
-				try {
-					battle = new Battle(board.getBattleSetup().get(0), army);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				try {
-					battle.display();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			board.getBattleSetup().remove(0);
-		}
+		System.out.println("Owner: " + this.army.getOwner().getName()
+				+ " Territory: " + this.army.getArmyLocation().getName());
 	}
 
 	@Override
