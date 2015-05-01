@@ -40,6 +40,7 @@ public class RiskBoard {
 	private HashMap<String, ArrayList<Territory>> nameToNeigbhors;
 	private HashMap<String, Point> nameToCoordinates;
 	private Player currentPlayer;
+	private JLabel statusLabel;
 
 	public RiskBoard() {
 		ArrayList<Player> players = new ArrayList<Player>();
@@ -56,6 +57,7 @@ public class RiskBoard {
 		nameToNeigbhors = new HashMap<String, ArrayList<Territory>>();
 		nameToCoordinates = new HashMap<String, Point>();
 		this.currentPlayer = null;
+		this.statusLabel = new JLabel("Player One's Turn");
 	}
 
 	public void selectNumberOfPlayers() {
@@ -557,6 +559,10 @@ public class RiskBoard {
 	
 	public Player getCurrentPlayer() {
 		return this.currentPlayer;
+	}
+	
+	public String getLabelText() {
+		return this.statusLabel.getText();
 	}
 
 	public ArrayList<Territory> getTerritories() {
