@@ -1,11 +1,7 @@
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.Point;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.JButton;
 
 @SuppressWarnings("serial")
@@ -103,6 +99,8 @@ public class Army extends JButton {
 		g2.setPaint(this.owner.getColor());
 		g2.fillRect(x, y + 40, 20, 5);
 		g2.drawString(Integer.toString(this.size), x, y);
+		this.setLocation(x,y);
+		super.paintComponent(g);
 	}
 
 	public void takeLosses(int loss) {
