@@ -1555,11 +1555,19 @@ public class Tests {
 	public void currentPlayerTest() {
 		RiskBoard board = new RiskBoard();
 		board.initialGame(fInput);
+		HashMap<Integer, String> numToNum = new HashMap<Integer, String>();
+		numToNum.put(1, "One");
+		numToNum.put(2, "Two");
+		numToNum.put(3, "Three");
+		numToNum.put(4, "Four");
+		numToNum.put(5, "Five");
+		numToNum.put(6, "Six");
 		String curPlay = board.getCurrentPlayer();
 		assertEquals(curPlay, "Player One");
-		if (fInput >= 2) {
-			Player nextPlay = board.getNextPlayer();
-			curPlay = board.getCurrentPlayer();
+		for (int i = 0; i < fInput; i++) {
+			String nextPlayer = board.getNextPlayer().getName();
+			assertEquals("Player " + numToNum.get(i + 1) , nextPlayer);
+			assertEquals("Player " + numToNum.get(i), board.getCurrentPlayer());
 		}
 	}
 }
