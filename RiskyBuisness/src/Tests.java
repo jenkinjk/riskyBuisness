@@ -120,7 +120,9 @@ public class Tests {
 		numToNum.put(4, "Four");
 		numToNum.put(5, "Five");
 		numToNum.put(6, "Six");
-		for (int i = 0; i < fInput; i++) {
+		assertEquals("Player " + numToNum.get(1), board.getCurrentPlayer()
+				.getName());
+		for (int i = 1; i < fInput; i++) {
 			assertEquals("Player " + numToNum.get(i + 1), board.getNextPlayer()
 					.getName());
 		}
@@ -1562,8 +1564,10 @@ public class Tests {
 		numToNum.put(4, "Four");
 		numToNum.put(5, "Five");
 		numToNum.put(6, "Six");
-		for (int i = 0; i < fInput; i++) {
-			String nextPlayer = board.getNextPlayer().getName();
+		String nextPlayer = "Player One";
+		assertEquals(nextPlayer, board.getCurrentPlayer().getName());
+		for (int i = 1; i < fInput; i++) {
+			nextPlayer = board.getNextPlayer().getName();
 			assertEquals("Player " + numToNum.get(i + 1) , nextPlayer);
 			assertEquals("Player " + numToNum.get(i + 1), board.getCurrentPlayer().getName());
 		}
@@ -1587,8 +1591,10 @@ public class Tests {
 		numToNum.put(4, "Four");
 		numToNum.put(5, "Five");
 		numToNum.put(6, "Six");
-		for (int i = 0; i < fInput; i++) {
-			String nextPlayer = board.getNextPlayer().getName();
+		String nextPlayer = "Player One";
+		assertEquals(nextPlayer, board.getCurrentPlayer().getName());
+		for (int i = 1; i < fInput; i++) {
+			nextPlayer = board.getNextPlayer().getName();
 			assertEquals("Player " + numToNum.get(i + 1), nextPlayer);
 			assertEquals(board.getLabelText(), "Player " + numToNum.get(i + 1) + "'s Turn");
 		}
@@ -1642,9 +1648,9 @@ public class Tests {
 	public void stateExists(){
 		RiskBoard board = new RiskBoard();
 		board.initialGame(fInput);
-		if(fInput!=1)
+		if(fInput!=1){
 		assertEquals(board.getState(), "Deployment Phase");
-		else{
+		}else{
 			assertEquals(board.getState(), "Player One has Won!");
 		}
 	}

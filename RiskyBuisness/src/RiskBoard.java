@@ -42,8 +42,8 @@ public class RiskBoard {
 	private Player currentPlayer;
 	private JLabel statusLabel;
 	private JFrame frame;
-	private JPanel panel;
 	private ArrayList<Army> setupBattle;
+	private String Phase = "";
 
 	public RiskBoard() {
 		setupBattle = new ArrayList<Army>();
@@ -62,6 +62,11 @@ public class RiskBoard {
 		nameToCoordinates = new HashMap<String, Point>();
 		this.currentPlayer = null;
 		this.statusLabel = new JLabel("Player One's Turn");
+		this.Phase = "Deployment Phase";
+	}
+
+	private void checkForVictory() {
+		if(this.players.size()==1) this.Phase = this.currentPlayer.getName() + " has Won!";
 	}
 
 	public void selectNumberOfPlayers() {
@@ -103,6 +108,8 @@ public class RiskBoard {
 		setUpPlayers();
 		setUpTerritories();
 		setUpArmy();
+		getNextPlayer();
+		checkForVictory();
 	}
 
 	private void setUpPlayers() {
@@ -611,5 +618,9 @@ public class RiskBoard {
 
 	public Army getArmy(int i) {
 		return armies.get(i);
+	}
+
+	public String getState() {
+		return this.Phase ;
 	}
 }
