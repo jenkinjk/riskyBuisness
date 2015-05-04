@@ -1637,4 +1637,15 @@ public class Tests {
 		army.doClick();
 		assertTrue(board.getBattleSetup().get(0).equals(army));
 	}
+	
+	@Test
+	public void stateExists(){
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		if(fInput!=1)
+		assertEquals(board.getState(), "Deployment Phase");
+		else{
+			assertEquals(board.getState(), "Player One has Won!");
+		}
+	}
 }
