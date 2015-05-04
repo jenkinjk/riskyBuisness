@@ -2,6 +2,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
+import javax.swing.Icon;
 import javax.swing.JButton;
 
 @SuppressWarnings("serial")
@@ -99,8 +100,18 @@ public class Army extends JButton {
 		g2.setPaint(this.owner.getColor());
 		g2.fillRect(x, y + 40, 20, 5);
 		g2.drawString(Integer.toString(this.size), x, y);
-		this.setLocation(x,y);
+		Icon icon = this.getIcon();
+		icon.paintIcon(this.getParent(), g2, x, y);
+		this.setContentAreaFilled(false);
+		this.setToolTipText(getToolTipString());
 		super.paintComponent(g);
+	}
+	
+	public String getToolTipString() {
+		String t = "<html>" + "Owner: " + this.owner.getName() + "<br>"
+				+ "Territory: " + this.location.getName() + "<br>"
+				+ "Size: " + this.size + "<br>" + "</html>";
+		return t;
 	}
 
 	public void takeLosses(int loss) {
