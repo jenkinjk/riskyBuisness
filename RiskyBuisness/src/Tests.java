@@ -1649,9 +1649,9 @@ public class Tests {
 		RiskBoard board = new RiskBoard();
 		board.initialGame(fInput);
 		if(fInput!=1){
-		assertEquals(board.getState(), "Deployment Phase");
+		assertEquals(board.getPhase(), "Deployment Phase");
 		}else{
-			assertEquals(board.getState(), "Player One has Won!");
+			assertEquals(board.getPhase(), "Player One has Won!");
 		}
 	}
 	
@@ -1660,14 +1660,14 @@ public class Tests {
 		RiskBoard board = new RiskBoard();
 		board.initialGame(fInput);
 		if(fInput!=1){
-		assertEquals(board.getState(), "Deployment Phase");
+		assertEquals(board.getPhase(), "Deployment Phase");
 		board.endDeployment();
-		assertEquals(board.getState(), "Combat Phase");
+		assertEquals(board.getPhase(), "Combat Phase");
 		board.endTurn();
-		assertEquals(board.getState(), "Deployment Phase");
+		assertEquals(board.getPhase(), "Deployment Phase");
 		assertEquals(board.getCurrentPlayer().getName(), "Player Two");
 		}else{
-			assertEquals(board.getState(), "Player One has Won!");
+			assertEquals(board.getPhase(), "Player One has Won!");
 		}
 	}
 	

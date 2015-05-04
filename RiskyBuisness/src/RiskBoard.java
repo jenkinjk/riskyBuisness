@@ -620,10 +620,6 @@ public class RiskBoard {
 		return armies.get(i);
 	}
 
-	public String getState() {
-		return this.Phase ;
-	}
-
 	public void endDeployment() {
 		this.Phase = "Combat Phase";
 	}
@@ -632,5 +628,9 @@ public class RiskBoard {
 		this.Phase = "Deployment Phase";
 		checkForVictory();
 		getNextPlayer();
+	}
+
+	public String getPhase() {
+		return this.Phase;
 	}
 }

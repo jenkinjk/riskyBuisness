@@ -358,8 +358,8 @@ public class Battle {
 	// for test only
 	void conquer(int numberToSend) {
 		defender.setOwner(attacker.getOwner());
-		defender.setSize(numberToSend);
-		attacker.setSize(attacker.getArmySize()-numberToSend);
+		defender.setArmySize(numberToSend);
+		attacker.setArmySize(attacker.getArmySize()-numberToSend);
 	}
 
 }
