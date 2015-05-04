@@ -71,10 +71,6 @@ public class Army extends JButton {
 		return size;
 	}
 
-	public void setSize(int size) {
-		this.size = size;
-	}
-
 	public Player getOwner() {
 		return owner;
 	}
@@ -124,6 +120,11 @@ public class Army extends JButton {
 
 	public RiskBoard getBoard() {
 		return this.board;
+	}
+
+	public void setArmySize(int i) {
+		this.size = i;
+		
 	}
 
 }

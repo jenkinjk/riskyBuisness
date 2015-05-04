@@ -42,8 +42,8 @@ public class RiskBoard {
 	private Player currentPlayer;
 	private JLabel statusLabel;
 	private JFrame frame;
-	private JPanel panel;
 	private ArrayList<Army> setupBattle;
+	private String Phase = "";
 
 	public RiskBoard() {
 		setupBattle = new ArrayList<Army>();
@@ -62,6 +62,11 @@ public class RiskBoard {
 		nameToCoordinates = new HashMap<String, Point>();
 		this.currentPlayer = null;
 		this.statusLabel = new JLabel("Player One's Turn");
+		this.Phase = "Deployment Phase";
+	}
+
+	private void checkForVictory() {
+		if(this.players.size()==1) this.Phase = this.currentPlayer.getName() + " has Won!";
 	}
 
 	public void selectNumberOfPlayers() {
@@ -103,6 +108,8 @@ public class RiskBoard {
 		setUpPlayers();
 		setUpTerritories();
 		setUpArmy();
+		getNextPlayer();
+		checkForVictory();
 	}
 
 	private void setUpPlayers() {
@@ -172,6 +179,7 @@ public class RiskBoard {
 		for (Player p : players) {
 			for (Territory t : p.getTerritories()) {
 					Army a = new Army(p, t, this); //Note this constructor defaults to a size of three.
+					a.addMouseListener(new ArmyListener(a));
 					p.addArmy(a);
 					this.armies.add(a);
 			}
@@ -537,8 +545,7 @@ public class RiskBoard {
 		for(Army a : this.armies) {
 			a.setBounds(a.getX(), a.getY(), a.getW(), a.getH());
 			a.setIcon(soldierIcon);
-			ArmyListener al = new ArmyListener(a);
-			a.addMouseListener(al);
+
 			panel.add(a);
 		}
 		
@@ -611,5 +618,19 @@ public class RiskBoard {
 
 	public Army getArmy(int i) {
 		return armies.get(i);
+	}
+
+	public void endDeployment() {
+		this.Phase = "Combat Phase";
+	}
+
+	public void endTurn() {
+		this.Phase = "Deployment Phase";
+		checkForVictory();
+		getNextPlayer();
+	}
+
+	public String getPhase() {
+		return this.Phase;
 	}
 }

@@ -1,6 +1,7 @@
 import static org.junit.Assert.*;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -120,7 +121,9 @@ public class Tests {
 		numToNum.put(4, "Four");
 		numToNum.put(5, "Five");
 		numToNum.put(6, "Six");
-		for (int i = 0; i < fInput; i++) {
+		assertEquals("Player " + numToNum.get(1), board.getCurrentPlayer()
+				.getName());
+		for (int i = 1; i < fInput; i++) {
 			assertEquals("Player " + numToNum.get(i + 1), board.getNextPlayer()
 					.getName());
 		}
@@ -1442,6 +1445,7 @@ public class Tests {
 		assertEquals(options,battle.getAttackerOptions());
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Test
 	public void BattleBorderAttackerDiceOptions() throws Exception {
 		RiskBoard board = new RiskBoard();
@@ -1535,13 +1539,6 @@ public class Tests {
 		assertEquals(options,battle.getDefenderOptions());
 	}
 	@Test
-	public void armyClick() {
-		/*
-		 * Test that battles display are called when two armies are selected to battle
-		 * But dont know how.
-		 */
-	}
-	@Test
 	public void armyListenerConstructor() throws Exception {
 		RiskBoard board = new RiskBoard();
 		board.initialGame(fInput);
@@ -1562,8 +1559,10 @@ public class Tests {
 		numToNum.put(4, "Four");
 		numToNum.put(5, "Five");
 		numToNum.put(6, "Six");
-		for (int i = 0; i < fInput; i++) {
-			String nextPlayer = board.getNextPlayer().getName();
+		String nextPlayer = "Player One";
+		assertEquals(nextPlayer, board.getCurrentPlayer().getName());
+		for (int i = 1; i < fInput; i++) {
+			nextPlayer = board.getNextPlayer().getName();
 			assertEquals("Player " + numToNum.get(i + 1) , nextPlayer);
 			assertEquals("Player " + numToNum.get(i + 1), board.getCurrentPlayer().getName());
 		}
@@ -1587,8 +1586,10 @@ public class Tests {
 		numToNum.put(4, "Four");
 		numToNum.put(5, "Five");
 		numToNum.put(6, "Six");
-		for (int i = 0; i < fInput; i++) {
-			String nextPlayer = board.getNextPlayer().getName();
+		String nextPlayer = "Player One";
+		assertEquals(nextPlayer, board.getCurrentPlayer().getName());
+		for (int i = 1; i < fInput; i++) {
+			nextPlayer = board.getNextPlayer().getName();
 			assertEquals("Player " + numToNum.get(i + 1), nextPlayer);
 			assertEquals(board.getLabelText(), "Player " + numToNum.get(i + 1) + "'s Turn");
 		}
@@ -1598,11 +1599,11 @@ public class Tests {
 	public void armyListenerStorageTest() {
 		RiskBoard board = new RiskBoard();
 		board.initialGame(fInput);
+		board.endDeployment();
 		Army army = null;
 		try {
 			army = board.getArmy(1);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		army.doClick();
@@ -1616,7 +1617,6 @@ public class Tests {
 		try {
 			army = board.getArmy(1);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		army.doClick();
@@ -1627,6 +1627,7 @@ public class Tests {
 	public void armyListenerBattleCreationTest() {
 		RiskBoard board = new RiskBoard();
 		board.initialGame(fInput);
+		board.endDeployment();
 		Army army=null;
 		try {
 			army = board.getArmy(1);
@@ -1636,5 +1637,63 @@ public class Tests {
 		}
 		army.doClick();
 		assertTrue(board.getBattleSetup().get(0).equals(army));
+	}
+	
+	@Test
+	public void stateExists(){
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		if(fInput!=1){
+		assertEquals(board.getPhase(), "Deployment Phase");
+		}else{
+			assertEquals(board.getPhase(), "Player One has Won!");
+		}
+	}
+	
+	@Test
+	public void stateAdvances(){
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		if(fInput!=1){
+		assertEquals(board.getPhase(), "Deployment Phase");
+		board.endDeployment();
+		assertEquals(board.getPhase(), "Combat Phase");
+		board.endTurn();
+		assertEquals(board.getPhase(), "Deployment Phase");
+		assertEquals(board.getCurrentPlayer().getName(), "Player Two");
+		}else{
+			assertEquals(board.getPhase(), "Player One has Won!");
+		}
+	}
+	
+	@Test
+	public void resolveBattle() throws Exception {
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		Player p1 = new Player("1", Color.green);
+		Player p2 = new Player("2", Color.red);
+		Territory Alaska = board.getTerritoryNamed("Alaska");
+		Territory Kamchatka = board.getTerritoryNamed("Kamchatka");
+		Army a = new Army(p1, Alaska, 5);
+		Army b = new Army(p2, Kamchatka, 0);
+		p1.addArmy(a);
+		p2.addArmy(b);
+		p1.addTerritory(Alaska);
+		p2.addTerritory(Kamchatka);
+		Battle battle = new Battle(a, b);
+		battle.attackerWon=true;
+		battle.resolveCombat();
+		battle.conquer(3);
+		assertEquals(b.getOwner(), p1);
+		assertEquals(b.getArmySize(), 3);
+		assertEquals(p2.getTerritories(), new ArrayList<Territory>());
+		assertEquals(p2.getNumberOfTerritories(), 0);
+		assertEquals(a.getOwner(), p1);
+		assertEquals(a.getArmySize(), 2);
+		ArrayList<Territory> ts = new ArrayList<Territory>();
+		ts.add(Alaska);
+		ts.add(Kamchatka);
+		assertEquals(p1.getTerritories(), ts);
+		assertEquals(p1.getNumberOfTerritories(), 2);
 	}
 }

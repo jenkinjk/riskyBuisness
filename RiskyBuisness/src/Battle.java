@@ -202,7 +202,8 @@ public class Battle {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				if (attackerWon)
+				resolveCombat();
+				if(attackerWon)
 					getArmiesToSend();
 			}
 
@@ -227,11 +228,10 @@ public class Battle {
 						JComboBox<Integer> cb = (JComboBox<Integer>) arg
 								.getSource();
 						int numberToSend = (int) cb.getSelectedItem();
-						defender.setOwner(attacker.getOwner());
-						defender.setSize(numberToSend);
-						attacker.setSize(attacker.getArmySize()-numberToSend);
+						conquer(numberToSend);
 						setUpFrame.dispose();
 					}
+
 				});
 				panel.add(box, BorderLayout.CENTER);
 
@@ -345,6 +345,21 @@ public class Battle {
 	// for test only
 	public Integer[] getDefenderOptions() {
 		return this.DefenderDiceOptions;
+	}
+	// for test only
+	void resolveCombat() {
+		if (attackerWon){
+			defender.getOwner().removeTerritory(defender.getArmyLocation());
+			attacker.getOwner().addTerritory(defender.getArmyLocation());
+			
+		}
+	}
+	
+	// for test only
+	void conquer(int numberToSend) {
+		defender.setOwner(attacker.getOwner());
+		defender.setArmySize(numberToSend);
+		attacker.setArmySize(attacker.getArmySize()-numberToSend);
 	}
 
 }

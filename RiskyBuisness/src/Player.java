@@ -50,6 +50,11 @@ public class Player {
 		return this.territories;
 	}
 
+	public void removeTerritory(Territory armyLocation) {
+		this.territories.remove(armyLocation);
+		this.numberOfTerritories--;
+	}
+
 //	public ArrayList<Army> getArmies() {
 //		return this.armies;
 //	}
