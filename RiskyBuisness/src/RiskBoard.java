@@ -623,4 +623,14 @@ public class RiskBoard {
 	public String getState() {
 		return this.Phase ;
 	}
+
+	public void endDeployment() {
+		this.Phase = "Combat Phase";
+	}
+
+	public void endTurn() {
+		this.Phase = "Deployment Phase";
+		checkForVictory();
+		getNextPlayer();
+	}
 }
