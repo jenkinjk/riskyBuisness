@@ -1654,4 +1654,20 @@ public class Tests {
 			assertEquals(board.getState(), "Player One has Won!");
 		}
 	}
+	
+	@Test
+	public void stateAdvances(){
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		if(fInput!=1){
+		assertEquals(board.getState(), "Deployment Phase");
+		board.endDeployment();
+		assertEquals(board.getState(), "Combat Phase");
+		board.endTurn();
+		assertEquals(board.getState(), "Deployment Phase");
+		assertEquals(board.getCurrentPlayer().getName(), "Player Two");
+		}else{
+			assertEquals(board.getState(), "Player One has Won!");
+		}
+	}
 }
