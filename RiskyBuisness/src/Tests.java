@@ -1,6 +1,7 @@
 import static org.junit.Assert.*;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -1444,6 +1445,7 @@ public class Tests {
 		assertEquals(options,battle.getAttackerOptions());
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Test
 	public void BattleBorderAttackerDiceOptions() throws Exception {
 		RiskBoard board = new RiskBoard();
@@ -1537,13 +1539,6 @@ public class Tests {
 		assertEquals(options,battle.getDefenderOptions());
 	}
 	@Test
-	public void armyClick() {
-		/*
-		 * Test that battles display are called when two armies are selected to battle
-		 * But dont know how.
-		 */
-	}
-	@Test
 	public void armyListenerConstructor() throws Exception {
 		RiskBoard board = new RiskBoard();
 		board.initialGame(fInput);
@@ -1604,11 +1599,11 @@ public class Tests {
 	public void armyListenerStorageTest() {
 		RiskBoard board = new RiskBoard();
 		board.initialGame(fInput);
+		board.endDeployment();
 		Army army = null;
 		try {
 			army = board.getArmy(1);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		army.doClick();
@@ -1622,7 +1617,6 @@ public class Tests {
 		try {
 			army = board.getArmy(1);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		army.doClick();
@@ -1633,6 +1627,7 @@ public class Tests {
 	public void armyListenerBattleCreationTest() {
 		RiskBoard board = new RiskBoard();
 		board.initialGame(fInput);
+		board.endDeployment();
 		Army army=null;
 		try {
 			army = board.getArmy(1);

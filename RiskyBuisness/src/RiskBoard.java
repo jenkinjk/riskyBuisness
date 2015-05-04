@@ -5,6 +5,7 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -179,6 +180,7 @@ public class RiskBoard {
 		for (Player p : players) {
 			for (Territory t : p.getTerritories()) {
 					Army a = new Army(p, t, this); //Note this constructor defaults to a size of three.
+					a.addActionListener(new ArmyListener(a));
 					p.addArmy(a);
 					this.armies.add(a);
 			}
@@ -544,8 +546,7 @@ public class RiskBoard {
 		for(Army a : this.armies) {
 			a.setBounds(a.getX(), a.getY(), a.getW(), a.getH());
 			a.setIcon(soldierIcon);
-			ArmyListener al = new ArmyListener(a);
-			a.addMouseListener(al);
+
 			panel.add(a);
 		}
 		
