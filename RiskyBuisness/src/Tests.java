@@ -1670,4 +1670,35 @@ public class Tests {
 			assertEquals(board.getState(), "Player One has Won!");
 		}
 	}
+	
+	@Test
+	public void resolveBattle() throws Exception {
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		Player p1 = new Player("1", Color.green);
+		Player p2 = new Player("2", Color.red);
+		Territory Alaska = board.getTerritoryNamed("Alaska");
+		Territory Kamchatka = board.getTerritoryNamed("Kamchatka");
+		Army a = new Army(p1, Alaska, 5);
+		Army b = new Army(p2, Kamchatka, 0);
+		p1.addArmy(a);
+		p2.addArmy(b);
+		p1.addTerritory(Alaska);
+		p2.addTerritory(Kamchatka);
+		Battle battle = new Battle(a, b);
+		battle.attackerWon=true;
+		battle.resolveCombat();
+		battle.conquer(3);
+		assertEquals(b.getOwner(), p1);
+		assertEquals(b.getArmySize(), 3);
+		assertEquals(p2.getTerritories(), new ArrayList<Territory>());
+		assertEquals(p2.getNumberOfTerritories(), 0);
+		assertEquals(a.getOwner(), p1);
+		assertEquals(a.getArmySize(), 2);
+		ArrayList<Territory> ts = new ArrayList<Territory>();
+		ts.add(Alaska);
+		ts.add(Kamchatka);
+		assertEquals(p1.getTerritories(), ts);
+		assertEquals(p1.getNumberOfTerritories(), 2);
+	}
 }
