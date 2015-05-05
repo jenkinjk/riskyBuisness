@@ -14,19 +14,23 @@ public class ArmyListener implements MouseListener {
 	private Army army;
 	private Icon soldierIcon;
 	private Icon soldierSelectedIcon;
+	static Image soldierImage = null;
+	static Image soldierSelectedImage = null;
+	static Image scaledImage = null;
+	static Image scaledSelectedImage = null;
 	
 	public ArmyListener(Army a) {
 		this.army = a;
-		Image soldierImage = null;
-		Image soldierSelectedImage = null;
-		try {
-			soldierImage = ImageIO.read(new File("soldier.png"));
-			soldierSelectedImage = ImageIO.read(new File("soldier_selected.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
+		if(soldierImage == null) {
+			try {
+				soldierImage = ImageIO.read(new File("soldier.png"));
+				soldierSelectedImage = ImageIO.read(new File("soldier_selected.png"));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			scaledImage = soldierImage.getScaledInstance(20, 40, Image.SCALE_SMOOTH);
+			scaledSelectedImage = soldierSelectedImage.getScaledInstance(20, 40, Image.SCALE_SMOOTH);
 		}
-		Image scaledImage = soldierImage.getScaledInstance(20, 40, Image.SCALE_SMOOTH);
-		Image scaledSelectedImage = soldierSelectedImage.getScaledInstance(20, 40, Image.SCALE_SMOOTH);
 		soldierIcon = new ImageIcon(scaledImage);
 		soldierSelectedIcon = new ImageIcon(scaledSelectedImage);
 	}
