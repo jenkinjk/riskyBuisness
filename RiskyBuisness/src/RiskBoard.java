@@ -15,6 +15,7 @@ import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -40,10 +41,13 @@ public class RiskBoard {
 	private HashMap<String, ArrayList<Territory>> nameToNeigbhors;
 	private HashMap<String, Point> nameToCoordinates;
 	private Player currentPlayer;
-	private JLabel statusLabel;
 	private JFrame frame;
 	private ArrayList<Army> setupBattle;
-	private String Phase = "";
+	private String phase = "";
+	private JLabel playerColorBox;
+	private JLabel playerLabel;
+	private JLabel phaseLabel;
+	private JButton phaseChangeButton;
 
 	public RiskBoard() {
 		setupBattle = new ArrayList<Army>();
@@ -61,12 +65,15 @@ public class RiskBoard {
 		nameToNeigbhors = new HashMap<String, ArrayList<Territory>>();
 		nameToCoordinates = new HashMap<String, Point>();
 		this.currentPlayer = null;
-		this.statusLabel = new JLabel("Player One's Turn");
-		this.Phase = "Deployment Phase";
+		this.phase = "Deployment Phase";
+		this.playerColorBox = new JLabel("");
+		this.playerLabel = new JLabel("Player One's Turn");
+		this.phaseLabel = new JLabel();
+		this.phaseChangeButton = new JButton();
 	}
 
 	private void checkForVictory() {
-		if(this.players.size()==1) this.Phase = this.currentPlayer.getName() + " has Won!";
+		if(this.players.size()==1) this.phase = this.currentPlayer.getName() + " has Won!";
 	}
 
 	public void selectNumberOfPlayers() {
@@ -538,8 +545,34 @@ public class RiskBoard {
 		};
 		
 		panel.setLayout(null);
-		this.statusLabel.setBounds(15, 0, 500, 30);
-		panel.add(this.statusLabel);
+		
+		/*
+		 * Draw player color box
+		 */
+		this.playerColorBox.setBounds(2, 2, 26, 26);
+		this.playerColorBox.setBackground(this.currentPlayer.getColor());
+		this.playerColorBox.setOpaque(true);
+		panel.add(this.playerColorBox);
+	    
+		/*
+		 * Draw player label
+		 */
+		this.playerLabel.setBounds(30, 0, 120, 28);
+		panel.add(this.playerLabel);
+		
+		/*
+		 * Draw phase label
+		 */
+		this.phaseLabel.setText(this.phase);
+		this.phaseLabel.setBounds(160, 0, 120, 28);
+		panel.add(this.phaseLabel);
+		
+		/*
+		 * Draw change phase button
+		 */
+		this.phaseChangeButton.setText("Next Phase");
+		this.phaseChangeButton.setBounds(895, 2, 120, 25);
+		panel.add(this.phaseChangeButton);
 		
 		/*
 		 * Draw army icons
@@ -565,12 +598,12 @@ public class RiskBoard {
 	public ArrayList<Player> getPlayers() {
 		return this.players;
 	}
-
+	
 	public Player getNextPlayer() {
 		if (!itr.hasNext())
 			this.itr = this.players.iterator();
 		this.currentPlayer = this.itr.next();
-		this.statusLabel.setText(this.currentPlayer.getName() + "'s Turn");
+		this.playerLabel.setText(this.currentPlayer.getName() + "'s Turn");
 		return this.currentPlayer;
 	}
 	
@@ -579,7 +612,7 @@ public class RiskBoard {
 	}
 	
 	public String getLabelText() {
-		return this.statusLabel.getText();
+		return this.playerLabel.getText();
 	}
 
 	public ArrayList<Territory> getTerritories() {
@@ -627,16 +660,17 @@ public class RiskBoard {
 	}
 
 	public void endDeployment() {
-		this.Phase = "Combat Phase";
+		this.phase = "Combat Phase";
 	}
 
 	public void endTurn() {
-		this.Phase = "Deployment Phase";
+		this.phase = "Deployment Phase";
 		checkForVictory();
 		getNextPlayer();
 	}
 
 	public String getPhase() {
-		return this.Phase;
+		return this.phase;
 	}
+	
 }
