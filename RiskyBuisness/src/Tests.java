@@ -1696,4 +1696,13 @@ public class Tests {
 		assertEquals(p1.getTerritories(), ts);
 		assertEquals(p1.getNumberOfTerritories(), 2);
 	}
+	
+	@Test
+	public void armyDeplymentGUI() throws Exception {
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		Army a = board.getArmy(0);
+		a.doClick();
+		assertEquals(4, a.getArmySize());
+	}
 }

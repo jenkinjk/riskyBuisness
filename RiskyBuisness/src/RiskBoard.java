@@ -527,6 +527,7 @@ public class RiskBoard {
 
 		JPanel panel = new JPanel() {
 			private Image backgroundImage = ImageIO.read(new File("risk.png"));
+			@Override
 			public void paint(Graphics g) {
 				super.paint(g);
 				g.drawImage(backgroundImage, 0, 30, null);
@@ -539,13 +540,18 @@ public class RiskBoard {
 		panel.setLayout(null);
 		this.statusLabel.setBounds(15, 0, 500, 30);
 		panel.add(this.statusLabel);
+		
+		/*
+		 * Draw army icons
+		 * 
+		 */
 		Image soldierImage = ImageIO.read(new File("soldier.png"));
 		Image scaledImage = soldierImage.getScaledInstance(20, 40, Image.SCALE_SMOOTH);
 		Icon soldierIcon = new ImageIcon(scaledImage);
+		
 		for(Army a : this.armies) {
 			a.setBounds(a.getX(), a.getY(), a.getW(), a.getH());
 			a.setIcon(soldierIcon);
-
 			panel.add(a);
 		}
 		

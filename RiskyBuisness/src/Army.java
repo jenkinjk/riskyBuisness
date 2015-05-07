@@ -1,7 +1,6 @@
+import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Point;
-
 import javax.swing.Icon;
 import javax.swing.JButton;
 
@@ -88,19 +87,25 @@ public class Army extends JButton {
 	}
 	
 	@Override
-	public void paintComponent(Graphics g) {
+	public void paint(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
-		Point coordinates = this.location.getCoordinates();
-		int x = coordinates.x;
-		int y = coordinates.y;
 		g2.setPaint(this.owner.getColor());
 		g2.fillRect(x, y + 40, 20, 5);
+		
+		Container parent = this.getParent();
+		
+		//size string
 		g2.drawString(Integer.toString(this.size), x, y);
+		
+		//soldier icon
 		Icon icon = this.getIcon();
-		icon.paintIcon(this.getParent(), g2, x, y);
-		this.setContentAreaFilled(false);
+		icon.paintIcon(parent, g2, x, y);
+		
+		//tooltip
 		this.setToolTipText(getToolTipString());
-		super.paintComponent(g);
+		
+		//transparent background
+		this.setContentAreaFilled(false);
 	}
 	
 	public String getToolTipString() {
