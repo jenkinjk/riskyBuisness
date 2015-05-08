@@ -1712,4 +1712,21 @@ public class Tests {
 		board.initialGame(fInput);
 		PhaseChangeManager pcm = new PhaseChangeManager(board);
 	}
+	
+	@Test
+	public void phaseChangeButtonTest() throws Exception {
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		board.display();
+		if(fInput!=1){
+			assertEquals(board.getPhase(), "Deployment Phase");
+			board.getPhaseChangeButton().doClick();
+			assertEquals(board.getPhase(), "Combat Phase");
+			board.getPhaseChangeButton().doClick();
+			assertEquals(board.getPhase(), "Deployment Phase");
+			assertEquals(board.getCurrentPlayer().getName(), "Player Two");
+			}else{
+				assertEquals(board.getPhase(), "Player One has Won!");
+			}
+	}
 }

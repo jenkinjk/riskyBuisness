@@ -564,7 +564,7 @@ public class RiskBoard {
 		 * Draw phase label
 		 */
 		this.phaseLabel.setText(this.phase);
-		this.phaseLabel.setBounds(160, 0, 120, 28);
+		this.phaseLabel.setBounds(460, 0, 120, 28);
 		panel.add(this.phaseLabel);
 		
 		/*

@@ -10,8 +10,7 @@ public class PhaseChangeManager implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
+		String currentPhase = this.board.getPhase();
 	}
 	
 }
