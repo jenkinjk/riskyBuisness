@@ -66,8 +66,8 @@ public class RiskBoard {
 		nameToCoordinates = new HashMap<String, Point>();
 		this.currentPlayer = null;
 		this.phase = "Deployment Phase";
-		this.playerColorBox = new JLabel("");
-		this.playerLabel = new JLabel("Player One's Turn");
+		this.playerColorBox = new JLabel();
+		this.playerLabel = new JLabel();
 		this.phaseLabel = new JLabel();
 		this.phaseChangeButton = new JButton();
 	}
@@ -558,6 +558,7 @@ public class RiskBoard {
 		 * Draw player label
 		 */
 		this.playerLabel.setBounds(30, 0, 120, 28);
+		this.playerLabel.setText(this.generatePlayerTurnString());
 		panel.add(this.playerLabel);
 		
 		/*
@@ -572,6 +573,8 @@ public class RiskBoard {
 		 */
 		this.phaseChangeButton.setText("Next Phase");
 		this.phaseChangeButton.setBounds(895, 2, 120, 25);
+		PhaseChangeManager pcm = new PhaseChangeManager(this);
+		this.phaseChangeButton.addActionListener(pcm);
 		panel.add(this.phaseChangeButton);
 		
 		/*
@@ -603,7 +606,6 @@ public class RiskBoard {
 		if (!itr.hasNext())
 			this.itr = this.players.iterator();
 		this.currentPlayer = this.itr.next();
-		this.playerLabel.setText(this.currentPlayer.getName() + "'s Turn");
 		return this.currentPlayer;
 	}
 	
@@ -661,16 +663,34 @@ public class RiskBoard {
 
 	public void endDeployment() {
 		this.phase = "Combat Phase";
+		updateMenuBar();
+		this.frame.repaint();
 	}
 
 	public void endTurn() {
 		this.phase = "Deployment Phase";
 		checkForVictory();
 		getNextPlayer();
+		updateMenuBar();
+		this.frame.repaint();
+	}
+	
+	public void updateMenuBar() {
+		this.playerColorBox.setBackground(this.currentPlayer.getColor());
+		this.playerLabel.setText(this.generatePlayerTurnString());
+		this.phaseLabel.setText(this.phase);
+	}
+	
+	public String generatePlayerTurnString() {
+		return this.currentPlayer.getName() + "'s Turn.";
 	}
 
 	public String getPhase() {
 		return this.phase;
+	}
+
+	public JButton getPhaseChangeButton() {
+		return this.phaseChangeButton;
 	}
 	
 }
