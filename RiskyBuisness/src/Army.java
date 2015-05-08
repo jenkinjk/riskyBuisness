@@ -129,7 +129,6 @@ public class Army extends JButton {
 
 	public void setArmySize(int i) {
 		this.size = i;
-		
 	}
 
 }
