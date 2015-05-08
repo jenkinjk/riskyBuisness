@@ -61,6 +61,7 @@ public class ArmyListener implements MouseListener {
 				board.getBattleSetup().remove(0);
 			}
 		} else {
+			System.out.println("Hit add army code");
 			army.setArmySize(army.getArmySize()+1);
 			army.getRootPane().repaint();
 		}

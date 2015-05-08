@@ -1713,15 +1713,21 @@ public class Tests {
 	 *  For the sake of having correct tests, I will be commenting this test out.  This
 	 *  test is not helpful, because for whatever reason, the GUI is in a state of Player One winning every time you run the test.
 	 *  Since Player One has won, the army size is not updated from the click.
+	 *  Additionally, the a.doClick() is not having expected behavior here.
 	 */
 	
 //	@Test
 //	public void armyDeplymentGUI() throws Exception {
 //		RiskBoard board = new RiskBoard();
 //		board.initialGame(fInput);
-//		Army a = board.getArmy(0);
-//		a.doClick();
-//		assertEquals(4, a.getArmySize());
+//		if (fInput != 1) {
+//			Army a = board.getArmy(0);
+//			a.doClick();
+//			System.out.println(board.getPhase());
+//			assertEquals(4, a.getArmySize());
+//		} else {
+//			assertEquals(board.getPhase(), "Player One has Won!");
+//		}
 //	}
 	
 	@Test
@@ -1747,4 +1753,9 @@ public class Tests {
 				assertEquals(board.getPhase(), "Player One has Won!");
 			}
 	}
+	
+//	@Test
+//	public void myNewTest() throws IOException {
+//		
+//	}
 }
