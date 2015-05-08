@@ -117,6 +117,7 @@ public class RiskBoard {
 		setUpArmy();
 		getNextPlayer();
 		checkForVictory();
+		this.playerLabel.setText(this.generatePlayerTurnString());
 	}
 
 	private void setUpPlayers() {
@@ -664,7 +665,8 @@ public class RiskBoard {
 	public void endDeployment() {
 		this.phase = "Combat Phase";
 		updateMenuBar();
-		this.frame.repaint();
+		//this.frame.repaint();
+		this.frame.revalidate();
 	}
 
 	public void endTurn() {
@@ -672,7 +674,8 @@ public class RiskBoard {
 		checkForVictory();
 		getNextPlayer();
 		updateMenuBar();
-		this.frame.repaint();
+		//this.frame.repaint();
+		this.frame.revalidate();
 	}
 	
 	public void updateMenuBar() {
@@ -682,7 +685,7 @@ public class RiskBoard {
 	}
 	
 	public String generatePlayerTurnString() {
-		return this.currentPlayer.getName() + "'s Turn.";
+		return this.currentPlayer.getName() + "'s Turn";
 	}
 
 	public String getPhase() {

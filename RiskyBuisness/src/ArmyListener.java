@@ -60,7 +60,7 @@ public class ArmyListener implements MouseListener {
 				}
 				board.getBattleSetup().remove(0);
 			}
-		}else{
+		} else {
 			army.setArmySize(army.getArmySize()+1);
 			army.getRootPane().repaint();
 		}

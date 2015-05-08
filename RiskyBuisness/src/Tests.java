@@ -1572,6 +1572,7 @@ public class Tests {
 	public void getLabelTextTest() {
 		RiskBoard board = new RiskBoard();
 		board.initialGame(fInput);
+		System.out.println(board.getCurrentPlayer().toString());
 		assertEquals(board.getLabelText(), "Player One's Turn");
 	}
 	
