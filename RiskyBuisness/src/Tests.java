@@ -72,25 +72,31 @@ public class Tests {
 		boolean failing = true;
 		for (int k = 0; k < 100; k++) {
 			for (int i = 0; i < fInput; i++) {
-				ArrayList<Territory> territories = players.get(i)
-						.getTerritories();
-				ArrayList<Territory> territories2 = players2.get(i)
-						.getTerritories();
-				if (territories.size() > territories2.size()
-						|| territories.size() < territories2.size()) {
-					failing = false;
-				} else {
-					for (int j = 0; j < territories.size(); j++) {
-						if (!territories2.contains(territories.get(j))) {
-							failing = false;
-							break;
-						} else
-							; // Do nothing. Just need to catch for coverage.
-					}
-				}
+				failing = niceName(players, players2, failing, i);
 			}
 		}
 		assertFalse(failing);
+	}
+
+	private boolean niceName(ArrayList<Player> players,
+			ArrayList<Player> players2, boolean failing, int i) {
+		ArrayList<Territory> territories = players.get(i)
+				.getTerritories();
+		ArrayList<Territory> territories2 = players2.get(i)
+				.getTerritories();
+		if (territories.size() > territories2.size()
+				|| territories.size() < territories2.size()) {
+			failing = false;
+		} else {
+			for (int j = 0; j < territories.size(); j++) {
+				if (!territories2.contains(territories.get(j))) {
+					failing = false;
+					break;
+				} else
+					; // Do nothing. Just need to catch for coverage.
+			}
+		}
+		return failing;
 	}
 
 	@Test
