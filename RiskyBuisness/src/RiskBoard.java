@@ -666,7 +666,7 @@ public class RiskBoard {
 		this.phase = "Combat Phase";
 		updateMenuBar();
 		//this.frame.repaint();
-		this.frame.revalidate();
+		//this.frame.revalidate();
 	}
 
 	public void endTurn() {
@@ -675,7 +675,7 @@ public class RiskBoard {
 		getNextPlayer();
 		updateMenuBar();
 		//this.frame.repaint();
-		this.frame.revalidate();
+		//this.frame.revalidate();
 	}
 	
 	public void updateMenuBar() {
