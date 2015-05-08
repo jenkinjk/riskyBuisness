@@ -208,9 +208,6 @@ public class Battle {
 				resolveCombat();
 				if(attackerWon) {
 					getArmiesToSend();
-					localBoard.getFrame().setVisible(true);
-					localBoard.getFrame().revalidate();
-					localBoard.getFrame().repaint();
 				} else {
 					localBoard.getFrame().setVisible(true);
 					localBoard.getFrame().revalidate();
@@ -240,6 +237,9 @@ public class Battle {
 								.getSource();
 						int numberToSend = (int) cb.getSelectedItem();
 						conquer(numberToSend);
+						localBoard.getFrame().setVisible(true);
+						localBoard.getFrame().revalidate();
+						localBoard.getFrame().repaint();
 						setUpFrame.dispose();
 					}
 
