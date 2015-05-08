@@ -7,5 +7,4 @@ public class RiskMain {
 		RiskBoard board = new RiskBoard();
 		board.selectNumberOfPlayers();
 	}
-
 }

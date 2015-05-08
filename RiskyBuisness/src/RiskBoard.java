@@ -696,4 +696,8 @@ public class RiskBoard {
 		return this.phaseChangeButton;
 	}
 	
+	public JFrame getFrame() {
+		return this.frame;
+	}
+	
 }

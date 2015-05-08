@@ -1748,9 +1748,9 @@ public class Tests {
 			board.getPhaseChangeButton().doClick();
 			assertEquals(board.getPhase(), "Deployment Phase");
 			assertEquals(board.getCurrentPlayer().getName(), "Player Two");
-			}else{
+			} else {
 				assertEquals(board.getPhase(), "Player One has Won!");
-			}
+		}
 	}
 	
 //	@Test

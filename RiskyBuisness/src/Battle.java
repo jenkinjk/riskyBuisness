@@ -27,6 +27,7 @@ public class Battle {
 	protected int AttackerDice = 1;
 	protected int DefenderDice = 1;
 	protected boolean attackerWon = false;
+	private RiskBoard callBoard;
 
 	public Battle(Army a, Army b) throws Exception {
 		if (a.getOwner().equals(b.getOwner()))
@@ -42,6 +43,7 @@ public class Battle {
 				+ defender.getArmyLocation().getName();
 		this.AttackerDiceOptions = calcAttackerDiceOptions();
 		this.DefenderDiceOptions = calcDefenderDiceOptions();
+		this.callBoard = b.getBoard();
 	}
 
 	private Integer[] calcDefenderDiceOptions() {
@@ -138,9 +140,10 @@ public class Battle {
 
 	}
 
+	final JFrame frame = new JFrame(title);
 	@SuppressWarnings("serial")
 	public void display() throws IOException {
-		final JFrame frame = new JFrame(title);
+		final RiskBoard localBoard = this.callBoard;
 		frame.setSize(1025, 740);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
@@ -203,8 +206,12 @@ public class Battle {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				resolveCombat();
-				if(attackerWon)
+				if(attackerWon) {
 					getArmiesToSend();
+					localBoard.getFrame().setVisible(true);
+				} else {
+					localBoard.getFrame().setVisible(true);
+				}
 			}
 
 			private void getArmiesToSend() {
@@ -326,9 +333,10 @@ public class Battle {
 		panel.add(derictions);
 
 		frame.setContentPane(panel);
-		panel.repaint();
 		frame.revalidate();
 		frame.repaint();
+		panel.revalidate();
+		panel.repaint();
 	}
 
 	// For test only
@@ -360,6 +368,10 @@ public class Battle {
 		defender.setOwner(attacker.getOwner());
 		defender.setArmySize(numberToSend);
 		attacker.setArmySize(attacker.getArmySize()-numberToSend);
+	}
+	
+	public JFrame getFrame() {
+		return this.frame;
 	}
 
 }

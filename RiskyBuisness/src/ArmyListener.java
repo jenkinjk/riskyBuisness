@@ -53,6 +53,9 @@ public class ArmyListener implements MouseListener {
 					}
 					try {
 						battle.display();
+						board.getFrame().setVisible(false);
+						battle.getFrame().revalidate();
+						//board.getFrame().setVisible(true);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -61,7 +64,7 @@ public class ArmyListener implements MouseListener {
 				board.getBattleSetup().remove(0);
 			}
 		} else {
-			System.out.println("Hit add army code");
+//			System.out.println("Hit add army code");
 			army.setArmySize(army.getArmySize()+1);
 			army.getRootPane().repaint();
 		}
