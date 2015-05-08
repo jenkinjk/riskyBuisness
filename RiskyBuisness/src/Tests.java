@@ -1705,4 +1705,11 @@ public class Tests {
 		a.doClick();
 		assertEquals(4, a.getArmySize());
 	}
+	
+	@Test
+	public void phaseChangeManagerConstructer() {
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		PhaseChangeManager pcm = new PhaseChangeManager(board);
+	}
 }
