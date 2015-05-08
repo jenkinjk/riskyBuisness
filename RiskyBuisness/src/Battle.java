@@ -209,8 +209,12 @@ public class Battle {
 				if(attackerWon) {
 					getArmiesToSend();
 					localBoard.getFrame().setVisible(true);
+					localBoard.getFrame().revalidate();
+					localBoard.getFrame().repaint();
 				} else {
 					localBoard.getFrame().setVisible(true);
+					localBoard.getFrame().revalidate();
+					localBoard.getFrame().repaint();
 				}
 			}
 

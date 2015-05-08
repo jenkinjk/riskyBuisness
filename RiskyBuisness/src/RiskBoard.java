@@ -682,6 +682,8 @@ public class RiskBoard {
 		this.playerColorBox.setBackground(this.currentPlayer.getColor());
 		this.playerLabel.setText(this.generatePlayerTurnString());
 		this.phaseLabel.setText(this.phase);
+		this.frame.revalidate();
+		this.frame.repaint();
 	}
 	
 	public String generatePlayerTurnString() {
