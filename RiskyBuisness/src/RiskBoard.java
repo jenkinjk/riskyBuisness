@@ -48,6 +48,10 @@ public class RiskBoard {
 	private JLabel playerLabel;
 	private JLabel phaseLabel;
 	private JButton phaseChangeButton;
+	private int numberDeployed=0;
+	private int numberAllowed;
+	private int cardArmies=3;
+	private boolean playedCards=false;
 
 	public RiskBoard() {
 		setupBattle = new ArrayList<Army>();
@@ -364,6 +368,7 @@ public class RiskBoard {
 			neighbors = new ArrayList<Territory>();
 			neighbors.add(getTerritoryNamed("Scandinavia"));
 			neighbors.add(getTerritoryNamed("Great Britain"));
+			neighbors.add(getTerritoryNamed("Greenland"));
 			nameToNeigbhors.put("Iceland", neighbors);
 			neighbors = new ArrayList<Territory>();
 			neighbors.add(getTerritoryNamed("Venezula"));
@@ -527,12 +532,13 @@ public class RiskBoard {
 
 	@SuppressWarnings("serial")
 	public void display() throws IOException {
+		
 		frame = new JFrame("Risk Board");
 		frame.setSize(1025, 740);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		frame.setResizable(false);
-
+		
 		JPanel panel = new JPanel() {
 			private Image backgroundImage = ImageIO.read(new File("risk.png"));
 			@Override
@@ -607,6 +613,7 @@ public class RiskBoard {
 		if (!itr.hasNext())
 			this.itr = this.players.iterator();
 		this.currentPlayer = this.itr.next();
+		calculateNumberDeployable();
 		return this.currentPlayer;
 	}
 	
@@ -665,8 +672,7 @@ public class RiskBoard {
 	public void endDeployment() {
 		this.phase = "Combat Phase";
 		updateMenuBar();
-		//this.frame.repaint();
-		//this.frame.revalidate();
+		this.numberDeployed = 0;
 	}
 
 	public void endTurn() {
@@ -674,16 +680,31 @@ public class RiskBoard {
 		checkForVictory();
 		getNextPlayer();
 		updateMenuBar();
-		//this.frame.repaint();
-		//this.frame.revalidate();
 	}
 	
+	private void calculateNumberDeployable() {
+		int result = this.currentPlayer.getTerritories().size()/3;
+		if(result < 3) result = 3;
+		if(playedCards){
+			result = result + cardArmies;
+			cardArmies = cardArmies + cardArmies/2;
+		}
+		result =result + accountForCountries();
+		this.numberAllowed = result;
+	}
+
+	protected int accountForCountries() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	public void updateMenuBar() {
 		this.playerColorBox.setBackground(this.currentPlayer.getColor());
 		this.playerLabel.setText(this.generatePlayerTurnString());
 		this.phaseLabel.setText(this.phase);
-		this.frame.revalidate();
-		this.frame.repaint();
+		//The frame may not exist here!
+//		this.frame.revalidate();
+//		this.frame.repaint();
 	}
 	
 	public String generatePlayerTurnString() {
@@ -700,6 +721,19 @@ public class RiskBoard {
 	
 	public JFrame getFrame() {
 		return this.frame;
+	}
+
+	public int getNumberDeployed() {
+		return this.numberDeployed;
+	}
+
+	public void increaseNumberDeployed() {
+		this.numberDeployed++;
+		
+	}
+
+	public int getNumberAllowed() {
+		return this.numberAllowed;
 	}
 	
 }
