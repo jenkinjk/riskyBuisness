@@ -1759,8 +1759,19 @@ public class Tests {
 		}
 	}
 	
-//	@Test
-//	public void myNewTest() throws IOException {
-//		
-//	}
+	@Test
+	public void incrementArmiesDeployedTest() throws IOException {
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		assertEqual(0, board.getNumberDeployed());
+		board.increaseNumberDeployed();
+		assertEqual(1, board.getNumberDeployed());
+	}
+	
+	@Test
+	public void allowedDeployedTest() throws IOException {
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		assertEqual(board.getCurrentPlayer().getTerritories().size()/3, board.getNumberAllowed());
+	}
 }

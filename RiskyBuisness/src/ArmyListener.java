@@ -64,7 +64,8 @@ public class ArmyListener implements MouseListener {
 				board.getBattleSetup().remove(0);
 			}
 		} else {
-			if(board.getCurrentPlayer() == army.getOwner()) {
+			if(board.getCurrentPlayer() == army.getOwner()&&board.getNumberDeployed() < board.getNumberAllowed()) {
+				board.increaseNumberDeployed();
 				army.setArmySize(army.getArmySize()+1);
 				army.getRootPane().repaint();
 			}			
