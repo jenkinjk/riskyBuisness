@@ -1775,6 +1775,7 @@ public class Tests {
 		board.initialGame(fInput);
 		int expect = board.getCurrentPlayer().getTerritories().size()/3;
 		if(expect < 3) expect = 3;
+		if(board.getPlayers().size()==1) expect = 38;
 		assertEquals(expect, board.getNumberAllowed());
 	}
 	
@@ -1791,6 +1792,7 @@ public class Tests {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		if(board.getPlayers().size()!=1)
 		assertEquals(2, board.accountForCountries());
 	}
 	
@@ -1803,12 +1805,13 @@ public class Tests {
 					"Eastern United States", "Greenland", "Northwest Territory",
 					"Ontario", "Quebec", "Western United States" };
 			for(String name: naCountries){
-				board.getCurrentPlayer().getTerritories().add(board.getTerritoryNamed("name"));
+				board.getCurrentPlayer().getTerritories().add(board.getTerritoryNamed(name));
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		if(board.getPlayers().size()!=1)
 		assertEquals(5, board.accountForCountries());
 	}
 	
@@ -1821,12 +1824,13 @@ public class Tests {
 					"Northen Europe", "Scandinavia", "Southern Europe", "Ukraine",
 					"Western Europe" };
 			for(String name: europeCountries){
-				board.getCurrentPlayer().getTerritories().add(board.getTerritoryNamed("name"));
+				board.getCurrentPlayer().getTerritories().add(board.getTerritoryNamed(name));
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		if(board.getPlayers().size()!=1)
 		assertEquals(5, board.accountForCountries());
 	}
 	
@@ -1839,12 +1843,13 @@ public class Tests {
 					"Japan", "Kamchatka", "Middle East", "Mongolia", "Siam",
 					"Siberia", "Ural", "Yakutsk" };
 			for(String name: asianCountries){
-				board.getCurrentPlayer().getTerritories().add(board.getTerritoryNamed("name"));
+				board.getCurrentPlayer().getTerritories().add(board.getTerritoryNamed(name));
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		if(board.getPlayers().size()!=1)
 		assertEquals(7, board.accountForCountries());
 	}
 	
@@ -1856,12 +1861,36 @@ public class Tests {
 			String[] australiaCountries = { "Eastern Australia", "Indonesia",
 					"New Guinea", "Western Australia" };
 			for(String name: australiaCountries){
-				board.getCurrentPlayer().getTerritories().add(board.getTerritoryNamed("name"));
+				board.getCurrentPlayer().getTerritories().add(board.getTerritoryNamed(name));
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		if(board.getPlayers().size()!=1)
 		assertEquals(2, board.accountForCountries());
+	}
+	@Test
+	public void accountForCountriesAfrTest() throws IOException {
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		try{
+			String[] africaCountries = { "Congo", "East Africa", "Egypt",
+					"Madagascar", "North Africa", "South Africa" };
+			for(String name: africaCountries){
+				board.getCurrentPlayer().getTerritories().add(board.getTerritoryNamed(name));
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(board.getPlayers().size()!=1)
+		assertEquals(3, board.accountForCountries());
+	}
+	@Test
+	public void accountForMultiContinentsTest() throws IOException {
+		RiskBoard board = new RiskBoard();
+		board.initialGame(1);
+		assertEquals(24, board.accountForCountries());
 	}
 }

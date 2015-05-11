@@ -694,8 +694,15 @@ public class RiskBoard {
 	}
 
 	protected int accountForCountries() {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+		ArrayList<Territory> ts = currentPlayer.getTerritories();
+		if(ts.containsAll(this.Africa)) result = result + 3;
+		if(ts.containsAll(this.Asia)) result = result + 7;
+		if(ts.containsAll(this.Europe)) result = result + 5;
+		if(ts.containsAll(this.NA)) result = result + 5;
+		if(ts.containsAll(this.SA)) result = result + 2;
+		if(ts.containsAll(this.Australia)) result = result + 2;
+		return result;
 	}
 
 	public void updateMenuBar() {
