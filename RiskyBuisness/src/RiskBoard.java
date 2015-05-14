@@ -99,7 +99,6 @@ public class RiskBoard {
 				try {
 					display();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				setUpFrame.dispose();
@@ -534,7 +533,7 @@ public class RiskBoard {
 	public void display() throws IOException {
 		
 		frame = new JFrame("Risk Board");
-		frame.setSize(1025, 740);
+		frame.setSize(1025, 850);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		frame.setResizable(false);
@@ -545,6 +544,7 @@ public class RiskBoard {
 			public void paint(Graphics g) {
 				super.paint(g);
 				g.drawImage(backgroundImage, 0, 30, null);
+				g.drawRect(0, 710, 1025, 120);
 				for (Army a : RiskBoard.this.armies) {
 					a.paint(g);
 				}
@@ -597,6 +597,11 @@ public class RiskBoard {
 			a.setIcon(soldierIcon);
 			panel.add(a);
 		}
+		
+		/*
+		 * Draw cards
+		 */
+		
 		
 		frame.setContentPane(panel);
 		panel.setFocusable(true);
