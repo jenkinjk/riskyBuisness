@@ -571,8 +571,8 @@ public class RiskBoard {
 		/*
 		 * Draw phase label
 		 */
-		this.phaseLabel.setText(this.phase);
-		this.phaseLabel.setBounds(460, 0, 120, 28);
+		this.phaseLabel.setText(this.phase+ " (Deployable: " + (this.numberAllowed - this.numberDeployed) + ")");
+		this.phaseLabel.setBounds(460, 0, 200, 28);
 		panel.add(this.phaseLabel);
 		
 		/*
@@ -708,10 +708,11 @@ public class RiskBoard {
 	public void updateMenuBar() {
 		this.playerColorBox.setBackground(this.currentPlayer.getColor());
 		this.playerLabel.setText(this.generatePlayerTurnString());
-		this.phaseLabel.setText(this.phase);
-		//The frame may not exist here!
-//		this.frame.revalidate();
-//		this.frame.repaint();
+		if(this.phase.contains("Deployment")) {
+			this.phaseLabel.setText(this.phase + " (Deployable: " + (this.numberAllowed - this.numberDeployed) + ")");
+		} else {
+			this.phaseLabel.setText(this.phase);
+		}
 	}
 	
 	public String generatePlayerTurnString() {

@@ -19,6 +19,7 @@ public class ArmyListener implements MouseListener {
 	static Image soldierSelectedImage = null;
 	static Image scaledImage = null;
 	static Image scaledSelectedImage = null;
+	private boolean isSelected;
 	
 	public ArmyListener(Army a) {
 		this.army = a;
@@ -34,30 +35,33 @@ public class ArmyListener implements MouseListener {
 		}
 		soldierIcon = new ImageIcon(scaledImage);
 		soldierSelectedIcon = new ImageIcon(scaledSelectedImage);
+		this.isSelected = false;
 	}
 	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		RiskBoard board = army.getBoard();
 		if (board.getPhase().equals("Combat Phase")) {
-			if (board.getBattleSetup().isEmpty())
+			if(!isSelected) {
+				JButton b = (JButton) arg0.getComponent();
+				b.setIcon(soldierSelectedIcon);
+				isSelected = true;
+			}
+			if (board.getBattleSetup().isEmpty()) {
 				board.getBattleSetup().add(0, army);
-			else {
+			} else {
 				if (!board.getBattleSetup().get(0).equals(army)) {
 					Battle battle = null;
 					try {
 						battle = new Battle(board.getBattleSetup().get(0), army);
 					} catch (Exception e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					try {
 						battle.display();
 						board.getFrame().setVisible(false);
 						battle.getFrame().revalidate();
-						//board.getFrame().setVisible(true);
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
@@ -66,6 +70,7 @@ public class ArmyListener implements MouseListener {
 		} else {
 			if(board.getCurrentPlayer() == army.getOwner()&&board.getNumberDeployed() < board.getNumberAllowed()) {
 				board.increaseNumberDeployed();
+				board.updateMenuBar();
 				army.setArmySize(army.getArmySize()+1);
 				army.getRootPane().repaint();
 			}			
@@ -74,16 +79,20 @@ public class ArmyListener implements MouseListener {
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
-		JButton b = (JButton) arg0.getComponent();
-		b.setIcon(soldierSelectedIcon);
-		b.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		if(!isSelected) {
+			JButton b = (JButton) arg0.getComponent();
+			b.setIcon(soldierSelectedIcon);
+			b.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		}
 	}
 
 	@Override
 	public void mouseExited(MouseEvent arg0) {
-		JButton b = (JButton) arg0.getComponent();
-		b.setIcon(soldierIcon);
-		b.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
+		if(!isSelected) {
+			JButton b = (JButton) arg0.getComponent();
+			b.setIcon(soldierIcon);
+			b.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
+		}
 	}
 
 	@Override
