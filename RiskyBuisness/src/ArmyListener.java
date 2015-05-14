@@ -10,7 +10,6 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-
 public class ArmyListener implements MouseListener {
 	private Army army;
 	private Icon soldierIcon;
@@ -19,35 +18,32 @@ public class ArmyListener implements MouseListener {
 	static Image soldierSelectedImage = null;
 	static Image scaledImage = null;
 	static Image scaledSelectedImage = null;
-	private boolean isSelected;
-	
+
 	public ArmyListener(Army a) {
 		this.army = a;
-		if(soldierImage == null) {
+		if (soldierImage == null) {
 			try {
 				soldierImage = ImageIO.read(new File("soldier.png"));
-				soldierSelectedImage = ImageIO.read(new File("soldier_selected.png"));
+				soldierSelectedImage = ImageIO.read(new File(
+						"soldier_selected.png"));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			scaledImage = soldierImage.getScaledInstance(20, 40, Image.SCALE_SMOOTH);
-			scaledSelectedImage = soldierSelectedImage.getScaledInstance(20, 40, Image.SCALE_SMOOTH);
+			scaledImage = soldierImage.getScaledInstance(20, 40,
+					Image.SCALE_SMOOTH);
+			scaledSelectedImage = soldierSelectedImage.getScaledInstance(20,
+					40, Image.SCALE_SMOOTH);
 		}
 		soldierIcon = new ImageIcon(scaledImage);
 		soldierSelectedIcon = new ImageIcon(scaledSelectedImage);
-		this.isSelected = false;
 	}
-	
+
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		RiskBoard board = army.getBoard();
 		if (board.getPhase().equals("Combat Phase")) {
-			if(!isSelected) {
-				JButton b = (JButton) arg0.getComponent();
-				b.setIcon(soldierSelectedIcon);
-				isSelected = true;
-			}
-			if (board.getBattleSetup().isEmpty()) {
+			if (board.getCurrentPlayer() == army.getOwner()
+					&& board.getBattleSetup().isEmpty()) {
 				board.getBattleSetup().add(0, army);
 			} else {
 				if (!board.getBattleSetup().get(0).equals(army)) {
@@ -65,46 +61,43 @@ public class ArmyListener implements MouseListener {
 						e.printStackTrace();
 					}
 				}
-				board.getBattleSetup().remove(0);
+				board.getBattleSetup().clear();
 			}
 		} else {
-			if(board.getCurrentPlayer() == army.getOwner()&&board.getNumberDeployed() < board.getNumberAllowed()) {
+			if (board.getCurrentPlayer() == army.getOwner()
+					&& board.getNumberDeployed() < board.getNumberAllowed()) {
 				board.increaseNumberDeployed();
 				board.updateMenuBar();
-				army.setArmySize(army.getArmySize()+1);
+				army.setArmySize(army.getArmySize() + 1);
 				army.getRootPane().repaint();
-			}			
+			}
 		}
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
-		if(!isSelected) {
-			JButton b = (JButton) arg0.getComponent();
-			b.setIcon(soldierSelectedIcon);
-			b.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		}
+		JButton b = (JButton) arg0.getComponent();
+		b.setIcon(soldierSelectedIcon);
+		b.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
 
 	@Override
 	public void mouseExited(MouseEvent arg0) {
-		if(!isSelected) {
-			JButton b = (JButton) arg0.getComponent();
-			b.setIcon(soldierIcon);
-			b.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
-		}
+		JButton b = (JButton) arg0.getComponent();
+		b.setIcon(soldierIcon);
+		b.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
 	}
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
