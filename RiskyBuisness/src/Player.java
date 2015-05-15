@@ -70,6 +70,44 @@ public class Player {
 		return this.cards;
 	}
 
+	public void removeCards(int i, int j, int k) {
+		System.out.println("Size: " + this.cards.size());
+		int removeArt = i;
+		int removeCav = j;
+		int removeWar = k;
+		System.out.println("Inside method");
+		while (removeArt > 0) {
+			for (int a = 0; a < this.cards.size(); a++) {
+				if (this.cards.get(a).getType().equals("artillery")) {
+					this.cards.remove(a);
+//					System.out.println("Removed art");
+					removeArt--;
+//					System.out.println(removeArt);
+				}
+			}
+		}
+		while (removeCav > 0) {
+			for (int b = 0; b < this.cards.size(); b++) {
+				if (this.cards.get(b).getType().equals("cavalry")) {
+					this.cards.remove(b);
+//					System.out.println("Removed cav");
+					removeCav--;
+//					System.out.println(removeCav);
+				}
+			}
+		}
+		while (removeWar > 0) {
+			for (int c = 0; c < this.cards.size(); c++) {
+				if (this.cards.get(c).getType().equals("warior")) {
+					this.cards.remove(c);
+//					System.out.println("Removed war");
+					removeWar--;
+//					System.out.println(removeWar);
+				}
+			}
+		}
+	}
+
 //	public ArrayList<Army> getArmies() {
 //		return this.armies;
 //	}

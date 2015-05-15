@@ -871,15 +871,16 @@ public class RiskBoard {
 		int war = 0;
 		int loop = 0;
 		while (loop < localP.getCards().size()) {
-			if(localP.getCards().get(loop).getType() == "artillery") {
+			if(localP.getCards().get(loop).getType().equals("artillery")) {
 				art++;
-			} else if (localP.getCards().get(loop).getType() == "cavalry") {
+			} else if (localP.getCards().get(loop).getType().equals("cavalry")) {
 				cav++;
-			} else if (localP.getCards().get(loop).getType() == "warior") {
+			} else if (localP.getCards().get(loop).getType().equals("warior")) {
 				war++;
 			}
 			if(art == 1 && cav == 1 && war == 1) {
-				// remove 1 of each
+//				System.out.println("Removing One of each Card");
+				localP.removeCards(art, cav, war);
 			} else if (art == 3) {
 				//remove 3 art
 			} else if (cav == 3) {
