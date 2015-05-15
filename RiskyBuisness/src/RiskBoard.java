@@ -210,6 +210,7 @@ public class RiskBoard {
 				p.addCard(c1);
 				p.addCard(c2);
 				p.addCard(c3);
+				// TODO: What is this.cards for?
 				this.cards.add(c1);
 				this.cards.add(c2);
 				this.cards.add(c3);
@@ -748,7 +749,7 @@ public class RiskBoard {
 		checkForVictory();
 		getNextPlayer();
 		updateMenuBar();
-		System.out.println("Before or after repaint?");
+		//System.out.println("Before or after repaint?");
 		//panel.repaint();
 	}
 	
@@ -812,6 +813,32 @@ public class RiskBoard {
 
 	public int getNumberAllowed() {
 		return this.numberAllowed;
+	}
+	
+	public void giveWinnerCard(Player localP) {
+		Random gen = new Random(3);
+		int cardNum = gen.nextInt() + 1;
+		switch (cardNum) {
+			case 1:
+				Card c1 = new Card("artillery", localP);
+				c1.addMouseListener(new CardListener(c1));
+				localP.addCard(c1);
+				this.cards.add(c1);
+			case 2:
+				Card c2 = new Card("cavalry", localP);
+				c2.addMouseListener(new CardListener(c2));
+				localP.addCard(c2);
+				this.cards.add(c2);
+			case 3:
+				Card c3 = new Card ("warior", localP);
+				c3.addMouseListener(new CardListener(c3));
+				localP.addCard(c3);
+				this.cards.add(c3);
+		}
+		System.out.println("Gave Card");
+		if(localP.getCards().size() == 5) {
+			//TODO: force deploy
+		}
 	}
 	
 }

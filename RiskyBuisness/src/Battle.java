@@ -169,6 +169,8 @@ public class Battle {
 				@SuppressWarnings("unchecked")
 				JComboBox<Object> cb = (JComboBox<Object>) arg.getSource();
 				int num = (int) cb.getSelectedItem();
+				// TODO: Need to check attacker.getArmySize() to decide what happens 
+				// when an attacker runs out of armies.
 				AttackerDice = num;
 			}
 		});
@@ -237,6 +239,9 @@ public class Battle {
 								.getSource();
 						int numberToSend = (int) cb.getSelectedItem();
 						conquer(numberToSend);
+						// TODO: Winner needs to get a card.
+						localBoard.giveWinnerCard(attacker.getOwner());
+						
 						localBoard.getFrame().setVisible(true);
 						localBoard.getFrame().revalidate();
 						localBoard.getFrame().repaint();
