@@ -1893,4 +1893,10 @@ public class Tests {
 		board.initialGame(1);
 		assertEquals(24, board.accountForCountries());
 	}
+	@Test
+	public void cardsClassConstructorTest() throws IOException {
+		Player p = new Player("test", Color.BLACK);
+		Card cavalry = new Card("cavalry", p);
+		assertTrue(cavalry != null);
+	}
 }
