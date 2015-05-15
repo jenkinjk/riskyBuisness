@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.List;
 
 //Just a data class for now. Won't stay that way!
 public class Player {
@@ -8,16 +9,21 @@ public class Player {
 	private Color color;
 	private int numberOfTerritories;
 	private int numberOfArmies;
+	private int numberOfCards;
 	private ArrayList<Territory> territories;
 	private ArrayList<Army> armies;
+	private ArrayList<Card> cards;
+	
 
 	public Player(String name, Color color) {
 		this.name = name;
 		this.color = color;
 		this.numberOfTerritories = 0;
 		this.numberOfArmies = 0;
+		this.numberOfCards = 0;
 		this.territories = new ArrayList<Territory>();
 		this.armies = new ArrayList<Army>();
+		this.cards = new ArrayList<Card>();
 	}
 
 	public void addTerritory(Territory t) {
@@ -28,6 +34,11 @@ public class Player {
 	public void addArmy(Army a) {
 		this.armies.add(a);
 		this.numberOfArmies++;
+	}
+	
+	public void addCard(Card c) {
+		this.cards.add(c);
+		this.numberOfCards++;
 	}
 
 	public String getName() {
@@ -55,15 +66,11 @@ public class Player {
 		this.numberOfTerritories--;
 	}
 
+	public ArrayList<Card> getCards() {
+		return this.cards;
+	}
+
 //	public ArrayList<Army> getArmies() {
 //		return this.armies;
-//	}
-//
-//	public String listTerritories() {
-//		String listOfTerretories = "\n";
-//		for (Territory t : this.territories) {
-//			listOfTerretories += t.getName() + "\n";
-//		}
-//		return listOfTerretories;
 //	}
 }

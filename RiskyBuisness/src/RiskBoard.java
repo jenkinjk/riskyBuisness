@@ -67,6 +67,7 @@ public class RiskBoard {
 		NA = new ArrayList<Territory>();
 		SA = new ArrayList<Territory>();
 		armies = new ArrayList<Army>();
+		cards = new ArrayList<Card>();
 		nameToNeigbhors = new HashMap<String, ArrayList<Territory>>();
 		nameToCoordinates = new HashMap<String, Point>();
 		this.currentPlayer = null;
@@ -191,7 +192,15 @@ public class RiskBoard {
 	private void setUpCard() {
 		//Note: to begin, each player gets 3 cards
 		for (Player p : players) {
-			
+			Card c1 = new Card("artillery", p);
+			Card c2 = new Card("calvary", p);
+			Card c3 = new Card("soldier", p);
+			p.addCard(c1);
+			p.addCard(c2);
+			p.addCard(c3);
+			this.cards.add(c1);
+			this.cards.add(c2);
+			this.cards.add(c3);
 		}
 	}
 

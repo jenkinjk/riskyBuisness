@@ -1905,7 +1905,7 @@ public class Tests {
 		board.initialGame(fInput);
 		
 		for(int i=0; i < fInput; i++) {
-			assertEquals(3, board.getPlayers().get(i).getCard().size());
+			assertEquals(3, board.getPlayers().get(i).getCards().size());
 		}
 	}
 }
