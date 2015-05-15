@@ -1920,44 +1920,21 @@ public class Tests {
 		assertEquals(board.getPlayers().get(0).getCards().size(), 0);
 	}
 	@Test
-	public void removeThreeArtTest() {
+	public void removeThreeTest() {
+		removeThreeRunner("artillery", 3, 0, 0);
+		removeThreeRunner("cavalry", 0, 3, 0);
+		removeThreeRunner("warior", 0, 0, 3);
+	}
+	private void removeThreeRunner(String name, int i, int j, int k) {
+		// TODO Auto-generated method stub
 		RiskBoard board = new RiskBoard();
 		board.initialGame(fInput);
 		
-		Card c1 = new Card("artillery", board.getPlayers().get(0));
+		Card c1 = new Card(name, board.getPlayers().get(0));
 		c1.addMouseListener(new CardListener(c1));
 		board.getPlayers().get(0).addCard(c1);
 		board.getPlayers().get(0).addCard(c1);
-		board.getPlayers().get(0).removeCards(3, 0, 0);
+		board.getPlayers().get(0).removeCards(i, j, k);
 		assertEquals(board.getPlayers().get(0).getCards().size(), 2);
 	}
-	@Test
-	public void removeThreeCavTest() {
-		RiskBoard board = new RiskBoard();
-		board.initialGame(fInput);
-		
-		Card c1 = new Card("cavalry", board.getPlayers().get(0));
-		c1.addMouseListener(new CardListener(c1));
-		board.getPlayers().get(0).addCard(c1);
-		board.getPlayers().get(0).addCard(c1);
-		board.getPlayers().get(0).removeCards(0, 3, 0);
-		assertEquals(board.getPlayers().get(0).getCards().size(), 2);
-	}
-	@Test
-	public void removeThreeWarTest() {
-		RiskBoard board = new RiskBoard();
-		board.initialGame(fInput);
-		
-		Card c1 = new Card("warior", board.getPlayers().get(0));
-		c1.addMouseListener(new CardListener(c1));
-		board.getPlayers().get(0).addCard(c1);
-		board.getPlayers().get(0).addCard(c1);
-		board.getPlayers().get(0).removeCards(0, 0, 3);
-		assertEquals(board.getPlayers().get(0).getCards().size(), 2);
-	}
-	
-//	Card c2 = new Card("cavalry", localP);
-//	c2.addMouseListener(new CardListener(c2));
-//	localP.addCard(c2);
-//	c2.setIcon(cavalryIcon);
 }
