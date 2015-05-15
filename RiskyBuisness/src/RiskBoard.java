@@ -861,7 +861,33 @@ public class RiskBoard {
 //		}
 		System.out.println("Gave Card " + "Size: " + localP.getCards().size() + "CardNum: " + cardNum);
 		if(localP.getCards().size() == 5) {
-			//TODO: force deploy
+			forceDeployment(localP);
+		}
+	}
+	
+	private void forceDeployment (Player localP) {
+		int art = 0;
+		int cav = 0;
+		int war = 0;
+		int loop = 0;
+		while (loop < localP.getCards().size()) {
+			if(localP.getCards().get(loop).getType() == "artillery") {
+				art++;
+			} else if (localP.getCards().get(loop).getType() == "cavalry") {
+				cav++;
+			} else if (localP.getCards().get(loop).getType() == "warior") {
+				war++;
+			}
+			if(art == 1 && cav == 1 && war == 1) {
+				// remove 1 of each
+			} else if (art == 3) {
+				//remove 3 art
+			} else if (cav == 3) {
+				// remove 3 cav
+			} else if (war == 3) {
+				// remove 3 war
+			}
+			loop++;
 		}
 	}
 	

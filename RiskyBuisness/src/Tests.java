@@ -1911,4 +1911,15 @@ public class Tests {
 			assertEquals(3, board.getPlayers().get(i).getCards().size());
 		}
 	}
+	public void removeCardsTest() {
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		
+		board.getPlayers().get(0).removeCards(1, 1, 1);
+		assertEquals(board.getPlayers().get(0).getCards(), new ArrayList<Card>());
+	}
+//	Card c2 = new Card("cavalry", localP);
+//	c2.addMouseListener(new CardListener(c2));
+//	localP.addCard(c2);
+//	c2.setIcon(cavalryIcon);
 }
