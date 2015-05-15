@@ -6,6 +6,7 @@
 .project
 .metadata
 bin/
+riskyBuisness/bin/
 tmp/
 *.tmp
 *.bak
