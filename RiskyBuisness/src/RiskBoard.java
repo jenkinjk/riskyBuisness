@@ -38,6 +38,7 @@ public class RiskBoard {
 	private ArrayList<Territory> NA;
 	private ArrayList<Territory> SA;
 	private ArrayList<Army> armies;
+	private ArrayList<Card> cards;
 	private HashMap<String, ArrayList<Territory>> nameToNeigbhors;
 	private HashMap<String, Point> nameToCoordinates;
 	private Player currentPlayer;
@@ -117,6 +118,7 @@ public class RiskBoard {
 		this.numberOfPlayers = numberOfPlayers;
 		setUpPlayers();
 		setUpTerritories();
+		setUpCard();
 		setUpArmy();
 		getNextPlayer();
 		checkForVictory();
@@ -183,6 +185,13 @@ public class RiskBoard {
 			randomPlayer().addTerritory(t);
 			assignNeighbors(t);
 			assignCoordinates(t);
+		}
+	}
+	
+	private void setUpCard() {
+		//Note: to begin, each player gets 3 cards
+		for (Player p : players) {
+			
 		}
 	}
 

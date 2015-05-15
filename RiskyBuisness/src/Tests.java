@@ -1899,4 +1899,13 @@ public class Tests {
 		Card cavalry = new Card("cavalry", p);
 		assertTrue(cavalry != null);
 	}
+	@Test
+	public void setUpCardTest() throws IOException {
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		
+		for(int i=0; i < fInput; i++) {
+			assertEquals(3, board.getPlayers().get(i).getCard().size());
+		}
+	}
 }
