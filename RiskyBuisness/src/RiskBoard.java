@@ -584,7 +584,8 @@ public class RiskBoard {
 				//Draw cards
 				int i = 10;
 				for(Card c : RiskBoard.this.currentPlayer.getCards()) {
-					c.drawOn(g, i);
+					c.setBounds(i, c.getY(), c.getW(), c.getH());
+					c.paint(g);
 					i+=80;
 				}
 			}

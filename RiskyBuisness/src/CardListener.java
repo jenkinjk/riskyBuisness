@@ -1,3 +1,4 @@
+import java.awt.Cursor;
 import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -7,6 +8,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 
 public class CardListener implements MouseListener {
@@ -69,20 +71,19 @@ public class CardListener implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("heello");
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
+		JButton b = (JButton) arg0.getComponent();
+		b.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
 
 	@Override
 	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
+		JButton b = (JButton) arg0.getComponent();
+		b.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
 	}
 
 	@Override

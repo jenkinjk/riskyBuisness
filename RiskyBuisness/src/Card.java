@@ -41,7 +41,8 @@ public class Card extends JButton {
 		this.owner = owner;
 	}
 	
-	public void drawOn(Graphics g, int x) {
+	@Override
+	public void paint(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		Container parent = this.getParent();
 		
