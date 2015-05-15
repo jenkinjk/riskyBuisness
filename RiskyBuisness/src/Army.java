@@ -90,7 +90,7 @@ public class Army extends JButton {
 	public void paint(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setPaint(this.owner.getColor());
-		g2.fillRect(x, y + 40, 20, 5);
+		g2.fillRect(x, y + this.h, this.w, 5);
 		
 		Container parent = this.getParent();
 		

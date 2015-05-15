@@ -43,6 +43,7 @@ public class RiskBoard {
 	private HashMap<String, Point> nameToCoordinates;
 	private Player currentPlayer;
 	private JFrame frame;
+	private JPanel panel;
 	private ArrayList<Army> setupBattle;
 	private String phase = "";
 	private JLabel playerColorBox;
@@ -192,15 +193,28 @@ public class RiskBoard {
 	private void setUpCard() {
 		//Note: to begin, each player gets 3 cards
 		for (Player p : players) {
-			Card c1 = new Card("artillery", p);
-			Card c2 = new Card("calvary", p);
-			Card c3 = new Card("soldier", p);
-			p.addCard(c1);
-			p.addCard(c2);
-			p.addCard(c3);
-			this.cards.add(c1);
-			this.cards.add(c2);
-			this.cards.add(c3);
+			if(p.getName() == "Player Two") {
+				//TODO: delete this afterward
+				// Just so you can see the difference
+				Card c1 = new Card("artillery", p);
+				c1.addMouseListener(new CardListener(c1));
+				p.addCard(c1);
+				this.cards.add(c1);
+			} else {
+				Card c1 = new Card("artillery", p);
+				Card c2 = new Card("cavalry", p);
+				Card c3 = new Card("warior", p);
+				c1.addMouseListener(new CardListener(c1));
+				c2.addMouseListener(new CardListener(c2));
+				c3.addMouseListener(new CardListener(c3));
+				p.addCard(c1);
+				p.addCard(c2);
+				p.addCard(c3);
+				this.cards.add(c1);
+				this.cards.add(c2);
+				this.cards.add(c3);
+			}
+			
 		}
 	}
 
@@ -556,15 +570,22 @@ public class RiskBoard {
 		frame.setVisible(true);
 		frame.setResizable(false);
 		
-		JPanel panel = new JPanel() {
+		panel = new JPanel() {
 			private Image backgroundImage = ImageIO.read(new File("risk.png"));
 			@Override
 			public void paint(Graphics g) {
 				super.paint(g);
 				g.drawImage(backgroundImage, 0, 30, null);
 				g.drawRect(0, 710, 1025, 120);
-				for (Army a : RiskBoard.this.armies) {
+				//Draw armies
+				for(Army a : RiskBoard.this.armies) {
 					a.paint(g);
+				}
+				//Draw cards
+				int i = 10;
+				for(Card c : RiskBoard.this.currentPlayer.getCards()) {
+					c.drawOn(g, i);
+					i+=80;
 				}
 			}
 		};
@@ -603,7 +624,7 @@ public class RiskBoard {
 		panel.add(this.phaseChangeButton);
 		
 		/*
-		 * Draw army icons
+		 * Set up army icons
 		 * 
 		 */
 		Image soldierImage = ImageIO.read(new File("soldier.png"));
@@ -617,8 +638,32 @@ public class RiskBoard {
 		}
 		
 		/*
-		 * Draw cards
+		 * Set up cards icons
 		 */
+		
+		//Load images
+		Image artilleryImage = ImageIO.read(new File("artillery.png"));
+		Image scaledArtilleryImage = artilleryImage.getScaledInstance(70, 90, Image.SCALE_SMOOTH);
+		Icon artilleryIcon = new ImageIcon(scaledArtilleryImage);
+		
+		Image cavalryImage = ImageIO.read(new File("cavalry.png"));
+		Image scaledCavalryImage = cavalryImage.getScaledInstance(70, 90, Image.SCALE_SMOOTH);
+		Icon cavalryIcon = new ImageIcon(scaledCavalryImage);
+		
+		Image wariorImage = ImageIO.read(new File("warior.png"));
+		Image scaledWariorImage = wariorImage.getScaledInstance(70, 90, Image.SCALE_SMOOTH);
+		Icon wariorIcon = new ImageIcon(scaledWariorImage);
+		
+		for(Card c : this.cards) {
+			if(c.getType() == "artillery") {
+				c.setIcon(artilleryIcon);
+			} else if (c.getType() == "cavalry") {
+				c.setIcon(cavalryIcon);
+			} else {
+				c.setIcon(wariorIcon);
+			}
+			panel.add(c);
+		}
 		
 		
 		frame.setContentPane(panel);
@@ -703,6 +748,7 @@ public class RiskBoard {
 		checkForVictory();
 		getNextPlayer();
 		updateMenuBar();
+		panel.repaint();
 	}
 	
 	private void calculateNumberDeployable() {
