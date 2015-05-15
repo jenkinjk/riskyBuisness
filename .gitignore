@@ -7,6 +7,7 @@
 .metadata
 bin/
 riskyBuisness/bin/
+RiskyBuisness/bin/
 tmp/
 *.tmp
 *.bak
