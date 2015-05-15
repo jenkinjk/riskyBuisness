@@ -193,14 +193,14 @@ public class RiskBoard {
 	private void setUpCard() {
 		//Note: to begin, each player gets 3 cards
 		for (Player p : players) {
-			if(p.getName() == "Player Two") {
-				//TODO: delete this afterward
-				// Just so you can see the difference
-				Card c1 = new Card("artillery", p);
-				c1.addMouseListener(new CardListener(c1));
-				p.addCard(c1);
-				this.cards.add(c1);
-			} else {
+//			if(p.getName() == "Player Two") {
+//				//TODO: delete this afterward
+//				// Just so you can see the difference
+//				Card c1 = new Card("artillery", p);
+//				c1.addMouseListener(new CardListener(c1));
+//				p.addCard(c1);
+//				this.cards.add(c1);
+//			} else {
 				Card c1 = new Card("artillery", p);
 				Card c2 = new Card("cavalry", p);
 				Card c3 = new Card("warior", p);
@@ -213,8 +213,7 @@ public class RiskBoard {
 				this.cards.add(c1);
 				this.cards.add(c2);
 				this.cards.add(c3);
-			}
-			
+//			}		
 		}
 	}
 
@@ -749,7 +748,8 @@ public class RiskBoard {
 		checkForVictory();
 		getNextPlayer();
 		updateMenuBar();
-		panel.repaint();
+		System.out.println("Before or after repaint?");
+		//panel.repaint();
 	}
 	
 	private void calculateNumberDeployable() {
