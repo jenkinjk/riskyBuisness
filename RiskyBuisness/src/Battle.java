@@ -70,6 +70,19 @@ public class Battle {
 			AttackerDiceOptions[i - 1] = i;
 		}
 		return AttackerDiceOptions;
+		//TODO: Tests should be edited for this control logic -
+//		int size;
+//		if (attacker.getArmySize() != 2 && attacker.getArmySize() != 3)
+//			size = 4;
+//		else if (attacker.getArmySize() == 3)
+//			size = 3;
+//		else
+//			size = 2;
+//		Integer[] AttackerDiceOptions = new Integer[size];
+//		for (int i = 1; i < size; i++) {
+//			AttackerDiceOptions[i - 1] = i;
+//		}
+//		return AttackerDiceOptions;
 	}
 
 	public Battle() {
@@ -169,6 +182,8 @@ public class Battle {
 				@SuppressWarnings("unchecked")
 				JComboBox<Object> cb = (JComboBox<Object>) arg.getSource();
 				int num = (int) cb.getSelectedItem();
+				// TODO: Need to check attacker.getArmySize() to decide what happens 
+				// when an attacker runs out of armies.
 				AttackerDice = num;
 			}
 		});
@@ -237,6 +252,14 @@ public class Battle {
 								.getSource();
 						int numberToSend = (int) cb.getSelectedItem();
 						conquer(numberToSend);
+						// TODO: Winner needs to get a card.
+						try {
+							localBoard.giveWinnerCard(attacker.getOwner());
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						
 						localBoard.getFrame().setVisible(true);
 						localBoard.getFrame().revalidate();
 						localBoard.getFrame().repaint();

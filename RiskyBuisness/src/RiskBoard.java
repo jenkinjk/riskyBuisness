@@ -193,14 +193,14 @@ public class RiskBoard {
 	private void setUpCard() {
 		//Note: to begin, each player gets 3 cards
 		for (Player p : players) {
-			if(p.getName() == "Player Two") {
-				//TODO: delete this afterward
-				// Just so you can see the difference
-				Card c1 = new Card("artillery", p);
-				c1.addMouseListener(new CardListener(c1));
-				p.addCard(c1);
-				this.cards.add(c1);
-			} else {
+//			if(p.getName() == "Player Two") {
+//				//TODO: delete this afterward
+//				// Just so you can see the difference
+//				Card c1 = new Card("artillery", p);
+//				c1.addMouseListener(new CardListener(c1));
+//				p.addCard(c1);
+//				this.cards.add(c1);
+//			} else {
 				Card c1 = new Card("artillery", p);
 				Card c2 = new Card("cavalry", p);
 				Card c3 = new Card("warior", p);
@@ -210,11 +210,11 @@ public class RiskBoard {
 				p.addCard(c1);
 				p.addCard(c2);
 				p.addCard(c3);
+				// TODO: What is this.cards for?
 				this.cards.add(c1);
 				this.cards.add(c2);
 				this.cards.add(c3);
-			}
-			
+//			}		
 		}
 	}
 
@@ -749,7 +749,8 @@ public class RiskBoard {
 		checkForVictory();
 		getNextPlayer();
 		updateMenuBar();
-		panel.repaint();
+		//System.out.println("Before or after repaint?");
+		//panel.repaint();
 	}
 	
 	private void calculateNumberDeployable() {
@@ -812,6 +813,89 @@ public class RiskBoard {
 
 	public int getNumberAllowed() {
 		return this.numberAllowed;
+	}
+	
+	public void giveWinnerCard(Player localP) throws IOException {
+		Image artilleryImage = ImageIO.read(new File("artillery.png"));
+		Image scaledArtilleryImage = artilleryImage.getScaledInstance(70, 90, Image.SCALE_SMOOTH);
+		Icon artilleryIcon = new ImageIcon(scaledArtilleryImage);
+		
+		Image cavalryImage = ImageIO.read(new File("cavalry.png"));
+		Image scaledCavalryImage = cavalryImage.getScaledInstance(70, 90, Image.SCALE_SMOOTH);
+		Icon cavalryIcon = new ImageIcon(scaledCavalryImage);
+		
+		Image wariorImage = ImageIO.read(new File("warior.png"));
+		Image scaledWariorImage = wariorImage.getScaledInstance(70, 90, Image.SCALE_SMOOTH);
+		Icon wariorIcon = new ImageIcon(scaledWariorImage);
+		
+		Random gen = new Random();
+//		int cardNum = gen.nextInt(4);
+		int cardNum = 0;
+		switch (cardNum) {
+			case 1:
+				Card c1 = new Card("artillery", localP);
+				c1.addMouseListener(new CardListener(c1));
+				localP.addCard(c1);
+				c1.setIcon(artilleryIcon);
+				this.cards.add(c1);
+			case 2:
+				Card c2 = new Card("cavalry", localP);
+				c2.addMouseListener(new CardListener(c2));
+				localP.addCard(c2);
+				c2.setIcon(cavalryIcon);
+				this.cards.add(c2);
+			case 3:
+				Card c3 = new Card ("warior", localP);
+				c3.addMouseListener(new CardListener(c3));
+				localP.addCard(c3);
+				c3.setIcon(wariorIcon);
+				this.cards.add(c3);
+		}
+//		for(Card c : this.cards) {
+//			if(c.getType() == "artillery") {
+//				
+//			} else if (c.getType() == "cavalry") {
+//				
+//			} else {
+//				
+//			}
+//		}
+		System.out.println("Gave Card " + "Size: " + localP.getCards().size() + "CardNum: " + cardNum);
+		if(localP.getCards().size() == 5) {
+			forceDeployment(localP);
+		}
+	}
+	
+	private void forceDeployment (Player localP) {
+		int art = 0;
+		int cav = 0;
+		int war = 0;
+		int loop = 0;
+		// TODO: Add in deployment to their next turn
+		while (loop < localP.getCards().size()) {
+			if(localP.getCards().get(loop).getType().equals("artillery")) {
+				art++;
+			} else if (localP.getCards().get(loop).getType().equals("cavalry")) {
+				cav++;
+			} else if (localP.getCards().get(loop).getType().equals("warior")) {
+				war++;
+			}
+			if(art == 1 && cav == 1 && war == 1) {
+//				System.out.println("Removing One of each Card");
+				localP.removeCards(art, cav, war);
+				break;
+			} else if (art == 3) {
+				localP.removeCards(art, cav, war);
+				break;
+			} else if (cav == 3) {
+				localP.removeCards(art, cav, war);
+				break;
+			} else if (war == 3) {
+				localP.removeCards(art, cav, war);
+				break;
+			}
+			loop++;
+		}
 	}
 	
 }

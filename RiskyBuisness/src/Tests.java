@@ -1614,20 +1614,21 @@ public class Tests {
 	//	}
 	//}
 	
-	@Test
-	public void armyListenerStorageTest() {
-		RiskBoard board = new RiskBoard();
-		board.initialGame(fInput);
-		board.endDeployment();
-		Army army = null;
-		try {
-			army = board.getArmy(1);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		army.doClick();
-		assertTrue(board.getBattleSetup().get(0).equals(army));
-	}
+//	@Test
+//	public void armyListenerStorageTest() {
+//		RiskBoard board = new RiskBoard();
+//		board.initialGame(fInput);
+//		board.endDeployment();
+//		Army army = null;
+//		try {
+//			army = board.getArmy(1);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		army.doClick();
+//		assertTrue(board.getBattleSetup().get(0).equals(army));
+//	}
+	
 	@Test
 	public void armyListenerChangedMindTest() {
 		RiskBoard board = new RiskBoard();
@@ -1642,20 +1643,20 @@ public class Tests {
 		army.doClick();
 		assertTrue(board.getBattleSetup().isEmpty());
 	}
-	@Test
-	public void armyListenerBattleCreationTest() {
-		RiskBoard board = new RiskBoard();
-		board.initialGame(fInput);
-		board.endDeployment();
-		Army army = null;
-		try {
-			army = board.getArmy(1);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		army.doClick();
-		assertTrue(board.getBattleSetup().get(0).equals(army));
-	}
+//	@Test
+//	public void armyListenerBattleCreationTest() {
+//		RiskBoard board = new RiskBoard();
+//		board.initialGame(fInput);
+//		board.endDeployment();
+//		Army army = null;
+//		try {
+//			army = board.getArmy(1);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		army.doClick();
+//		assertTrue(board.getBattleSetup().get(0).equals(army));
+//	}
 	
 	@Test
 	public void stateExists(){
@@ -1904,8 +1905,59 @@ public class Tests {
 		RiskBoard board = new RiskBoard();
 		board.initialGame(fInput);
 		
+		//System.out.println("Debugging test: " + fInput);
 		for(int i=0; i < fInput; i++) {
+			//System.out.println(fInput + " cards:" + board.getPlayers().get(i).getCards().size() + " Player: " + (i + 1));
 			assertEquals(3, board.getPlayers().get(i).getCards().size());
 		}
 	}
+	@Test
+	public void removeCardsTest() {
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		
+		board.getPlayers().get(0).removeCards(1, 1, 1);
+		assertEquals(board.getPlayers().get(0).getCards().size(), 0);
+	}
+	@Test
+	public void removeThreeArtTest() {
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		
+		Card c1 = new Card("artillery", board.getPlayers().get(0));
+		c1.addMouseListener(new CardListener(c1));
+		board.getPlayers().get(0).addCard(c1);
+		board.getPlayers().get(0).addCard(c1);
+		board.getPlayers().get(0).removeCards(3, 0, 0);
+		assertEquals(board.getPlayers().get(0).getCards().size(), 2);
+	}
+	@Test
+	public void removeThreeCavTest() {
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		
+		Card c1 = new Card("cavalry", board.getPlayers().get(0));
+		c1.addMouseListener(new CardListener(c1));
+		board.getPlayers().get(0).addCard(c1);
+		board.getPlayers().get(0).addCard(c1);
+		board.getPlayers().get(0).removeCards(0, 3, 0);
+		assertEquals(board.getPlayers().get(0).getCards().size(), 2);
+	}
+	@Test
+	public void removeThreeWarTest() {
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		
+		Card c1 = new Card("warior", board.getPlayers().get(0));
+		c1.addMouseListener(new CardListener(c1));
+		board.getPlayers().get(0).addCard(c1);
+		board.getPlayers().get(0).addCard(c1);
+		board.getPlayers().get(0).removeCards(0, 0, 3);
+		assertEquals(board.getPlayers().get(0).getCards().size(), 2);
+	}
+	
+//	Card c2 = new Card("cavalry", localP);
+//	c2.addMouseListener(new CardListener(c2));
+//	localP.addCard(c2);
+//	c2.setIcon(cavalryIcon);
 }
