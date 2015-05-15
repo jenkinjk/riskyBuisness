@@ -827,6 +827,7 @@ public class RiskBoard {
 		Image wariorImage = ImageIO.read(new File("warior.png"));
 		Image scaledWariorImage = wariorImage.getScaledInstance(70, 90, Image.SCALE_SMOOTH);
 		Icon wariorIcon = new ImageIcon(scaledWariorImage);
+		
 		Random gen = new Random();
 //		int cardNum = gen.nextInt(4);
 		int cardNum = 0;
@@ -882,12 +883,16 @@ public class RiskBoard {
 			if(art == 1 && cav == 1 && war == 1) {
 //				System.out.println("Removing One of each Card");
 				localP.removeCards(art, cav, war);
+				break;
 			} else if (art == 3) {
 				localP.removeCards(art, cav, war);
+				break;
 			} else if (cav == 3) {
 				localP.removeCards(art, cav, war);
+				break;
 			} else if (war == 3) {
 				localP.removeCards(art, cav, war);
+				break;
 			}
 			loop++;
 		}
