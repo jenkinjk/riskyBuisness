@@ -253,7 +253,12 @@ public class Battle {
 						int numberToSend = (int) cb.getSelectedItem();
 						conquer(numberToSend);
 						// TODO: Winner needs to get a card.
-						localBoard.giveWinnerCard(attacker.getOwner());
+						try {
+							localBoard.giveWinnerCard(attacker.getOwner());
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 						
 						localBoard.getFrame().setVisible(true);
 						localBoard.getFrame().revalidate();

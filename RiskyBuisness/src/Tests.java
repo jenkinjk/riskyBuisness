@@ -1905,9 +1905,9 @@ public class Tests {
 		RiskBoard board = new RiskBoard();
 		board.initialGame(fInput);
 		
-		System.out.println("Debugging test: " + fInput);
+		//System.out.println("Debugging test: " + fInput);
 		for(int i=0; i < fInput; i++) {
-			System.out.println(fInput + " cards:" + board.getPlayers().get(i).getCards().size() + " Player: " + (i + 1));
+			//System.out.println(fInput + " cards:" + board.getPlayers().get(i).getCards().size() + " Player: " + (i + 1));
 			assertEquals(3, board.getPlayers().get(i).getCards().size());
 		}
 	}

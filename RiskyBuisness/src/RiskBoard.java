@@ -815,27 +815,51 @@ public class RiskBoard {
 		return this.numberAllowed;
 	}
 	
-	public void giveWinnerCard(Player localP) {
-		Random gen = new Random(3);
-		int cardNum = gen.nextInt() + 1;
+	public void giveWinnerCard(Player localP) throws IOException {
+		Image artilleryImage = ImageIO.read(new File("artillery.png"));
+		Image scaledArtilleryImage = artilleryImage.getScaledInstance(70, 90, Image.SCALE_SMOOTH);
+		Icon artilleryIcon = new ImageIcon(scaledArtilleryImage);
+		
+		Image cavalryImage = ImageIO.read(new File("cavalry.png"));
+		Image scaledCavalryImage = cavalryImage.getScaledInstance(70, 90, Image.SCALE_SMOOTH);
+		Icon cavalryIcon = new ImageIcon(scaledCavalryImage);
+		
+		Image wariorImage = ImageIO.read(new File("warior.png"));
+		Image scaledWariorImage = wariorImage.getScaledInstance(70, 90, Image.SCALE_SMOOTH);
+		Icon wariorIcon = new ImageIcon(scaledWariorImage);
+		Random gen = new Random();
+//		int cardNum = gen.nextInt(4);
+		int cardNum = 0;
 		switch (cardNum) {
 			case 1:
 				Card c1 = new Card("artillery", localP);
 				c1.addMouseListener(new CardListener(c1));
 				localP.addCard(c1);
+				c1.setIcon(artilleryIcon);
 				this.cards.add(c1);
 			case 2:
 				Card c2 = new Card("cavalry", localP);
 				c2.addMouseListener(new CardListener(c2));
 				localP.addCard(c2);
+				c2.setIcon(cavalryIcon);
 				this.cards.add(c2);
 			case 3:
 				Card c3 = new Card ("warior", localP);
 				c3.addMouseListener(new CardListener(c3));
 				localP.addCard(c3);
+				c3.setIcon(wariorIcon);
 				this.cards.add(c3);
 		}
-		System.out.println("Gave Card");
+//		for(Card c : this.cards) {
+//			if(c.getType() == "artillery") {
+//				
+//			} else if (c.getType() == "cavalry") {
+//				
+//			} else {
+//				
+//			}
+//		}
+		System.out.println("Gave Card " + "Size: " + localP.getCards().size() + "CardNum: " + cardNum);
 		if(localP.getCards().size() == 5) {
 			//TODO: force deploy
 		}
