@@ -70,6 +70,19 @@ public class Battle {
 			AttackerDiceOptions[i - 1] = i;
 		}
 		return AttackerDiceOptions;
+		//TODO: Tests should be edited for this control logic -
+//		int size;
+//		if (attacker.getArmySize() != 2 && attacker.getArmySize() != 3)
+//			size = 4;
+//		else if (attacker.getArmySize() == 3)
+//			size = 3;
+//		else
+//			size = 2;
+//		Integer[] AttackerDiceOptions = new Integer[size];
+//		for (int i = 1; i < size; i++) {
+//			AttackerDiceOptions[i - 1] = i;
+//		}
+//		return AttackerDiceOptions;
 	}
 
 	public Battle() {
