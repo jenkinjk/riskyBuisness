@@ -870,6 +870,7 @@ public class RiskBoard {
 		int cav = 0;
 		int war = 0;
 		int loop = 0;
+		// TODO: Add in deployment to their next turn
 		while (loop < localP.getCards().size()) {
 			if(localP.getCards().get(loop).getType().equals("artillery")) {
 				art++;
@@ -882,11 +883,11 @@ public class RiskBoard {
 //				System.out.println("Removing One of each Card");
 				localP.removeCards(art, cav, war);
 			} else if (art == 3) {
-				//remove 3 art
+				localP.removeCards(art, cav, war);
 			} else if (cav == 3) {
-				// remove 3 cav
+				localP.removeCards(art, cav, war);
 			} else if (war == 3) {
-				// remove 3 war
+				localP.removeCards(art, cav, war);
 			}
 			loop++;
 		}

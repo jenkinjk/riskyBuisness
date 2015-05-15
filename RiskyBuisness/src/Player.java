@@ -71,11 +71,11 @@ public class Player {
 	}
 
 	public void removeCards(int i, int j, int k) {
-		System.out.println("Size: " + this.cards.size());
+//		System.out.println("Size: " + this.cards.size());
 		int removeArt = i;
 		int removeCav = j;
 		int removeWar = k;
-		System.out.println("Inside method");
+//		System.out.println("Inside method");
 		while (removeArt > 0) {
 			for (int a = 0; a < this.cards.size(); a++) {
 				if (this.cards.get(a).getType().equals("artillery")) {
