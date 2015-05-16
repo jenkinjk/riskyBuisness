@@ -32,7 +32,7 @@ public class Tests {
 		ArrayList<Player> players = board.getPlayers();
 		assertTrue(playersEquallyDiveded(players));
 	}
-
+	
 	private boolean playersEquallyDiveded(ArrayList<Player> players) {
 		for (Player p : players) {
 			for (Player p2 : players) {
