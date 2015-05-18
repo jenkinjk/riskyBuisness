@@ -1601,12 +1601,12 @@ public class Tests {
 		board.endTurn();
 		board.updateMenuBar();
 		for (int i = 1; i < fInput; i++) {
-			nextPlayer = board.getNextPlayer().getName();
 			board.endDeployment();
+			nextPlayer = board.getCurrentPlayer().getName();
+			assertEquals("Player " + numToNum.get(i + 1), nextPlayer);
 			board.endTurn();
 			board.updateMenuBar();
-			System.out.println(fInput);
-			assertEquals("Player " + numToNum.get(i), nextPlayer);
+			//System.out.println(fInput + " Next:" + nextPlayer);
 			//assertEquals(board.getLabelText(), "Player " + numToNum.get(i + 1) + "'s Turn");
 		}
 	}
@@ -1855,6 +1855,7 @@ public class Tests {
 		if(board.getPlayers().size()!=1)
 		assertEquals(2, board.accountForCountries());
 	}
+	
 	@Test
 	public void accountForCountriesAfrTest() throws IOException {
 		RiskBoard board = new RiskBoard();
@@ -1871,18 +1872,21 @@ public class Tests {
 		if(board.getPlayers().size()!=1)
 		assertEquals(3, board.accountForCountries());
 	}
+	
 	@Test
 	public void accountForMultiContinentsTest() throws IOException {
 		RiskBoard board = new RiskBoard();
 		board.initialGame(1);
 		assertEquals(24, board.accountForCountries());
 	}
+	
 	@Test
 	public void cardsClassConstructorTest() throws IOException {
 		Player p = new Player("test", Color.BLACK);
 		Card cavalry = new Card("cavalry", p);
 		assertTrue(cavalry != null);
 	}
+	
 	@Test
 	public void setUpCardTest() throws IOException {
 		RiskBoard board = new RiskBoard();
@@ -1891,6 +1895,7 @@ public class Tests {
 			assertEquals(3, board.getPlayers().get(i).getCards().size());
 		}
 	}
+	
 	@Test
 	public void removeCardsTest() {
 		RiskBoard board = new RiskBoard();
@@ -1899,12 +1904,14 @@ public class Tests {
 		board.getPlayers().get(0).removeCards(1, 1, 1);
 		assertEquals(board.getPlayers().get(0).getCards().size(), 0);
 	}
+	
 	@Test
 	public void removeThreeTest() {
 		removeThreeRunner("artillery", 3, 0, 0);
 		removeThreeRunner("cavalry", 0, 3, 0);
 		removeThreeRunner("warior", 0, 0, 3);
 	}
+	
 	private void removeThreeRunner(String name, int i, int j, int k) {
 		RiskBoard board = new RiskBoard();
 		board.initialGame(fInput);

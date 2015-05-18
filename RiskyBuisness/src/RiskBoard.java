@@ -862,7 +862,7 @@ public class RiskBoard {
 //			}
 //		}
 		System.out.println("Gave Card " + "Size: " + localP.getCards().size() + "CardNum: " + cardNum);
-		if(localP.getCards().size() == 5) {
+		if(localP.getCards().size() >= 5) {
 			forceDeployment(localP);
 		}
 	}
