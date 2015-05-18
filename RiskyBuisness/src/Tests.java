@@ -1603,8 +1603,8 @@ public class Tests {
 		for (int i = 1; i < fInput; i++) {
 			board.endDeployment();
 			nextPlayer = board.getCurrentPlayer().getName();
-			assertEquals("Player " + numToNum.get(i + 1), nextPlayer);
 			board.endTurn();
+			assertEquals("Player " + numToNum.get(i + 1), nextPlayer);
 			board.updateMenuBar();
 			//System.out.println(fInput + " Next:" + nextPlayer);
 			//assertEquals(board.getLabelText(), "Player " + numToNum.get(i + 1) + "'s Turn");
