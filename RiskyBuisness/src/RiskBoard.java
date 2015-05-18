@@ -50,6 +50,7 @@ public class RiskBoard {
 	private JLabel playerLabel;
 	private JLabel phaseLabel;
 	private JButton phaseChangeButton;
+	private JButton redeemCardButton;
 	private int numberDeployed=0;
 	private int numberAllowed;
 	private int cardArmies=3;
@@ -77,10 +78,7 @@ public class RiskBoard {
 		this.playerLabel = new JLabel();
 		this.phaseLabel = new JLabel();
 		this.phaseChangeButton = new JButton();
-		this.phaseChangeButton.setText("Next Phase");
-		this.phaseChangeButton.setBounds(895, 2, 120, 25);
-		PhaseChangeManager pcm = new PhaseChangeManager(this);
-		this.phaseChangeButton.addActionListener(pcm);
+		this.redeemCardButton = new JButton();
 	}
 
 	private void checkForVictory() {
@@ -197,28 +195,18 @@ public class RiskBoard {
 	private void setUpCard() {
 		//Note: to begin, each player gets 3 cards
 		for (Player p : players) {
-//			if(p.getName() == "Player Two") {
-//				//TODO: delete this afterward
-//				// Just so you can see the difference
-//				Card c1 = new Card("artillery", p);
-//				c1.addMouseListener(new CardListener(c1));
-//				p.addCard(c1);
-//				this.cards.add(c1);
-//			} else {
-				Card c1 = new Card("artillery", p);
-				Card c2 = new Card("cavalry", p);
-				Card c3 = new Card("warior", p);
-				c1.addMouseListener(new CardListener(c1));
-				c2.addMouseListener(new CardListener(c2));
-				c3.addMouseListener(new CardListener(c3));
-				p.addCard(c1);
-				p.addCard(c2);
-				p.addCard(c3);
-				// TODO: What is this.cards for?
-				this.cards.add(c1);
-				this.cards.add(c2);
-				this.cards.add(c3);
-//			}		
+			Card c1 = new Card("artillery", p);
+			Card c2 = new Card("cavalry", p);
+			Card c3 = new Card("warior", p);
+			c1.addMouseListener(new CardListener(c1));
+			c2.addMouseListener(new CardListener(c2));
+			c3.addMouseListener(new CardListener(c3));
+			p.addCard(c1);
+			p.addCard(c2);
+			p.addCard(c3);
+			this.cards.add(c1);
+			this.cards.add(c2);
+			this.cards.add(c3);
 		}
 	}
 
@@ -615,6 +603,10 @@ public class RiskBoard {
 		/*
 		 * Draw change phase button
 		 */
+		phaseChangeButton.setText("Next Phase");
+		phaseChangeButton.setBounds(895, 2, 120, 25);
+		PhaseChangeManager pcm = new PhaseChangeManager(this);
+		phaseChangeButton.addActionListener(pcm);
 		panel.add(this.phaseChangeButton);
 		
 		/*
@@ -665,6 +657,13 @@ public class RiskBoard {
 			c.setBounds(i, c.getY(), c.getW(), c.getH());
 			i+=80;
 		}
+		
+		/*
+		 * Draw Card redeem button
+		 */
+		redeemCardButton.setText("Redeem Cards");
+		redeemCardButton.setBounds(895, 720, 120, 90);
+		panel.add(this.redeemCardButton);
 		
 		frame.setContentPane(panel);
 		panel.setFocusable(true);
