@@ -866,7 +866,7 @@ public class Tests {
 		Player p2 = new Player("2", Color.red);
 		Territory Alaska = board.getTerritoryNamed("Alaska");
 		Territory Kamchatka = board.getTerritoryNamed("Kamchatka");
-		Army a = new Army(p1, Alaska);
+		Army a = new Army(p1, Alaska,7);
 		Army b = new Army(p2, Kamchatka);
 		p1.addArmy(a);
 		p2.addArmy(b);
@@ -1580,54 +1580,51 @@ public class Tests {
 	public void getLabelTextTest() {
 		RiskBoard board = new RiskBoard();
 		board.initialGame(fInput);
-		//System.out.println(board.getCurrentPlayer().toString());
 		assertEquals(board.getLabelText(), "Player One's Turn");
 	}
 	
-	/*
-	 * This test is deprecated now that the logic of changing turn has been implemented differently.
-	 */
 	
-	//@Test
-	//public void getLabelAdvancingLogicTest() {
-	//	RiskBoard board = new RiskBoard();
-	//	board.initialGame(fInput);
-	//	HashMap<Integer, String> numToNum = new HashMap<Integer, String>();
-	//	numToNum.put(1, "One");
-	//	numToNum.put(2, "Two");
-	//	numToNum.put(3, "Three");
-	//  numToNum.put(4, "Four");
-	//	numToNum.put(5, "Five");
-	//	numToNum.put(6, "Six");
-	//	String nextPlayer = "Player One";
-		//assertEquals(nextPlayer, board.getCurrentPlayer().getName());
-		//board.endDeployment();
-		//board.endTurn();
-		//board.updateMenuBar();
-	//	for (int i = 1; i < fInput; i++) {
-	//		nextPlayer = board.getNextPlayer().getName();
-	//		board.endDeployment();
-	//		board.endTurn();
-	//		board.updateMenuBar();
-	//		assertEquals("Player " + numToNum.get(i + 1), nextPlayer);
-	//		//assertEquals(board.getLabelText(), "Player " + numToNum.get(i + 1) + "'s Turn");
-	//	}
-	//}
+	@Test
+	public void getLabelAdvancingLogicTest() {
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		HashMap<Integer, String> numToNum = new HashMap<Integer, String>();
+		numToNum.put(1, "One");
+		numToNum.put(2, "Two");
+		numToNum.put(3, "Three");
+		numToNum.put(4, "Four");
+		numToNum.put(5, "Five");
+		numToNum.put(6, "Six");
+		String nextPlayer = "Player One";
+		assertEquals(nextPlayer, board.getCurrentPlayer().getName());
+		board.endDeployment();
+		board.endTurn();
+		board.updateMenuBar();
+		for (int i = 1; i < fInput; i++) {
+			nextPlayer = board.getNextPlayer().getName();
+			board.endDeployment();
+			board.endTurn();
+			board.updateMenuBar();
+			System.out.println(fInput);
+			assertEquals("Player " + numToNum.get(i), nextPlayer);
+			//assertEquals(board.getLabelText(), "Player " + numToNum.get(i + 1) + "'s Turn");
+		}
+	}
 	
-//	@Test
-//	public void armyListenerStorageTest() {
-//		RiskBoard board = new RiskBoard();
-//		board.initialGame(fInput);
-//		board.endDeployment();
-//		Army army = null;
-//		try {
-//			army = board.getArmy(1);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		army.doClick();
-//		assertTrue(board.getBattleSetup().get(0).equals(army));
-//	}
+	@Test
+	public void armyListenerStorageTest() {
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		board.endDeployment();
+		Army army = null;
+		try {
+			army = board.getArmy(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		army.doClick();
+		assertTrue(board.getBattleSetup().get(0).equals(army));
+	}
 	
 	@Test
 	public void armyListenerChangedMindTest() {
@@ -1643,20 +1640,20 @@ public class Tests {
 		army.doClick();
 		assertTrue(board.getBattleSetup().isEmpty());
 	}
-//	@Test
-//	public void armyListenerBattleCreationTest() {
-//		RiskBoard board = new RiskBoard();
-//		board.initialGame(fInput);
-//		board.endDeployment();
-//		Army army = null;
-//		try {
-//			army = board.getArmy(1);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		army.doClick();
-//		assertTrue(board.getBattleSetup().get(0).equals(army));
-//	}
+	@Test
+	public void armyListenerBattleCreationTest() {
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		board.endDeployment();
+		Army army = null;
+		try {
+			army = board.getArmy(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		army.doClick();
+		assertTrue(board.getBattleSetup().get(0).equals(army));
+	}
 	
 	@Test
 	public void stateExists(){
@@ -1716,26 +1713,19 @@ public class Tests {
 		assertEquals(p1.getNumberOfTerritories(), 2);
 	}
 	
-	/*
-	 *  For the sake of having correct tests, I will be commenting this test out.  This
-	 *  test is not helpful, because for whatever reason, the GUI is in a state of Player One winning every time you run the test.
-	 *  Since Player One has won, the army size is not updated from the click.
-	 *  Additionally, the a.doClick() is not having expected behavior here.
-	 */
-	
-//	@Test
-//	public void armyDeplymentGUI() throws Exception {
-//		RiskBoard board = new RiskBoard();
-//		board.initialGame(fInput);
-//		if (fInput != 1) {
-//			Army a = board.getArmy(0);
-//			a.doClick();
-//			System.out.println(board.getPhase());
-//			assertEquals(4, a.getArmySize());
-//		} else {
-//			assertEquals(board.getPhase(), "Player One has Won!");
-//		}
-//	}
+	@Test
+	public void armyDeplymentGUI() throws Exception {
+		RiskBoard board = new RiskBoard();
+		board.initialGame(fInput);
+		if (fInput != 1) {
+			Army a = board.getArmy(0);
+			a.doClick();
+			System.out.println(board.getPhase());
+			assertEquals(4, a.getArmySize());
+		} else {
+			assertEquals(board.getPhase(), "Player One has Won!");
+		}
+	}
 	
 	@Test
 	public void phaseChangeManagerConstructer() {
@@ -1748,7 +1738,6 @@ public class Tests {
 	public void phaseChangeButtonTest() throws Exception {
 		RiskBoard board = new RiskBoard();
 		board.initialGame(fInput);
-		board.display();
 		if(fInput!=1){
 			assertEquals(board.getPhase(), "Deployment Phase");
 			board.getPhaseChangeButton().doClick();
@@ -1790,7 +1779,6 @@ public class Tests {
 			board.getCurrentPlayer().getTerritories().add(board.getTerritoryNamed("Argentina"));
 			board.getCurrentPlayer().getTerritories().add(board.getTerritoryNamed("Venezula"));
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if(board.getPlayers().size()!=1)
@@ -1809,7 +1797,6 @@ public class Tests {
 				board.getCurrentPlayer().getTerritories().add(board.getTerritoryNamed(name));
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if(board.getPlayers().size()!=1)
@@ -1828,7 +1815,6 @@ public class Tests {
 				board.getCurrentPlayer().getTerritories().add(board.getTerritoryNamed(name));
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if(board.getPlayers().size()!=1)
@@ -1847,7 +1833,6 @@ public class Tests {
 				board.getCurrentPlayer().getTerritories().add(board.getTerritoryNamed(name));
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if(board.getPlayers().size()!=1)
@@ -1865,7 +1850,6 @@ public class Tests {
 				board.getCurrentPlayer().getTerritories().add(board.getTerritoryNamed(name));
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if(board.getPlayers().size()!=1)
@@ -1882,7 +1866,6 @@ public class Tests {
 				board.getCurrentPlayer().getTerritories().add(board.getTerritoryNamed(name));
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if(board.getPlayers().size()!=1)
@@ -1904,10 +1887,7 @@ public class Tests {
 	public void setUpCardTest() throws IOException {
 		RiskBoard board = new RiskBoard();
 		board.initialGame(fInput);
-		
-		//System.out.println("Debugging test: " + fInput);
 		for(int i=0; i < fInput; i++) {
-			//System.out.println(fInput + " cards:" + board.getPlayers().get(i).getCards().size() + " Player: " + (i + 1));
 			assertEquals(3, board.getPlayers().get(i).getCards().size());
 		}
 	}
@@ -1926,7 +1906,6 @@ public class Tests {
 		removeThreeRunner("warior", 0, 0, 3);
 	}
 	private void removeThreeRunner(String name, int i, int j, int k) {
-		// TODO Auto-generated method stub
 		RiskBoard board = new RiskBoard();
 		board.initialGame(fInput);
 		

@@ -77,6 +77,10 @@ public class RiskBoard {
 		this.playerLabel = new JLabel();
 		this.phaseLabel = new JLabel();
 		this.phaseChangeButton = new JButton();
+		this.phaseChangeButton.setText("Next Phase");
+		this.phaseChangeButton.setBounds(895, 2, 120, 25);
+		PhaseChangeManager pcm = new PhaseChangeManager(this);
+		this.phaseChangeButton.addActionListener(pcm);
 	}
 
 	private void checkForVictory() {
@@ -222,7 +226,7 @@ public class RiskBoard {
 		for (Player p : players) {
 			for (Territory t : p.getTerritories()) {
 					Army a = new Army(p, t, this); //Note this constructor defaults to a size of three.
-					a.addMouseListener(new ArmyListener(a));
+					a.addActionListener(new ArmyListener(a));
 					p.addArmy(a);
 					this.armies.add(a);
 			}
@@ -618,10 +622,6 @@ public class RiskBoard {
 		/*
 		 * Draw change phase button
 		 */
-		this.phaseChangeButton.setText("Next Phase");
-		this.phaseChangeButton.setBounds(895, 2, 120, 25);
-		PhaseChangeManager pcm = new PhaseChangeManager(this);
-		this.phaseChangeButton.addActionListener(pcm);
 		panel.add(this.phaseChangeButton);
 		
 		/*
@@ -759,6 +759,7 @@ public class RiskBoard {
 		if(playedCards){
 			result = result + cardArmies;
 			cardArmies = cardArmies + cardArmies/2;
+			playedCards = false;
 		}
 		result =result + accountForCountries();
 		this.numberAllowed = result;
@@ -883,15 +884,19 @@ public class RiskBoard {
 			if(art == 1 && cav == 1 && war == 1) {
 //				System.out.println("Removing One of each Card");
 				localP.removeCards(art, cav, war);
+				this.playedCards = true;
 				break;
 			} else if (art == 3) {
 				localP.removeCards(art, cav, war);
+				this.playedCards = true;
 				break;
 			} else if (cav == 3) {
 				localP.removeCards(art, cav, war);
+				this.playedCards = true;
 				break;
 			} else if (war == 3) {
 				localP.removeCards(art, cav, war);
+				this.playedCards = true;
 				break;
 			}
 			loop++;

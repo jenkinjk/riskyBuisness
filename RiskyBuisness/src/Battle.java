@@ -34,8 +34,8 @@ public class Battle {
 			throw new Exception("You cannot attack your own armies.");
 		if (!(a.getArmyLocation().getNeighbors().contains(b.getArmyLocation())))
 			throw new Exception("You cannot attack non adjacent territories.");
-		if (a.getArmySize() < b.getArmySize())
-			throw new Exception("You cannot attack a larger army.");
+		if (a.getArmySize() <= b.getArmySize())
+			throw new Exception("You can only attack a smaller army.");
 		this.attacker = a;
 		this.defender = b;
 		this.title = "Battle between " + attacker.getOwner().getName()
@@ -70,8 +70,8 @@ public class Battle {
 			AttackerDiceOptions[i - 1] = i;
 		}
 		return AttackerDiceOptions;
-		//TODO: Tests should be edited for this control logic -
-//		int size;
+		//TODO Tests should be edited for this control logic -
+//		//int size;
 //		if (attacker.getArmySize() != 2 && attacker.getArmySize() != 3)
 //			size = 4;
 //		else if (attacker.getArmySize() == 3)
@@ -299,7 +299,7 @@ public class Battle {
 						fight.disable();
 						attackerWon = true;
 					}
-					if (attacker.getArmySize() < defender.getArmySize()
+					if (attacker.getArmySize() <= defender.getArmySize()
 							|| attacker.getArmySize() == 1) {
 						derictions.setText(defender.getOwner().getName()
 								+ " has won!");
