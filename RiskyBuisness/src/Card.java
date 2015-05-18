@@ -41,19 +41,6 @@ public class Card extends JButton {
 		this.owner = owner;
 	}
 	
-	@Override
-	public void paint(Graphics g) {
-		Graphics2D g2 = (Graphics2D) g;
-		Container parent = this.getParent();
-		
-		//card icon
-		Icon icon = this.getIcon();
-		icon.paintIcon(parent, g2, x, y);
-		
-		//transparent background
-		this.setContentAreaFilled(false);
-	}
-	
 	public int getX() {
 		return x;
 	}

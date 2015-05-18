@@ -585,13 +585,6 @@ public class RiskBoard {
 				for(Army a : RiskBoard.this.armies) {
 					a.paint(g);
 				}
-				//Draw cards
-				int i = 10;
-				for(Card c : RiskBoard.this.currentPlayer.getCards()) {
-					c.setBounds(i, c.getY(), c.getW(), c.getH());
-					c.paint(g);
-					i+=80;
-				}
 			}
 		};
 		
@@ -666,6 +659,12 @@ public class RiskBoard {
 			panel.add(c);
 		}
 		
+		//Draw cards
+		int i = 10;
+		for(Card c : RiskBoard.this.currentPlayer.getCards()) {
+			c.setBounds(i, c.getY(), c.getW(), c.getH());
+			i+=80;
+		}
 		
 		frame.setContentPane(panel);
 		panel.setFocusable(true);
@@ -749,8 +748,8 @@ public class RiskBoard {
 		checkForVictory();
 		getNextPlayer();
 		updateMenuBar();
-		//System.out.println("Before or after repaint?");
-		//panel.repaint();
+		updateCardBar();
+		panel.repaint();
 	}
 	
 	private void calculateNumberDeployable() {
@@ -784,6 +783,19 @@ public class RiskBoard {
 			this.phaseLabel.setText(this.phase + " (Deployable: " + (this.numberAllowed - this.numberDeployed) + ")");
 		} else {
 			this.phaseLabel.setText(this.phase);
+		}
+	}
+	
+	public void updateCardBar() {
+		int i = 10;
+		for(Card c : this.cards) {
+			if(c.getOwner().equals(this.currentPlayer)) {
+				c.setVisible(true);
+				c.setBounds(i, c.getY(), c.getW(), c.getH());
+				i+=80;
+			} else {
+				c.setVisible(false);
+			}
 		}
 	}
 	

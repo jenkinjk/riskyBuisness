@@ -71,7 +71,7 @@ public class CardListener implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		System.out.println("heello");
+		System.out.println(this.card.getType() + " " + this.card.getOwner().getName());
 	}
 
 	@Override
