@@ -254,6 +254,7 @@ public class Battle {
 						conquer(numberToSend);
 						// TODO: Winner needs to get a card.
 						try {
+							if(!localBoard.hasWon)
 							localBoard.giveWinnerCard(attacker.getOwner());
 						} catch (IOException e) {
 							// TODO Auto-generated catch block

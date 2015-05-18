@@ -70,7 +70,7 @@ public class Player {
 		return this.cards;
 	}
 
-	public void removeCards(int i, int j, int k) {
+	public void removeCards(int i, int j, int k, RiskBoard riskBoard) {
 //		System.out.println("Size: " + this.cards.size());
 		int removeArt = i;
 		int removeCav = j;
@@ -79,33 +79,40 @@ public class Player {
 		while (removeArt > 0) {
 			for (int a = 0; a < this.cards.size(); a++) {
 				if (this.cards.get(a).getType().equals("artillery")) {
+					riskBoard.panel.remove(this.cards.get(a));
 					this.cards.remove(a);
 //					System.out.println("Removed art");
 					removeArt--;
 //					System.out.println(removeArt);
+					break;
 				}
 			}
 		}
 		while (removeCav > 0) {
 			for (int b = 0; b < this.cards.size(); b++) {
 				if (this.cards.get(b).getType().equals("cavalry")) {
+					riskBoard.panel.remove(this.cards.get(b));
 					this.cards.remove(b);
 //					System.out.println("Removed cav");
 					removeCav--;
 //					System.out.println(removeCav);
+					break;
 				}
 			}
 		}
 		while (removeWar > 0) {
 			for (int c = 0; c < this.cards.size(); c++) {
 				if (this.cards.get(c).getType().equals("warior")) {
+					riskBoard.panel.remove(this.cards.get(c));
 					this.cards.remove(c);
 //					System.out.println("Removed war");
 					removeWar--;
 //					System.out.println(removeWar);
+					break;
 				}
 			}
 		}
+		this.numberOfCards=this.numberOfCards-3;
 	}
 
 //	public ArrayList<Army> getArmies() {

@@ -38,12 +38,12 @@ public class RiskBoard {
 	private ArrayList<Territory> NA;
 	private ArrayList<Territory> SA;
 	private ArrayList<Army> armies;
-	private ArrayList<Card> cards;
+	// private ArrayList<Card> cards;
 	private HashMap<String, ArrayList<Territory>> nameToNeigbhors;
 	private HashMap<String, Point> nameToCoordinates;
 	private Player currentPlayer;
 	private JFrame frame;
-	private JPanel panel;
+	JPanel panel;
 	private ArrayList<Army> setupBattle;
 	private String phase = "";
 	private JLabel playerColorBox;
@@ -51,10 +51,11 @@ public class RiskBoard {
 	private JLabel phaseLabel;
 	private JButton phaseChangeButton;
 	private JButton redeemCardButton;
-	private int numberDeployed=0;
+	private int numberDeployed = 0;
 	private int numberAllowed;
-	private int cardArmies=3;
-	private boolean playedCards=false;
+	private int cardArmies = 3;
+	private boolean playedCards = false;
+	protected boolean hasWon = false;
 
 	public RiskBoard() {
 		setupBattle = new ArrayList<Army>();
@@ -69,7 +70,36 @@ public class RiskBoard {
 		NA = new ArrayList<Territory>();
 		SA = new ArrayList<Territory>();
 		armies = new ArrayList<Army>();
-		cards = new ArrayList<Card>();
+		try {
+			panel = new JPanel() {
+				private Image backgroundImage = ImageIO.read(new File("risk.png"));
+
+				@Override
+				public void paint(Graphics g) {
+					super.paint(g);
+					g.drawImage(backgroundImage, 0, 30, null);
+					g.drawRect(0, 710, 1025, 120);
+					// Draw armies
+					for (Army a : RiskBoard.this.armies) {
+						a.paint(g);
+					}
+					int i = 10;
+					for (Card c : RiskBoard.this.currentPlayer.getCards()) {
+						c.setVisible(true);
+						c.setBounds(i, c.getY(), c.getW(), c.getH());
+						i += 80;
+						c.revalidate();
+						c.repaint();
+					}
+				}
+			};
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		panel.setLayout(null);
+		// cards = new ArrayList<Card>();
 		nameToNeigbhors = new HashMap<String, ArrayList<Territory>>();
 		nameToCoordinates = new HashMap<String, Point>();
 		this.currentPlayer = null;
@@ -78,11 +108,28 @@ public class RiskBoard {
 		this.playerLabel = new JLabel();
 		this.phaseLabel = new JLabel();
 		this.phaseChangeButton = new JButton();
+		phaseChangeButton.setText("Next Phase");
+		phaseChangeButton.setBounds(895, 2, 120, 25);
+		PhaseChangeManager pcm = new PhaseChangeManager(this);
+		phaseChangeButton.addActionListener(pcm);
 		this.redeemCardButton = new JButton();
+		redeemCardButton.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				forceDeployment(currentPlayer);
+				if(panel!=null){
+					panel.revalidate();
+					panel.repaint();
+				}
+			}
+			
+		});
 	}
 
 	private void checkForVictory() {
-		if(this.players.size()==1) this.phase = this.currentPlayer.getName() + " has Won!";
+		if (this.players.size() == 1)
+			this.phase = this.currentPlayer.getName() + " has Won!";
 	}
 
 	public void selectNumberOfPlayers() {
@@ -182,7 +229,7 @@ public class RiskBoard {
 			territories.add(t);
 			Australia.add(t);
 		}
-		
+
 		setUpNeighborsMap();
 		setUpCoordinatesMap();
 		for (Territory t : territories) {
@@ -191,32 +238,37 @@ public class RiskBoard {
 			assignCoordinates(t);
 		}
 	}
-	
+
 	private void setUpCard() {
-		//Note: to begin, each player gets 3 cards
+		// Note: to begin, each player gets 3 cards
 		for (Player p : players) {
 			Card c1 = new Card("artillery", p);
 			Card c2 = new Card("cavalry", p);
 			Card c3 = new Card("warior", p);
-			c1.addMouseListener(new CardListener(c1));
-			c2.addMouseListener(new CardListener(c2));
-			c3.addMouseListener(new CardListener(c3));
+			c1.addActionListener(new CardListener(c1));
+			c2.addActionListener(new CardListener(c2));
+			c3.addActionListener(new CardListener(c3));
 			p.addCard(c1);
 			p.addCard(c2);
 			p.addCard(c3);
-			this.cards.add(c1);
-			this.cards.add(c2);
-			this.cards.add(c3);
+			// this.cards.add(c1);
+			// this.cards.add(c2);
+			// this.cards.add(c3);
+		}
+		if (panel != null) {
+			panel.revalidate();
+			panel.repaint();
 		}
 	}
 
 	private void setUpArmy() {
 		for (Player p : players) {
 			for (Territory t : p.getTerritories()) {
-					Army a = new Army(p, t, this); //Note this constructor defaults to a size of three.
-					a.addActionListener(new ArmyListener(a));
-					p.addArmy(a);
-					this.armies.add(a);
+				Army a = new Army(p, t, this); // Note this constructor defaults
+												// to a size of three.
+				a.addActionListener(new ArmyListener(a));
+				p.addArmy(a);
+				this.armies.add(a);
 			}
 		}
 	}
@@ -472,7 +524,7 @@ public class RiskBoard {
 	private void assignNeighbors(Territory t) {
 		t.setNeighbors(nameToNeigbhors.get(t.getName()));
 	}
-	
+
 	private void setUpCoordinatesMap() {
 		nameToCoordinates.put("Afghanistan", new Point(670, 280));
 		nameToCoordinates.put("China", new Point(800, 335));
@@ -497,7 +549,7 @@ public class RiskBoard {
 		nameToCoordinates.put("Alberta", new Point(115, 190));
 		nameToCoordinates.put("Centeral America", new Point(155, 360));
 		nameToCoordinates.put("Eastern United States", new Point(205, 260));
-		nameToCoordinates.put("Greenland", new Point(320,100));
+		nameToCoordinates.put("Greenland", new Point(320, 100));
 		nameToCoordinates.put("Northwest Territory", new Point(130, 125));
 		nameToCoordinates.put("Ontario", new Point(190, 185));
 		nameToCoordinates.put("Quebec", new Point(255, 205));
@@ -515,7 +567,7 @@ public class RiskBoard {
 		nameToCoordinates.put("Eastern Australia", new Point(950, 620));
 		nameToCoordinates.put("Indonesia", new Point(805, 515));
 		nameToCoordinates.put("New Guinea", new Point(915, 495));
-		nameToCoordinates.put("Western Australia", new Point(855, 620));		
+		nameToCoordinates.put("Western Australia", new Point(855, 620));
 	}
 
 	private void assignCoordinates(Territory t) {
@@ -561,23 +613,7 @@ public class RiskBoard {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		frame.setResizable(false);
-		
-		panel = new JPanel() {
-			private Image backgroundImage = ImageIO.read(new File("risk.png"));
-			@Override
-			public void paint(Graphics g) {
-				super.paint(g);
-				g.drawImage(backgroundImage, 0, 30, null);
-				g.drawRect(0, 710, 1025, 120);
-				//Draw armies
-				for(Army a : RiskBoard.this.armies) {
-					a.paint(g);
-				}
-			}
-		};
-		
-		panel.setLayout(null);
-		
+
 		/*
 		 * Draw player color box
 		 */
@@ -585,86 +621,91 @@ public class RiskBoard {
 		this.playerColorBox.setBackground(this.currentPlayer.getColor());
 		this.playerColorBox.setOpaque(true);
 		panel.add(this.playerColorBox);
-	    
+
 		/*
 		 * Draw player label
 		 */
 		this.playerLabel.setBounds(30, 0, 120, 28);
 		this.playerLabel.setText(this.generatePlayerTurnString());
 		panel.add(this.playerLabel);
-		
+
 		/*
 		 * Draw phase label
 		 */
-		this.phaseLabel.setText(this.phase+ " (Deployable: " + (this.numberAllowed - this.numberDeployed) + ")");
+		this.phaseLabel.setText(this.phase + " (Deployable: "
+				+ (this.numberAllowed - this.numberDeployed) + ")");
 		this.phaseLabel.setBounds(460, 0, 200, 28);
 		panel.add(this.phaseLabel);
-		
+
 		/*
 		 * Draw change phase button
 		 */
-		phaseChangeButton.setText("Next Phase");
-		phaseChangeButton.setBounds(895, 2, 120, 25);
-		PhaseChangeManager pcm = new PhaseChangeManager(this);
-		phaseChangeButton.addActionListener(pcm);
+
 		panel.add(this.phaseChangeButton);
-		
+
 		/*
 		 * Set up army icons
-		 * 
 		 */
 		Image soldierImage = ImageIO.read(new File("soldier.png"));
-		Image scaledImage = soldierImage.getScaledInstance(20, 40, Image.SCALE_SMOOTH);
+		Image scaledImage = soldierImage.getScaledInstance(20, 40,
+				Image.SCALE_SMOOTH);
 		Icon soldierIcon = new ImageIcon(scaledImage);
-		
-		for(Army a : this.armies) {
+
+		for (Army a : this.armies) {
 			a.setBounds(a.getX(), a.getY(), a.getW(), a.getH());
 			a.setIcon(soldierIcon);
 			panel.add(a);
 		}
-		
+
 		/*
 		 * Set up cards icons
 		 */
-		
-		//Load images
+
+		// Load images
 		Image artilleryImage = ImageIO.read(new File("artillery.png"));
-		Image scaledArtilleryImage = artilleryImage.getScaledInstance(70, 90, Image.SCALE_SMOOTH);
+		Image scaledArtilleryImage = artilleryImage.getScaledInstance(70, 90,
+				Image.SCALE_SMOOTH);
 		Icon artilleryIcon = new ImageIcon(scaledArtilleryImage);
-		
+
 		Image cavalryImage = ImageIO.read(new File("cavalry.png"));
-		Image scaledCavalryImage = cavalryImage.getScaledInstance(70, 90, Image.SCALE_SMOOTH);
+		Image scaledCavalryImage = cavalryImage.getScaledInstance(70, 90,
+				Image.SCALE_SMOOTH);
 		Icon cavalryIcon = new ImageIcon(scaledCavalryImage);
-		
+
 		Image wariorImage = ImageIO.read(new File("warior.png"));
-		Image scaledWariorImage = wariorImage.getScaledInstance(70, 90, Image.SCALE_SMOOTH);
+		Image scaledWariorImage = wariorImage.getScaledInstance(70, 90,
+				Image.SCALE_SMOOTH);
 		Icon wariorIcon = new ImageIcon(scaledWariorImage);
-		
-		for(Card c : this.cards) {
-			if(c.getType() == "artillery") {
-				c.setIcon(artilleryIcon);
-			} else if (c.getType() == "cavalry") {
-				c.setIcon(cavalryIcon);
-			} else {
-				c.setIcon(wariorIcon);
+		for (Player p : players) {
+			for (Card c : p.getCards()) {
+				if (c.getType() == "artillery") {
+					c.setIcon(artilleryIcon);
+				} else if (c.getType() == "cavalry") {
+					c.setIcon(cavalryIcon);
+				} else {
+					c.setIcon(wariorIcon);
+				}
+				panel.add(c);
+				panel.revalidate();
 			}
-			panel.add(c);
 		}
-		
-		//Draw cards
+
+		// Draw cards
 		int i = 10;
-		for(Card c : RiskBoard.this.currentPlayer.getCards()) {
+		for (Card c : RiskBoard.this.currentPlayer.getCards()) {
 			c.setBounds(i, c.getY(), c.getW(), c.getH());
-			i+=80;
+			i += 80;
+			c.revalidate();
+			c.repaint();
 		}
-		
+
 		/*
 		 * Draw Card redeem button
 		 */
 		redeemCardButton.setText("Redeem Cards");
 		redeemCardButton.setBounds(895, 720, 120, 90);
 		panel.add(this.redeemCardButton);
-		
+
 		frame.setContentPane(panel);
 		panel.setFocusable(true);
 		panel.revalidate();
@@ -675,7 +716,7 @@ public class RiskBoard {
 	public ArrayList<Player> getPlayers() {
 		return this.players;
 	}
-	
+
 	public Player getNextPlayer() {
 		if (!itr.hasNext())
 			this.itr = this.players.iterator();
@@ -683,11 +724,11 @@ public class RiskBoard {
 		calculateNumberDeployable();
 		return this.currentPlayer;
 	}
-	
+
 	public Player getCurrentPlayer() {
 		return this.currentPlayer;
 	}
-	
+
 	public String getLabelText() {
 		return this.playerLabel.getText();
 	}
@@ -739,65 +780,75 @@ public class RiskBoard {
 	public void endDeployment() {
 		this.phase = "Combat Phase";
 		updateMenuBar();
-		this.numberDeployed = 0;
+		
 	}
 
 	public void endTurn() {
+		this.numberDeployed = 0;
 		this.phase = "Deployment Phase";
 		checkForVictory();
 		getNextPlayer();
 		updateMenuBar();
 		updateCardBar();
-		panel.repaint();
+		if (panel != null) {
+			panel.revalidate();
+			panel.repaint();
+		}
+		this.hasWon = false;
 	}
-	
+
 	private void calculateNumberDeployable() {
-		int result = this.currentPlayer.getTerritories().size()/3;
-		if(result < 3) result = 3;
-		if(playedCards){
+		int result = this.currentPlayer.getTerritories().size() / 3;
+		if (result < 3)
+			result = 3;
+		if (playedCards) {
 			result = result + cardArmies;
-			cardArmies = cardArmies + cardArmies/2;
+			cardArmies = cardArmies + cardArmies / 2;
 			playedCards = false;
 		}
-		result =result + accountForCountries();
+		result = result + accountForCountries();
 		this.numberAllowed = result;
 	}
 
 	protected int accountForCountries() {
 		int result = 0;
 		ArrayList<Territory> ts = currentPlayer.getTerritories();
-		if(ts.containsAll(this.Africa)) result = result + 3;
-		if(ts.containsAll(this.Asia)) result = result + 7;
-		if(ts.containsAll(this.Europe)) result = result + 5;
-		if(ts.containsAll(this.NA)) result = result + 5;
-		if(ts.containsAll(this.SA)) result = result + 2;
-		if(ts.containsAll(this.Australia)) result = result + 2;
+		if (ts.containsAll(this.Africa))
+			result = result + 3;
+		if (ts.containsAll(this.Asia))
+			result = result + 7;
+		if (ts.containsAll(this.Europe))
+			result = result + 5;
+		if (ts.containsAll(this.NA))
+			result = result + 5;
+		if (ts.containsAll(this.SA))
+			result = result + 2;
+		if (ts.containsAll(this.Australia))
+			result = result + 2;
 		return result;
 	}
 
 	public void updateMenuBar() {
 		this.playerColorBox.setBackground(this.currentPlayer.getColor());
 		this.playerLabel.setText(this.generatePlayerTurnString());
-		if(this.phase.contains("Deployment")) {
-			this.phaseLabel.setText(this.phase + " (Deployable: " + (this.numberAllowed - this.numberDeployed) + ")");
+		if (this.phase.contains("Deployment")) {
+			this.phaseLabel.setText(this.phase + " (Deployable: "
+					+ (this.numberAllowed - this.numberDeployed) + ")");
 		} else {
 			this.phaseLabel.setText(this.phase);
 		}
 	}
-	
+
 	public void updateCardBar() {
 		int i = 10;
-		for(Card c : this.cards) {
-			if(c.getOwner().equals(this.currentPlayer)) {
-				c.setVisible(true);
-				c.setBounds(i, c.getY(), c.getW(), c.getH());
-				i+=80;
-			} else {
-				c.setVisible(false);
-			}
+		for (Card c : RiskBoard.this.currentPlayer.getCards()) {
+			c.setBounds(i, c.getY(), c.getW(), c.getH());
+			i += 80;
+			c.revalidate();
+			c.repaint();
 		}
 	}
-	
+
 	public String generatePlayerTurnString() {
 		return this.currentPlayer.getName() + "'s Turn";
 	}
@@ -809,7 +860,7 @@ public class RiskBoard {
 	public JButton getPhaseChangeButton() {
 		return this.phaseChangeButton;
 	}
-	
+
 	public JFrame getFrame() {
 		return this.frame;
 	}
@@ -820,98 +871,107 @@ public class RiskBoard {
 
 	public void increaseNumberDeployed() {
 		this.numberDeployed++;
-		
+
 	}
 
 	public int getNumberAllowed() {
 		return this.numberAllowed;
 	}
-	
+
 	public void giveWinnerCard(Player localP) throws IOException {
 		Image artilleryImage = ImageIO.read(new File("artillery.png"));
-		Image scaledArtilleryImage = artilleryImage.getScaledInstance(70, 90, Image.SCALE_SMOOTH);
+		Image scaledArtilleryImage = artilleryImage.getScaledInstance(70, 90,
+				Image.SCALE_SMOOTH);
 		Icon artilleryIcon = new ImageIcon(scaledArtilleryImage);
-		
+
 		Image cavalryImage = ImageIO.read(new File("cavalry.png"));
-		Image scaledCavalryImage = cavalryImage.getScaledInstance(70, 90, Image.SCALE_SMOOTH);
+		Image scaledCavalryImage = cavalryImage.getScaledInstance(70, 90,
+				Image.SCALE_SMOOTH);
 		Icon cavalryIcon = new ImageIcon(scaledCavalryImage);
-		
+
 		Image wariorImage = ImageIO.read(new File("warior.png"));
-		Image scaledWariorImage = wariorImage.getScaledInstance(70, 90, Image.SCALE_SMOOTH);
+		Image scaledWariorImage = wariorImage.getScaledInstance(70, 90,
+				Image.SCALE_SMOOTH);
 		Icon wariorIcon = new ImageIcon(scaledWariorImage);
-		
+
 		Random gen = new Random();
-//		int cardNum = gen.nextInt(4);
-		int cardNum = 0;
+		int cardNum = gen.nextInt(3);
+		// int cardNum = 0;
 		switch (cardNum) {
-			case 1:
-				Card c1 = new Card("artillery", localP);
-				c1.addMouseListener(new CardListener(c1));
-				localP.addCard(c1);
-				c1.setIcon(artilleryIcon);
-				this.cards.add(c1);
-			case 2:
-				Card c2 = new Card("cavalry", localP);
-				c2.addMouseListener(new CardListener(c2));
-				localP.addCard(c2);
-				c2.setIcon(cavalryIcon);
-				this.cards.add(c2);
-			case 3:
-				Card c3 = new Card ("warior", localP);
-				c3.addMouseListener(new CardListener(c3));
-				localP.addCard(c3);
-				c3.setIcon(wariorIcon);
-				this.cards.add(c3);
+		case 0:
+			Card c1 = new Card("artillery", localP);
+			c1.addActionListener(new CardListener(c1));
+			localP.addCard(c1);
+			c1.setIcon(artilleryIcon);
+			panel.add(c1);
+			panel.repaint();
+			break;
+		case 1:
+			Card c2 = new Card("cavalry", localP);
+			c2.addActionListener(new CardListener(c2));
+			localP.addCard(c2);
+			c2.setIcon(cavalryIcon);
+			panel.add(c2);
+			panel.repaint();
+			break;
+		case 2:
+			Card c3 = new Card("warior", localP);
+			c3.addActionListener(new CardListener(c3));
+			localP.addCard(c3);
+			c3.setIcon(wariorIcon);
+			panel.add(c3);
+			panel.repaint();
+			break;
 		}
-//		for(Card c : this.cards) {
-//			if(c.getType() == "artillery") {
-//				
-//			} else if (c.getType() == "cavalry") {
-//				
-//			} else {
-//				
-//			}
-//		}
-		System.out.println("Gave Card " + "Size: " + localP.getCards().size() + "CardNum: " + cardNum);
-		if(localP.getCards().size() >= 5) {
+		System.out.println("Gave Card " + "Size: " + localP.getCards().size()
+				+ " CardNum: " + cardNum);
+		if (localP.getCards().size() >= 5) {
 			forceDeployment(localP);
 		}
+		this.hasWon = true;
 	}
-	
-	private void forceDeployment (Player localP) {
+
+	private void forceDeployment(Player localP) {
 		int art = 0;
 		int cav = 0;
 		int war = 0;
 		int loop = 0;
 		// TODO: Add in deployment to their next turn
 		while (loop < localP.getCards().size()) {
-			if(localP.getCards().get(loop).getType().equals("artillery")) {
+			if (localP.getCards().get(loop).getType().equals("artillery")) {
 				art++;
 			} else if (localP.getCards().get(loop).getType().equals("cavalry")) {
 				cav++;
 			} else if (localP.getCards().get(loop).getType().equals("warior")) {
 				war++;
 			}
-			if(art == 1 && cav == 1 && war == 1) {
-//				System.out.println("Removing One of each Card");
-				localP.removeCards(art, cav, war);
+			if (art == 1 && cav == 1 && war == 1) {
+				// System.out.println("Removing One of each Card");
+				localP.removeCards(1, 1, 1,this);
 				this.playedCards = true;
 				break;
 			} else if (art == 3) {
-				localP.removeCards(art, cav, war);
+				localP.removeCards(3, 0, 0,this);
 				this.playedCards = true;
 				break;
 			} else if (cav == 3) {
-				localP.removeCards(art, cav, war);
+				localP.removeCards(0, 3, 0,this);
 				this.playedCards = true;
 				break;
 			} else if (war == 3) {
-				localP.removeCards(art, cav, war);
+				localP.removeCards(0, 0, 3,this);
 				this.playedCards = true;
 				break;
 			}
 			loop++;
 		}
+		frame.revalidate();
+		frame.repaint();
+		panel.revalidate();
+		panel.repaint();
+		phase = "Deployment Phase";
+		calculateNumberDeployable();
+		updateMenuBar();
 	}
-	
+
 }

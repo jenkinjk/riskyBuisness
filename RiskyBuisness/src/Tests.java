@@ -1900,8 +1900,7 @@ public class Tests {
 	public void removeCardsTest() {
 		RiskBoard board = new RiskBoard();
 		board.initialGame(fInput);
-		
-		board.getPlayers().get(0).removeCards(1, 1, 1);
+		board.getPlayers().get(0).removeCards(1, 1, 1,board);
 		assertEquals(board.getPlayers().get(0).getCards().size(), 0);
 	}
 	
@@ -1917,10 +1916,12 @@ public class Tests {
 		board.initialGame(fInput);
 		
 		Card c1 = new Card(name, board.getPlayers().get(0));
-		c1.addMouseListener(new CardListener(c1));
-		board.getPlayers().get(0).addCard(c1);
-		board.getPlayers().get(0).addCard(c1);
-		board.getPlayers().get(0).removeCards(i, j, k);
+		Card c2 = new Card(name, board.getPlayers().get(0));
+		Card c3 = new Card(name, board.getPlayers().get(0));
+		c1.addActionListener(new CardListener(c1));
+		board.getPlayers().get(0).addCard(c3);
+		board.getPlayers().get(0).addCard(c2);
+		board.getPlayers().get(0).removeCards(i, j, k, board);
 		assertEquals(board.getPlayers().get(0).getCards().size(), 2);
 	}
 }

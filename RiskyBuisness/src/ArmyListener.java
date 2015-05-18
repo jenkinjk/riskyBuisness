@@ -69,7 +69,7 @@ public class ArmyListener implements ActionListener {
 				army.setArmySize(army.getArmySize() + 1);
 			}
 		}
-		this.army.getRootPane().repaint();
+		if(this.army.getRootPane()!=null)this.army.getRootPane().repaint();
 	}
 
 }

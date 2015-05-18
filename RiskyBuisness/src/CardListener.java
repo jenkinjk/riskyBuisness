@@ -1,5 +1,7 @@
 import java.awt.Cursor;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -11,7 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 
-public class CardListener implements MouseListener {
+public class CardListener implements ActionListener {
 	private Card card;
 	private String type;
 	
@@ -70,30 +72,7 @@ public class CardListener implements MouseListener {
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		System.out.println(this.card.getType() + " " + this.card.getOwner().getName());
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent arg0) {
-		JButton b = (JButton) arg0.getComponent();
-		b.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-	}
-
-	@Override
-	public void mouseExited(MouseEvent arg0) {
-		JButton b = (JButton) arg0.getComponent();
-		b.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
-	}
-
-	@Override
-	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) {
+	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
