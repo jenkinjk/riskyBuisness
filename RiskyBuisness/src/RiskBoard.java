@@ -38,7 +38,6 @@ public class RiskBoard {
 	private ArrayList<Territory> NA;
 	private ArrayList<Territory> SA;
 	private ArrayList<Army> armies;
-	// private ArrayList<Card> cards;
 	private HashMap<String, ArrayList<Territory>> nameToNeigbhors;
 	private HashMap<String, Point> nameToCoordinates;
 	private Player currentPlayer;
@@ -83,6 +82,7 @@ public class RiskBoard {
 					for (Army a : RiskBoard.this.armies) {
 						a.paint(g);
 					}
+					//Draw Cards
 					int i = 10;
 					for (Card c : RiskBoard.this.currentPlayer.getCards()) {
 						c.setVisible(true);
@@ -94,12 +94,10 @@ public class RiskBoard {
 				}
 			};
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		panel.setLayout(null);
-		// cards = new ArrayList<Card>();
 		nameToNeigbhors = new HashMap<String, ArrayList<Territory>>();
 		nameToCoordinates = new HashMap<String, Point>();
 		this.currentPlayer = null;
@@ -251,13 +249,6 @@ public class RiskBoard {
 			p.addCard(c1);
 			p.addCard(c2);
 			p.addCard(c3);
-			// this.cards.add(c1);
-			// this.cards.add(c2);
-			// this.cards.add(c3);
-		}
-		if (panel != null) {
-			panel.revalidate();
-			panel.repaint();
 		}
 	}
 
@@ -686,17 +677,7 @@ public class RiskBoard {
 					c.setIcon(wariorIcon);
 				}
 				panel.add(c);
-				panel.revalidate();
 			}
-		}
-
-		// Draw cards
-		int i = 10;
-		for (Card c : RiskBoard.this.currentPlayer.getCards()) {
-			c.setBounds(i, c.getY(), c.getW(), c.getH());
-			i += 80;
-			c.revalidate();
-			c.repaint();
 		}
 
 		/*
@@ -786,15 +767,24 @@ public class RiskBoard {
 	public void endTurn() {
 		this.numberDeployed = 0;
 		this.phase = "Deployment Phase";
+		emptyCardBar();
 		checkForVictory();
 		getNextPlayer();
 		updateMenuBar();
 		updateCardBar();
+		//Are we sure we need to run these updates if we are just gonna repaint anyway?
 		if (panel != null) {
 			panel.revalidate();
 			panel.repaint();
 		}
 		this.hasWon = false;
+	}
+
+	private void emptyCardBar() {
+		for(Card c: currentPlayer.getCards()){
+			panel.remove(c);
+		}
+		
 	}
 
 	private void calculateNumberDeployable() {
@@ -904,7 +894,7 @@ public class RiskBoard {
 			localP.addCard(c1);
 			c1.setIcon(artilleryIcon);
 			panel.add(c1);
-			panel.repaint();
+			updateCardBar(); //CHANGED HERE
 			break;
 		case 1:
 			Card c2 = new Card("cavalry", localP);
@@ -912,7 +902,7 @@ public class RiskBoard {
 			localP.addCard(c2);
 			c2.setIcon(cavalryIcon);
 			panel.add(c2);
-			panel.repaint();
+			updateCardBar(); //CHANGED HERE
 			break;
 		case 2:
 			Card c3 = new Card("warior", localP);
@@ -920,7 +910,7 @@ public class RiskBoard {
 			localP.addCard(c3);
 			c3.setIcon(wariorIcon);
 			panel.add(c3);
-			panel.repaint();
+			updateCardBar(); //CHANGED HERE
 			break;
 		}
 		System.out.println("Gave Card " + "Size: " + localP.getCards().size()
@@ -936,7 +926,6 @@ public class RiskBoard {
 		int cav = 0;
 		int war = 0;
 		int loop = 0;
-		// TODO: Add in deployment to their next turn
 		while (loop < localP.getCards().size()) {
 			if (localP.getCards().get(loop).getType().equals("artillery")) {
 				art++;
@@ -946,7 +935,6 @@ public class RiskBoard {
 				war++;
 			}
 			if (art == 1 && cav == 1 && war == 1) {
-				// System.out.println("Removing One of each Card");
 				localP.removeCards(1, 1, 1,this);
 				this.playedCards = true;
 				break;
@@ -969,6 +957,7 @@ public class RiskBoard {
 		frame.repaint();
 		panel.revalidate();
 		panel.repaint();
+		updateCardBar(); //CHANGED HERE
 		phase = "Deployment Phase";
 		calculateNumberDeployable();
 		updateMenuBar();
