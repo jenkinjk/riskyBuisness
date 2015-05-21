@@ -1,14 +1,18 @@
+import java.awt.Cursor;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
-public class ArmyListener implements ActionListener {
+public class ArmyListener implements ActionListener, MouseListener {
 	private Army army;
 	private Icon soldierIcon;
 	private Icon soldierSelectedIcon;
@@ -37,7 +41,7 @@ public class ArmyListener implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent event) {
+	public void mouseClicked(MouseEvent arg0) {
 		RiskBoard board = army.getBoard();
 		if (board.getPhase().equals("Combat Phase")) {
 			if (board.getCurrentPlayer() == army.getOwner()
@@ -70,6 +74,37 @@ public class ArmyListener implements ActionListener {
 			}
 		}
 		if(this.army.getRootPane()!=null)this.army.getRootPane().repaint();
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		JButton b = (JButton) e.getComponent();
+		b.setIcon(soldierSelectedIcon);
+		b.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		JButton b = (JButton) e.getComponent();
+		b.setIcon(soldierIcon);
+		b.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		mouseClicked(null);
 	}
 
 }

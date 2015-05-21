@@ -243,9 +243,9 @@ public class RiskBoard {
 			Card c1 = new Card("artillery", p);
 			Card c2 = new Card("cavalry", p);
 			Card c3 = new Card("warior", p);
-			c1.addActionListener(new CardListener(c1));
-			c2.addActionListener(new CardListener(c2));
-			c3.addActionListener(new CardListener(c3));
+			c1.addMouseListener(new CardListener(c1));
+			c2.addMouseListener(new CardListener(c2));
+			c3.addMouseListener(new CardListener(c3));
 			p.addCard(c1);
 			p.addCard(c2);
 			p.addCard(c3);
@@ -257,7 +257,9 @@ public class RiskBoard {
 			for (Territory t : p.getTerritories()) {
 				Army a = new Army(p, t, this); // Note this constructor defaults
 												// to a size of three.
-				a.addActionListener(new ArmyListener(a));
+				ArmyListener al = new ArmyListener(a);
+				a.addMouseListener(al);
+				a.addActionListener(al);
 				p.addArmy(a);
 				this.armies.add(a);
 			}
@@ -596,7 +598,6 @@ public class RiskBoard {
 		return true;
 	}
 
-	@SuppressWarnings("serial")
 	public void display() throws IOException {
 		
 		frame = new JFrame("Risk Board");
@@ -890,7 +891,7 @@ public class RiskBoard {
 		switch (cardNum) {
 		case 0:
 			Card c1 = new Card("artillery", localP);
-			c1.addActionListener(new CardListener(c1));
+			c1.addMouseListener(new CardListener(c1));
 			localP.addCard(c1);
 			c1.setIcon(artilleryIcon);
 			panel.add(c1);
@@ -898,7 +899,7 @@ public class RiskBoard {
 			break;
 		case 1:
 			Card c2 = new Card("cavalry", localP);
-			c2.addActionListener(new CardListener(c2));
+			c2.addMouseListener(new CardListener(c2));
 			localP.addCard(c2);
 			c2.setIcon(cavalryIcon);
 			panel.add(c2);
@@ -906,7 +907,7 @@ public class RiskBoard {
 			break;
 		case 2:
 			Card c3 = new Card("warior", localP);
-			c3.addActionListener(new CardListener(c3));
+			c3.addMouseListener(new CardListener(c3));
 			localP.addCard(c3);
 			c3.setIcon(wariorIcon);
 			panel.add(c3);

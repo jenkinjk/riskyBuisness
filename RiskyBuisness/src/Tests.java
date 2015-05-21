@@ -1918,7 +1918,7 @@ public class Tests {
 		Card c1 = new Card(name, board.getPlayers().get(0));
 		Card c2 = new Card(name, board.getPlayers().get(0));
 		Card c3 = new Card(name, board.getPlayers().get(0));
-		c1.addActionListener(new CardListener(c1));
+		c1.addMouseListener(new CardListener(c1));
 		board.getPlayers().get(0).addCard(c3);
 		board.getPlayers().get(0).addCard(c2);
 		board.getPlayers().get(0).removeCards(i, j, k, board);
